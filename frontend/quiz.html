@@ -82,6 +82,25 @@
                 
                 <div style="width: 100%; max-width: 780px;">
                     
+                    <!-- Subject Switcher Pills Bar -->
+                    <div class="quiz-subject-pills-bar mb-3" id="quizSubjectPillsBar">
+                        <button class="quiz-subject-pill active" id="pill-math" onclick="switchSubject('math')">
+                            <i class="bi bi-calculator"></i> Mathematics
+                        </button>
+                        <button class="quiz-subject-pill" id="pill-science" onclick="switchSubject('science')">
+                            <i class="bi bi-radioactive"></i> Science
+                        </button>
+                        <button class="quiz-subject-pill" id="pill-english" onclick="switchSubject('english')">
+                            <i class="bi bi-book"></i> English
+                        </button>
+                        <button class="quiz-subject-pill" id="pill-social" onclick="switchSubject('social')">
+                            <i class="bi bi-globe2"></i> Social Science
+                        </button>
+                        <button class="quiz-subject-pill" id="pill-kannada" onclick="switchSubject('kannada')">
+                            <i class="bi bi-translate"></i> Kannada
+                        </button>
+                    </div>
+
                     <!-- Practice Test Card (Screen 4) -->
                     <div class="practice-test-card">
                         
@@ -97,10 +116,10 @@
                             </div>
                         </div>
 
-                        <!-- Progress indicator -->
-                        <div class="d-flex justify-content-between align-items-center mb-2" style="font-size: 0.8rem; color: #64748b; font-weight: 600;">
+                        <!-- Progress indicator with proper spacing -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; font-size: 0.82rem; color: #64748b; font-weight: 600;">
                             <span id="quizQuestionCounter">Question 1 of 5</span>
-                            <span id="quizScorePreview">Progress: 20%</span>
+                            <span id="quizScorePreview" style="color: #1e6bff;">Progress: 20%</span>
                         </div>
                         <div class="quiz-progress-bar-container">
                             <div class="quiz-progress-fill" id="quizProgressBar" style="width: 20%;"></div>
@@ -113,23 +132,7 @@
 
                         <!-- Options Container -->
                         <div class="options-group mb-4" id="optionsContainer">
-                            <!-- Injected dynamically or initially populated -->
-                            <div class="custom-radio-option" onclick="handleOptionClick(0)">
-                                <div class="custom-radio-circle"></div>
-                                <span>4</span>
-                            </div>
-                            <div class="custom-radio-option selected" onclick="handleOptionClick(1)">
-                                <div class="custom-radio-circle"></div>
-                                <span>7</span>
-                            </div>
-                            <div class="custom-radio-option" onclick="handleOptionClick(2)">
-                                <div class="custom-radio-circle"></div>
-                                <span>9</span>
-                            </div>
-                            <div class="custom-radio-option" onclick="handleOptionClick(3)">
-                                <div class="custom-radio-circle"></div>
-                                <span>12</span>
-                            </div>
+                            <!-- Injected dynamically -->
                         </div>
 
                         <!-- Bottom Navigation Buttons (Screen 4) -->
@@ -158,41 +161,229 @@
             document.getElementById('appSidebar').classList.toggle('show');
         });
 
-        const questions = [
-            {
-                q: "1. Which of the following is a prime number?",
-                options: ["4", "7", "9", "12"],
-                correct: 1,
-                explanation: "7 is a prime number because it is only divisible by 1 and itself."
+        // Comprehensive Curriculum Question Bank per Subject
+        const subjectQuestionBank = {
+            math: {
+                title: "Mathematics Practice Test",
+                badge: "Mathematics",
+                questions: [
+                    {
+                        q: "1. Which of the following is a prime number?",
+                        options: ["4", "7", "9", "12"],
+                        correct: 1,
+                        explanation: "7 is a prime number because it is only divisible by 1 and itself."
+                    },
+                    {
+                        q: "2. Solve for x: 3x - 7 = 14",
+                        options: ["5", "6", "7", "8"],
+                        correct: 2,
+                        explanation: "3x = 14 + 7 = 21, hence x = 21 / 3 = 7."
+                    },
+                    {
+                        q: "3. What is the sum of interior angles in a triangle?",
+                        options: ["90°", "180°", "270°", "360°"],
+                        correct: 1,
+                        explanation: "The interior angles of any planar triangle always sum to 180°."
+                    },
+                    {
+                        q: "4. The value of sin(90°) is:",
+                        options: ["0", "1/2", "1", "Undefined"],
+                        correct: 2,
+                        explanation: "In trigonometry, the value of sin(90°) is 1."
+                    },
+                    {
+                        q: "5. If the radius of a circle is 7 cm, its circumference is: (π ≈ 22/7)",
+                        options: ["22 cm", "44 cm", "88 cm", "154 cm"],
+                        correct: 1,
+                        explanation: "Circumference = 2 * π * r = 2 * (22/7) * 7 = 44 cm."
+                    }
+                ]
             },
-            {
-                q: "2. Solve for x: 3x - 7 = 14",
-                options: ["5", "6", "7", "8"],
-                correct: 2,
-                explanation: "3x = 14 + 7 = 21, hence x = 21 / 3 = 7."
+            science: {
+                title: "Science Practice Test",
+                badge: "Science",
+                questions: [
+                    {
+                        q: "1. What is the chemical formula of water?",
+                        options: ["H2O2", "H2O", "CO2", "HO2"],
+                        correct: 1,
+                        explanation: "Water consists of two hydrogen atoms bonded to one oxygen atom (H2O)."
+                    },
+                    {
+                        q: "2. Which organelle is known as the 'powerhouse of the cell'?",
+                        options: ["Ribosome", "Mitochondria", "Nucleus", "Chloroplast"],
+                        correct: 1,
+                        explanation: "Mitochondria produce cellular ATP through respiration, earning them this title."
+                    },
+                    {
+                        q: "3. What is Newton's First Law of Motion also commonly referred to as?",
+                        options: ["Law of Acceleration", "Law of Inertia", "Law of Gravity", "Law of Momentum"],
+                        correct: 1,
+                        explanation: "Newton's First Law states an object remains in its state of rest or uniform motion unless acted upon by an external force (Law of Inertia)."
+                    },
+                    {
+                        q: "4. What is the pH value of pure, neutral water at 25°C?",
+                        options: ["5", "7", "9", "14"],
+                        correct: 1,
+                        explanation: "Pure neutral water has a pH of 7 on the standard 0 to 14 scale."
+                    },
+                    {
+                        q: "5. Which type of lens is used to correct myopia (nearsightedness)?",
+                        options: ["Convex lens", "Concave lens", "Bifocal lens", "Cylindrical lens"],
+                        correct: 1,
+                        explanation: "A concave (diverging) lens is used to correct myopia by focusing distant images onto the retina."
+                    }
+                ]
             },
-            {
-                q: "3. What is the sum of interior angles in a triangle?",
-                options: ["90°", "180°", "270°", "360°"],
-                correct: 1,
-                explanation: "The interior angles of any planar triangle always sum to 180°."
+            english: {
+                title: "English Practice Test",
+                badge: "English",
+                questions: [
+                    {
+                        q: "1. Identify the adjective in the sentence: 'The diligent student completed the examination.'",
+                        options: ["student", "completed", "diligent", "examination"],
+                        correct: 2,
+                        explanation: "'Diligent' modifies the noun 'student', functioning as an adjective."
+                    },
+                    {
+                        q: "2. Choose the correct passive voice: 'The author wrote an inspiring story.'",
+                        options: [
+                            "An inspiring story is written by the author.",
+                            "An inspiring story was written by the author.",
+                            "An inspiring story has been written by the author.",
+                            "An inspiring story had written by the author."
+                        ],
+                        correct: 1,
+                        explanation: "The past simple 'wrote' converts to 'was written' in passive voice."
+                    },
+                    {
+                        q: "3. What is the synonym of the word 'Abundant'?",
+                        options: ["Scarce", "Plentiful", "Rare", "Deficient"],
+                        correct: 1,
+                        explanation: "'Abundant' means plentiful or available in great quantity."
+                    },
+                    {
+                        q: "4. Fill in the blank: 'Neither the teacher nor the students ______ present in the auditorium.'",
+                        options: ["was", "were", "is", "has"],
+                        correct: 1,
+                        explanation: "With 'neither... nor', the verb agrees with the closer plural noun ('students' -> 'were')."
+                    },
+                    {
+                        q: "5. Identify the figure of speech: 'The ancient trees whispered in the gentle breeze.'",
+                        options: ["Simile", "Metaphor", "Personification", "Hyperbole"],
+                        correct: 2,
+                        explanation: "Attributing the human action of whispering to trees is Personification."
+                    }
+                ]
             },
-            {
-                q: "4. The value of sin(90°) is:",
-                options: ["0", "1/2", "1", "Undefined"],
-                correct: 2,
-                explanation: "In trigonometry, sin(90°) = 1."
+            social: {
+                title: "Social Science Practice Test",
+                badge: "Social Science",
+                questions: [
+                    {
+                        q: "1. In which year did the historic Jallianwala Bagh massacre take place?",
+                        options: ["1915", "1919", "1921", "1930"],
+                        correct: 1,
+                        explanation: "The Jallianwala Bagh massacre occurred on 13 April 1919 in Amritsar."
+                    },
+                    {
+                        q: "2. Which Articles of the Indian Constitution guarantee the Right to Equality?",
+                        options: ["Articles 14 to 18", "Articles 19 to 22", "Articles 23 to 24", "Articles 25 to 28"],
+                        correct: 0,
+                        explanation: "Articles 14 to 18 of the Indian Constitution guarantee Fundamental Right to Equality."
+                    },
+                    {
+                        q: "3. Which river is commonly referred to as the 'Sorrow of Bihar' due to frequent flooding?",
+                        options: ["Ganga", "Yamuna", "Kosi", "Brahmaputra"],
+                        correct: 2,
+                        explanation: "The Kosi River is known as the Sorrow of Bihar because of devastating recurring floods."
+                    },
+                    {
+                        q: "4. Who was the founder of the Maurya Empire?",
+                        options: ["Emperor Ashoka", "Chandragupta Maurya", "Bindusara", "Samudragupta"],
+                        correct: 1,
+                        explanation: "Chandragupta Maurya founded the Maurya Empire in 322 BCE."
+                    },
+                    {
+                        q: "5. What type of economic system does India follow?",
+                        options: ["Pure Capitalist Economy", "Pure Socialist Economy", "Mixed Economy", "Traditional Economy"],
+                        correct: 2,
+                        explanation: "India has a Mixed Economy featuring both private sector enterprise and public state-owned operations."
+                    }
+                ]
             },
-            {
-                q: "5. If the radius of a circle is 7 cm, its circumference is: (π ≈ 22/7)",
-                options: ["22 cm", "44 cm", "88 cm", "154 cm"],
-                correct: 1,
-                explanation: "Circumference = 2 * π * r = 2 * (22/7) * 7 = 44 cm."
+            kannada: {
+                title: "Kannada (ಕನ್ನಡ) Practice Test",
+                badge: "Kannada",
+                questions: [
+                    {
+                        q: "1. ಕನ್ನಡ ವರ್ಣಮಾಲೆಯಲ್ಲಿ ಒಟ್ಟು ಎಷ್ಟು ಅಕ್ಷರಗಳಿವೆ?",
+                        options: ["೪೮", "೪೯", "೫೦", "೫೨"],
+                        correct: 1,
+                        explanation: "ಕನ್ನಡ ವರ್ಣಮಾಲೆಯಲ್ಲಿ ಒಟ್ಟು ೪೯ (49) ಅಕ್ಷರಗಳಿವೆ (ಸ್ವರಗಳು: ೧೪, ಯೋಗವಾಹಗಳು: ೨, ವ್ಯಂಜನಗಳು: ೩೩)."
+                    },
+                    {
+                        q: "2. 'ವಿದ್ಯಾಲಯ' (ವಿದ್ಯಾ + ಆಲಯ) ಈ ಪದವು ಯಾವ ಸಂಧಿಗೆ ಉದಾಹರಣೆಯಾಗಿದೆ?",
+                        options: ["ಗುಣಸಂಧಿ", "ಸವರ್ಣದೀರ್ಘ ಸಂಧಿ", "ವೃದ್ಧಿಸಂಧಿ", "ಆಗಮಸಂಧಿ"],
+                        correct: 1,
+                        explanation: "ಸವರ್ಣ ಸ್ವರಗಳು ಪರವಾದಾಗ ಅದೇ ಜಾತಿಯ ದೀರ್ಘ ಸ್ವರ ಬರುವುದರಿಂದ ಇದು ಸವರ್ಣದೀರ್ಘ ಸಂಧಿಯಾಗಿದೆ."
+                    },
+                    {
+                        q: "3. ಕರ್ನಾಟಕ ರಾಜ್ಯೋತ್ಸವ ದಿನವನ್ನು ಪ್ರತಿ ವರ್ಷ ಯಾವಾಗ ಆಚರಿಸಲಾಗುತ್ತದೆ?",
+                        options: ["ನವೆಂಬರ್ ೧", "ಆಗಸ್ಟ್ ೧೫", "ಜನವರಿ ೨೬", "ಅಕ್ಟೋಬರ್ ೨"],
+                        correct: 0,
+                        explanation: "೧೯೫೬ ರ ನವೆಂಬರ್ ೧ ರಂದು ಮೈಸೂರು ರಾಜ್ಯ ಉದಯವಾಯಿತು, ಆದ್ದರಿಂದ ನವೆಂಬರ್ ೧ ರಂದು ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಆಚರಿಸಲಾಗುತ್ತದೆ."
+                    },
+                    {
+                        q: "4. ಕನ್ನಡದ ಮೊಟ್ಟಮೊದಲ ಉಪಲಬ್ಧ ಸಾಹಿತ್ಯ ಕೃತಿ 'ಕವಿರಾಜಮಾರ್ಗ'ದ ಕರ್ತೃ ಯಾರು?",
+                        options: ["ಆದಿಕವಿ ಪಂಪ", "ಶ್ರೀವಿಜಯ / ನೃಪತುಂಗ", "ರನ್ನ", "ಕುಮಾರವ್ಯಾಸ"],
+                        correct: 1,
+                        explanation: "'ಕವಿರಾಜಮಾರ್ಗ' ಕೃತಿಯು ರಾಷ್ಟ್ರಕೂಟ ದೊರೆ ನೃಪತುಂಗನ ಆಸ್ಥಾನದ ಶ್ರೀವಿಜಯನಿಂದ ರಚಿಸಲ್ಪಟ್ಟಿದೆ."
+                    },
+                    {
+                        q: "5. 'ಕಣ್ಣು' ಪದದ ಸಂಸ್ಕೃತ ತತ್ಸಮ ರೂಪ ಯಾವುದು?",
+                        options: ["ಅಕ್ಷಿ", "ಕಣ್ಣೋಟ", "ಕಾಣು", "ಕಂಜ"],
+                        correct: 0,
+                        explanation: "'ಅಕ್ಷಿ' ಎಂಬುದು ಸಂಸ್ಕೃತ ತತ್ಸಮವಾಗಿದ್ದು, 'ಕಣ್ಣು' ಎಂಬುದು ಅದರ ಕನ್ನಡ ತದ್ಭವ ರೂಪವಾಗಿದೆ."
+                    }
+                ]
             }
-        ];
+        };
 
+        // Determine current subject from URL parameters or default to math
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentSubjectKey = urlParams.get('subject') || 'math';
+        if (!subjectQuestionBank[currentSubjectKey]) currentSubjectKey = 'math';
+
+        let questions = subjectQuestionBank[currentSubjectKey].questions;
         let currentIndex = 0;
-        let userAnswers = { 0: 1 }; // Default question 1 selected as 7 per mockup
+        let userAnswers = {};
+        if (currentSubjectKey === 'math') {
+            userAnswers[0] = 1; // Default option 7 selected for math per Screen 4 mockup
+        }
+
+        function switchSubject(key) {
+            if (!subjectQuestionBank[key]) return;
+            currentSubjectKey = key;
+            questions = subjectQuestionBank[key].questions;
+            currentIndex = 0;
+            userAnswers = {};
+            if (currentSubjectKey === 'math') {
+                userAnswers[0] = 1;
+            }
+
+            // Update pills active state
+            document.querySelectorAll('.quiz-subject-pill').forEach(pill => pill.classList.remove('active'));
+            const activePill = document.getElementById(`pill-${key}`);
+            if (activePill) activePill.classList.add('active');
+
+            // Update title
+            document.getElementById('quizSubjectTitle').textContent = subjectQuestionBank[key].title;
+
+            // Render first question
+            renderQuestion(0);
+            SmartToast.show(`Switched to ${subjectQuestionBank[key].badge} Practice Test!`, 'info');
+        }
 
         function renderQuestion(index) {
             const q = questions[index];
@@ -272,7 +463,8 @@
             });
 
             const resultData = {
-                title: "Mathematics Practice Test",
+                title: subjectQuestionBank[currentSubjectKey].title,
+                subject: subjectQuestionBank[currentSubjectKey].badge,
                 score: score,
                 total: questions.length,
                 percentage: Math.round((score / questions.length) * 100),
@@ -286,6 +478,9 @@
                 window.location.href = 'quiz-result.html';
             }, 600);
         }
+
+        // Initialize active subject
+        switchSubject(currentSubjectKey);
 
         // Live Countdown Timer (Screen 4: 00:25:00)
         let totalSeconds = 25 * 60;

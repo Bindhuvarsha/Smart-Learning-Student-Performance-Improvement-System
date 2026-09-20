@@ -189,7 +189,7 @@
                 <div id="studyTopicLessonsList" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem;"></div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
-                    <a href="quiz.html" class="btn-smart-primary text-center" style="padding: 0.65rem 1rem; border-radius: 8px;">
+                    <a href="quiz.html" id="btnStartTopicQuiz" class="btn-smart-primary text-center" style="padding: 0.65rem 1rem; border-radius: 8px;">
                         <i class="bi bi-play-circle-fill me-1"></i> Start Topic Quiz
                     </a>
                     <a href="resources.html" class="btn-smart-outline text-center" style="padding: 0.65rem 1rem; border-radius: 8px;">
@@ -210,6 +210,14 @@
         document.getElementById('btnToggleSidebar')?.addEventListener('click', () => {
             document.getElementById('appSidebar').classList.toggle('show');
         });
+
+        const subjectKeyMap = {
+            'Mathematics': 'math',
+            'Science': 'science',
+            'English': 'english',
+            'Social Science': 'social',
+            'Kannada': 'kannada'
+        };
 
         function openStudyTopic(title, subject, meta, bg, color, icon, lessons) {
             document.getElementById('studyTopicTitle').textContent = title.replace(/&ndash;/g, '–');
@@ -235,6 +243,12 @@
                     </button>
                 </div>
             `).join('');
+
+            const subKey = subjectKeyMap[subject] || 'math';
+            const quizBtn = document.getElementById('btnStartTopicQuiz');
+            if (quizBtn) {
+                quizBtn.href = `quiz.html?subject=${subKey}`;
+            }
 
             document.getElementById('studyTopicModal').classList.add('show');
         }

@@ -88,7 +88,7 @@
                 <!-- 5 Subject Cards Grid (Screen 3) -->
                 <div class="subject-grid">
                     <!-- Mathematics -->
-                    <div class="subject-card math" onclick="openSubjectModal('Mathematics', 'bi-calculator', '#1e6bff', '#eaf2ff', ['Quadratic Equations', 'Coordinate Geometry', 'Trigonometric Identities', 'Arithmetic Progressions', 'Surface Areas and Volumes'])" style="cursor: pointer;">
+                    <div class="subject-card math" onclick="openSubjectModal('math', 'Mathematics', 'bi-calculator', '#1e6bff', '#eaf2ff', ['Quadratic Equations', 'Coordinate Geometry', 'Trigonometric Identities', 'Arithmetic Progressions', 'Surface Areas and Volumes'])" style="cursor: pointer;">
                         <div class="subject-card-icon">
                             <i class="bi bi-calculator"></i>
                         </div>
@@ -96,7 +96,7 @@
                     </div>
 
                     <!-- Science -->
-                    <div class="subject-card sci" onclick="openSubjectModal('Science', 'bi-radioactive', '#10b981', '#e8f8f0', ['Chemical Reactions and Equations', 'Acids, Bases and Salts', 'Light - Reflection and Refraction', 'Electricity & Magnetism', 'Life Processes'])" style="cursor: pointer;">
+                    <div class="subject-card sci" onclick="openSubjectModal('science', 'Science', 'bi-radioactive', '#10b981', '#e8f8f0', ['Chemical Reactions and Equations', 'Acids, Bases and Salts', 'Light - Reflection and Refraction', 'Electricity & Magnetism', 'Life Processes'])" style="cursor: pointer;">
                         <div class="subject-card-icon">
                             <i class="bi bi-radioactive"></i>
                         </div>
@@ -104,7 +104,7 @@
                     </div>
 
                     <!-- English -->
-                    <div class="subject-card eng" onclick="openSubjectModal('English', 'bi-book', '#f43f5e', '#fdf0f3', ['Active and Passive Voice', 'Direct and Indirect Speech', 'A Letter to God', 'Nelson Mandela: Long Walk to Freedom', 'Analytical Essay Writing'])" style="cursor: pointer;">
+                    <div class="subject-card eng" onclick="openSubjectModal('english', 'English', 'bi-book', '#f43f5e', '#fdf0f3', ['Active and Passive Voice', 'Direct and Indirect Speech', 'A Letter to God', 'Nelson Mandela: Long Walk to Freedom', 'Analytical Essay Writing'])" style="cursor: pointer;">
                         <div class="subject-card-icon">
                             <i class="bi bi-book"></i>
                         </div>
@@ -112,7 +112,7 @@
                     </div>
 
                     <!-- Social Science -->
-                    <div class="subject-card soc" onclick="openSubjectModal('Social Science', 'bi-globe2', '#f97316', '#fef5ec', ['The Rise of Nationalism in Europe', 'Resources and Development', 'Power Sharing in Democracy', 'Money and Credit', 'Sectors of Indian Economy'])" style="cursor: pointer;">
+                    <div class="subject-card soc" onclick="openSubjectModal('social', 'Social Science', 'bi-globe2', '#f97316', '#fef5ec', ['The Rise of Nationalism in Europe', 'Resources and Development', 'Power Sharing in Democracy', 'Money and Credit', 'Sectors of Indian Economy'])" style="cursor: pointer;">
                         <div class="subject-card-icon">
                             <i class="bi bi-globe2"></i>
                         </div>
@@ -120,7 +120,7 @@
                     </div>
 
                     <!-- Kannada -->
-                    <div class="subject-card kan" onclick="openSubjectModal('Kannada', 'bi-translate', '#8b5cf6', '#f4eefd', ['Kannada Grammar & Sandhi', 'Sankalpa Geethe', 'Vachana Sahitya', 'Huliya Kathe', 'Prabandha Rachane'])" style="cursor: pointer;">
+                    <div class="subject-card kan" onclick="openSubjectModal('kannada', 'Kannada', 'bi-translate', '#8b5cf6', '#f4eefd', ['Kannada Grammar & Sandhi', 'Sankalpa Geethe', 'Vachana Sahitya', 'Huliya Kathe', 'Prabandha Rachane'])" style="cursor: pointer;">
                         <div class="subject-card-icon">
                             <i class="bi bi-translate"></i>
                         </div>
@@ -132,7 +132,7 @@
                 <div class="mt-4">
                     <h4 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem;">Recommended for You</h4>
 
-                    <a href="study-plan.html" style="text-decoration: none; color: inherit;">
+                    <a href="quiz.html?subject=math" style="text-decoration: none; color: inherit;">
                         <div class="study-plan-item" style="transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
                             <div class="study-plan-left">
                                 <div class="study-plan-icon" style="background-color: #ebf3ff; color: #1e6bff;">
@@ -179,7 +179,7 @@
                 <div id="subjectChaptersList" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem;"></div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
-                    <a href="quiz.html" class="btn-smart-primary text-center" style="padding: 0.65rem 1rem; border-radius: 8px;">
+                    <a href="quiz.html?subject=math" id="btnModalStartQuiz" class="btn-smart-primary text-center" style="padding: 0.65rem 1rem; border-radius: 8px;">
                         <i class="bi bi-play-circle-fill me-1"></i> Start Practice Test
                     </a>
                     <a href="resources.html" class="btn-smart-outline text-center" style="padding: 0.65rem 1rem; border-radius: 8px;">
@@ -201,7 +201,7 @@
             document.getElementById('appSidebar').classList.toggle('show');
         });
 
-        function openSubjectModal(name, icon, color, bg, chapters) {
+        function openSubjectModal(key, name, icon, color, bg, chapters) {
             document.getElementById('subjectModalTitle').innerHTML = `<i class="bi ${icon}" style="color: ${color};"></i> <span>${name}</span>`;
             document.getElementById('subjectModalHeading').textContent = name;
             
@@ -213,11 +213,15 @@
             iconDiv.style.color = color;
             iconDiv.innerHTML = `<i class="bi ${icon}"></i>`;
 
+            // Update Start Quiz button to point to this subject
+            const quizBtn = document.getElementById('btnModalStartQuiz');
+            if (quizBtn) quizBtn.href = `quiz.html?subject=${key}`;
+
             const list = document.getElementById('subjectChaptersList');
             list.innerHTML = chapters.map((ch, idx) => `
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.65rem 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; background: #ffffff;">
                     <span style="font-size: 0.88rem; font-weight: 600; color: #0f172a;">${idx + 1}. ${ch}</span>
-                    <a href="quiz.html" class="btn-smart-outline" style="padding: 0.25rem 0.65rem; font-size: 0.75rem; border-radius: 6px;">Quiz &rarr;</a>
+                    <a href="quiz.html?subject=${key}" class="btn-smart-outline" style="padding: 0.25rem 0.65rem; font-size: 0.75rem; border-radius: 6px;">Quiz &rarr;</a>
                 </div>
             `).join('');
 
