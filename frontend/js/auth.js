@@ -379,6 +379,119 @@ const Auth = {
         container.className = 'smart-toast-container';
         container.id = 'smartToastContainer';
         document.body.appendChild(container);
+    },
+
+    injectAiAssistantWidget() {
+        if (document.getElementById('btnOpenAiAssistant')) return;
+
+        const widgetHtml = `
+            <button class="ai-assistant-fab" id="btnOpenAiAssistant" onclick="SmartAiTutor.toggle()" title="Ask doubts to AI Tutor">
+                <span class="pulse-dot"></span>
+                <i class="bi bi-stars"></i>
+                <span>AI Tutor</span>
+            </button>
+
+            <div class="ai-assistant-modal" id="aiAssistantModal">
+                <div class="ai-modal-header">
+                    <div style="display: flex; align-items: center; gap: 0.65rem;">
+                        <div style="width: 34px; height: 34px; border-radius: 10px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                            <i class="bi bi-robot"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 700; font-size: 0.95rem;">Smart School AI Tutor</div>
+                            <div style="font-size: 0.72rem; opacity: 0.9;">Online &bull; 24/7 Academic Support</div>
+                        </div>
+                    </div>
+                    <button onclick="SmartAiTutor.toggle()" style="background: none; border: none; color: #ffffff; font-size: 1.25rem; cursor: pointer; padding: 0.2rem 0.5rem;">&times;</button>
+                </div>
+
+                <div class="ai-modal-body" id="aiChatBody">
+                    <div class="ai-message bot">
+                        <div class="bubble">
+                            <strong>Hello! 👋</strong> I am your Smart School AI Learning Assistant. You can ask me any academic questions, get step-by-step math solutions, or ask how our machine learning system predicts student performance.
+                            <div class="ai-suggestion-chips">
+                                <button type="button" class="ai-chip" onclick="SmartAiTutor.ask('Explain Quadratic Equations simply')">📐 Quadratic Equations</button>
+                                <button type="button" class="ai-chip" onclick="SmartAiTutor.ask('How does AI predict student marks?')">🤖 AI Prediction Model</button>
+                                <button type="button" class="ai-chip" onclick="SmartAiTutor.ask('Give me quick Science revision tips')">🔬 Science Revision</button>
+                                <button type="button" class="ai-chip" onclick="SmartAiTutor.ask('How does weak-topic identification work?')">🎯 Weak-Topic Remedy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-modal-footer">
+                    <input type="text" id="aiChatInput" class="ai-input" placeholder="Ask a doubt or question..." onkeypress="SmartAiTutor.handleKeyPress(event)">
+                    <button class="btn-smart-primary" style="padding: 0.55rem 1rem; border-radius: 10px;" onclick="SmartAiTutor.send()">
+                        <i class="bi bi-send-fill"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', widgetHtml);
+    }
+};
+
+// Global Smart AI Tutor Controller
+const SmartAiTutor = {
+    toggle() {
+        const modal = document.getElementById('aiAssistantModal');
+        if (modal) {
+            modal.classList.toggle('show');
+            if (modal.classList.contains('show')) {
+                const input = document.getElementById('aiChatInput');
+                if (input) input.focus();
+            }
+        }
+    },
+
+    send() {
+        const input = document.getElementById('aiChatInput');
+        if (!input) return;
+        const q = input.value.trim();
+        if (!q) return;
+        input.value = '';
+        this.ask(q);
+    },
+
+    handleKeyPress(e) {
+        if (e.key === 'Enter') this.send();
+    },
+
+    ask(question) {
+        const chatBody = document.getElementById('aiChatBody');
+        if (!chatBody) return;
+
+        // Append User Message
+        const userMsg = document.createElement('div');
+        userMsg.className = 'ai-message user';
+        userMsg.innerHTML = `<div class="bubble">${question}</div>`;
+        chatBody.appendChild(userMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // Simulate intelligent pedagogical response
+        setTimeout(() => {
+            const botMsg = document.createElement('div');
+            botMsg.className = 'ai-message bot';
+            
+            let reply = '';
+            const qLower = question.toLowerCase();
+
+            if (qLower.includes('quadratic') || qLower.includes('equation') || qLower.includes('math')) {
+                reply = `<strong>Quadratic Equations Explanation:</strong><br>A quadratic equation is in the standard form <em>ax² + bx + c = 0</em> (where a ≠ 0).<br>• <strong>Quadratic Formula:</strong> x = (-b ± √(b² - 4ac)) / 2a<br>• <strong>Discriminant (D = b² - 4ac):</strong><br>&nbsp;&nbsp;- If D > 0: Two distinct real roots.<br>&nbsp;&nbsp;- If D = 0: Two identical real roots.<br>&nbsp;&nbsp;- If D < 0: Complex conjugate roots.<br>Visit your <strong>Study Plan</strong> for step-by-step practice problems!`;
+            } else if (qLower.includes('predict') || qLower.includes('model') || qLower.includes('ml') || qLower.includes('ai')) {
+                reply = `<strong>AI Academic Performance Model:</strong><br>1. <strong>Input Vectors:</strong> Quiz scores, practice frequency, topic completion rate, and formative test timelines.<br>2. <strong>Scikit-Learn ML Pipeline:</strong> Trains on historical cohort data to compute your projected exam score and risk status.<br>3. <strong>Proactive Intervention:</strong> Automatically queues personalized remedial topics in the <strong>Study Plan</strong> if confidence drops below 65%.`;
+            } else if (qLower.includes('science') || qLower.includes('revision') || qLower.includes('tips')) {
+                reply = `<strong>Class 10 Science Revision Tips:</strong><br>• <strong>Physics:</strong> Master Snell's law and focal length formula (1/f = 1/v - 1/u).<br>• <strong>Chemistry:</strong> Practice precipitation reactions and periodic table trends (atomic radius, electronegativity).<br>• <strong>Biology:</strong> Review trophic levels in ecosystems and Mendel's law of inheritance.`;
+            } else if (qLower.includes('weak') || qLower.includes('remedy') || qLower.includes('diagnostic')) {
+                reply = `<strong>Weak-Topic Diagnostic Engine:</strong><br>• Evaluates your practice tests across subjects.<br>• Tags topics where accuracy is under 60% as 'Needs Attention'.<br>• Generates focused 2–3 lesson micro-modules in your <strong>Study Plan</strong> to help you master challenging concepts!`;
+            } else {
+                reply = `Great query! As your AI tutor, I recommend reviewing your <strong>Learning Materials</strong> for syllabus notes, taking a quick test in <strong>Practice Tests</strong>, and checking your progress in <strong>Performance Analytics</strong>. Would you like a targeted quiz on this topic?`;
+            }
+
+            botMsg.innerHTML = `<div class="bubble">${reply}</div>`;
+            chatBody.appendChild(botMsg);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }, 550);
     }
 };
 
@@ -422,4 +535,5 @@ const SmartModal = {
 document.addEventListener('DOMContentLoaded', () => {
     Auth.setupDemoButtons();
     Auth.initGlobalNav();
+    Auth.injectAiAssistantWidget();
 });
