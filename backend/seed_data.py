@@ -42,8 +42,17 @@ def seed_database():
     )
     teacher_rao.set_password("teacher123")
 
+    teacher_kumar = User(
+        username="teacher",
+        email="teacher@smartschool.edu",
+        role="teacher",
+        full_name="Dr. Ramesh Kumar"
+    )
+    teacher_kumar.set_password("password123")
+
     students_data = [
         ("student_alex", "alex@smartschool.edu", "Alex Johnson", class_10a.id, 76.0, 6.5, 68.0),
+        ("bindhushree", "bindhushree@smartschool.edu", "Bindhu Shree", class_10a.id, 94.0, 14.0, 88.0),
         ("student_priya", "priya@smartschool.edu", "Priya Sharma", class_10a.id, 96.0, 18.0, 95.0),
         ("student_rahul", "rahul@smartschool.edu", "Rahul Verma", class_10a.id, 62.0, 3.5, 50.0),
         ("student_anita", "anita@smartschool.edu", "Anita Desai", class_10a.id, 88.0, 12.0, 85.0),
@@ -59,11 +68,11 @@ def seed_database():
             full_name=fname,
             class_id=cid
         )
-        u.set_password("student123")
+        u.set_password("password123" if uname == "bindhushree" else "student123")
         db_session.add(u)
         student_users.append((u, att, hrs, asgn))
 
-    db_session.add_all([admin, teacher_smith, teacher_rao])
+    db_session.add_all([admin, teacher_smith, teacher_rao, teacher_kumar])
     db_session.commit()
 
     print("Creating Subjects...")

@@ -29,10 +29,10 @@
 
             <div class="hero-nav-actions">
                 <button class="btn-nav-signin" onclick="openLoginModal('student')">
-                    <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+                    <i class="bi bi-box-arrow-in-right me-1"></i> Student Login
                 </button>
-                <button class="btn-nav-demo" onclick="openLoginModal('demo')">
-                    <i class="bi bi-lightning-charge-fill me-1"></i> Explore Demo
+                <button class="btn-nav-demo" onclick="openLoginModal('teacher')">
+                    <i class="bi bi-person-badge-fill me-1"></i> Teacher / Admin
                 </button>
             </div>
         </header>
@@ -52,11 +52,11 @@
                 </p>
 
                 <div class="hero-desktop-cta-row">
-                    <button class="btn-desktop-primary" onclick="openLoginModal('demo')">
-                        Request a Demo <i class="bi bi-arrow-right"></i>
+                    <button class="btn-desktop-primary" onclick="openLoginModal('student')">
+                        Student Sign In <i class="bi bi-arrow-right"></i>
                     </button>
-                    <button class="btn-desktop-outline" onclick="window.location.href='student.html'">
-                        Explore Platform
+                    <button class="btn-desktop-outline" onclick="openLoginModal('teacher')">
+                        Teacher / Admin Portal
                     </button>
                 </div>
 
@@ -239,24 +239,21 @@
                 </button>
             </form>
 
-            <!-- Evaluator Quick Demo Mode -->
+            <!-- Dedicated Quick Role Login -->
             <div class="demo-mode-container" style="margin-top: 0;">
                 <div style="font-size: 0.76rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">
-                    <i class="bi bi-lightning-charge-fill text-warning"></i> One-Click Evaluator Demo Access
+                    <i class="bi bi-lightning-charge-fill text-warning"></i> One-Click Dedicated Role Access
                 </div>
-                <div class="demo-pills-row">
+                <div class="demo-pills-row" style="grid-template-columns: repeat(3, 1fr);">
                     <button type="button" class="demo-chip-btn" onclick="quickModalLogin('student')">
-                        <i class="bi bi-mortarboard text-primary"></i> Student
+                        <i class="bi bi-mortarboard text-primary"></i> Student Portal
                     </button>
                     <button type="button" class="demo-chip-btn" onclick="quickModalLogin('teacher')">
-                        <i class="bi bi-person-workspace text-success"></i> Teacher
+                        <i class="bi bi-person-workspace text-success"></i> Teacher Portal
                     </button>
                     <button type="button" class="demo-chip-btn" onclick="quickModalLogin('admin')">
-                        <i class="bi bi-shield-lock text-purple"></i> Admin
+                        <i class="bi bi-shield-lock text-purple"></i> Admin Portal
                     </button>
-                    <a href="student.html" class="demo-chip-btn" style="background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; font-weight: 700;">
-                        <i class="bi bi-grid-3x3-gap-fill"></i> All 9 Features &rarr;
-                    </a>
                 </div>
             </div>
 

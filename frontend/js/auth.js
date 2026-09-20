@@ -29,16 +29,35 @@ const Auth = {
     },
 
     getUser() {
+        const path = window.location.pathname.toLowerCase();
         const str = localStorage.getItem('smart_school_user');
+        let user = null;
         try {
-            if (str) return JSON.parse(str);
+            if (str) user = JSON.parse(str);
         } catch (e) {}
 
-        // Smart default based on current page context so features are always accessible
-        const path = window.location.pathname.toLowerCase();
-        if (path.includes('teacher.html')) return this.DEFAULT_USERS.teacher;
-        if (path.includes('admin.html')) return this.DEFAULT_USERS.admin;
-        return this.DEFAULT_USERS.student;
+        // If user session exists and matches, return it
+        if (user && user.role) {
+            // Keep role synchronized with specific dashboard pages
+            if (path.includes('teacher.html') && user.role !== 'teacher') {
+                user = this.DEFAULT_USERS.teacher;
+                this.setUser(user);
+            } else if (path.includes('admin.html') && user.role !== 'admin') {
+                user = this.DEFAULT_USERS.admin;
+                this.setUser(user);
+            } else if ((path.includes('student.html') || path.includes('materials.html') || path.includes('quiz.html') || path.includes('study-plan.html') || path.includes('performance.html')) && user.role !== 'student') {
+                user = this.DEFAULT_USERS.student;
+                this.setUser(user);
+            }
+            return user;
+        }
+
+        // Smart default based on current page context
+        if (path.includes('teacher.html')) user = this.DEFAULT_USERS.teacher;
+        else if (path.includes('admin.html')) user = this.DEFAULT_USERS.admin;
+        else user = this.DEFAULT_USERS.student;
+        this.setUser(user);
+        return user;
     },
 
     setUser(user) {
@@ -65,7 +84,6 @@ const Auth = {
 
     async checkAuth(requiredRoles = []) {
         let user = this.getUser();
-        // Always allow full feature access across all pages without restrictive redirects
         return user;
     },
 
@@ -95,81 +113,91 @@ const Auth = {
 
         const user = this.getUser();
 
-        // 1. Enrich Sidebar with All Modules
+        // 1. Role-Specific Sidebar Navigation
         const sidebarNav = document.querySelector('.sidebar-nav');
         if (sidebarNav) {
-            sidebarNav.innerHTML = `
-                <div class="sidebar-section-title">Student Module</div>
-                <a href="student.html" class="sidebar-nav-item ${currentPage === 'student.html' ? 'active' : ''}">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="materials.html" class="sidebar-nav-item ${currentPage === 'materials.html' ? 'active' : ''}">
-                    <i class="bi bi-journal-bookmark"></i>
-                    <span>My Learning</span>
-                </a>
-                <a href="quiz.html" class="sidebar-nav-item ${currentPage === 'quiz.html' || currentPage === 'quiz-result.html' ? 'active' : ''}">
-                    <i class="bi bi-check2-square"></i>
-                    <span>Practice Tests</span>
-                </a>
-                <a href="study-plan.html" class="sidebar-nav-item ${currentPage === 'study-plan.html' ? 'active' : ''}">
-                    <i class="bi bi-compass"></i>
-                    <span>Study Plan</span>
-                </a>
-                <a href="performance.html" class="sidebar-nav-item ${currentPage === 'performance.html' ? 'active' : ''}">
-                    <i class="bi bi-graph-up"></i>
-                    <span>Performance</span>
-                </a>
-
-                <div class="sidebar-section-title">Teacher Module</div>
-                <a href="teacher.html" class="sidebar-nav-item ${currentPage === 'teacher.html' ? 'active' : ''}">
-                    <i class="bi bi-person-workspace"></i>
-                    <span>Teacher Dashboard</span>
-                </a>
-
-                <div class="sidebar-section-title">Admin Module</div>
-                <a href="admin.html" class="sidebar-nav-item ${currentPage === 'admin.html' ? 'active' : ''}">
-                    <i class="bi bi-shield-lock-fill"></i>
-                    <span>Admin Dashboard</span>
-                </a>
-
-                <div class="sidebar-section-title">Shared Resources</div>
-                <a href="resources.html" class="sidebar-nav-item ${currentPage === 'resources.html' ? 'active' : ''}">
-                    <i class="bi bi-folder2-open"></i>
-                    <span>Learning Resources</span>
-                </a>
-            `;
+            if (user.role === 'student') {
+                sidebarNav.innerHTML = `
+                    <div class="sidebar-section-title">Student Portal</div>
+                    <a href="student.html" class="sidebar-nav-item ${currentPage === 'student.html' ? 'active' : ''}">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="materials.html" class="sidebar-nav-item ${currentPage === 'materials.html' ? 'active' : ''}">
+                        <i class="bi bi-journal-bookmark"></i>
+                        <span>My Learning</span>
+                    </a>
+                    <a href="quiz.html" class="sidebar-nav-item ${currentPage === 'quiz.html' || currentPage === 'quiz-result.html' ? 'active' : ''}">
+                        <i class="bi bi-check2-square"></i>
+                        <span>Practice Tests</span>
+                    </a>
+                    <a href="study-plan.html" class="sidebar-nav-item ${currentPage === 'study-plan.html' ? 'active' : ''}">
+                        <i class="bi bi-compass"></i>
+                        <span>Study Plan</span>
+                    </a>
+                    <a href="performance.html" class="sidebar-nav-item ${currentPage === 'performance.html' ? 'active' : ''}">
+                        <i class="bi bi-graph-up"></i>
+                        <span>Performance</span>
+                    </a>
+                    <a href="resources.html" class="sidebar-nav-item ${currentPage === 'resources.html' ? 'active' : ''}">
+                        <i class="bi bi-folder2-open"></i>
+                        <span>Resources</span>
+                    </a>
+                `;
+            } else if (user.role === 'teacher') {
+                sidebarNav.innerHTML = `
+                    <div class="sidebar-section-title">Teacher Portal</div>
+                    <a href="teacher.html" class="sidebar-nav-item ${currentPage === 'teacher.html' ? 'active' : ''}">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Class Overview</span>
+                    </a>
+                    <a href="teacher.html#performance-table" class="sidebar-nav-item">
+                        <i class="bi bi-people-fill"></i>
+                        <span>Student Performance</span>
+                    </a>
+                    <a href="teacher.html#weak-topics" class="sidebar-nav-item">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <span>Weak Topics</span>
+                    </a>
+                    <a href="analytics.html" class="sidebar-nav-item ${currentPage === 'analytics.html' ? 'active' : ''}">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <span>Class Analytics</span>
+                    </a>
+                    <a href="resources.html" class="sidebar-nav-item ${currentPage === 'resources.html' ? 'active' : ''}">
+                        <i class="bi bi-folder2-open"></i>
+                        <span>Teaching Resources</span>
+                    </a>
+                `;
+            } else if (user.role === 'admin') {
+                sidebarNav.innerHTML = `
+                    <div class="sidebar-section-title">Admin Portal</div>
+                    <a href="admin.html" class="sidebar-nav-item ${currentPage === 'admin.html' ? 'active' : ''}">
+                        <i class="bi bi-shield-lock-fill"></i>
+                        <span>School Overview</span>
+                    </a>
+                    <a href="admin.html#students-table" class="sidebar-nav-item">
+                        <i class="bi bi-mortarboard-fill"></i>
+                        <span>Student Management</span>
+                    </a>
+                    <a href="admin.html#faculty-table" class="sidebar-nav-item">
+                        <i class="bi bi-person-video3"></i>
+                        <span>Faculty Roster</span>
+                    </a>
+                    <a href="analytics.html" class="sidebar-nav-item ${currentPage === 'analytics.html' ? 'active' : ''}">
+                        <i class="bi bi-bar-chart-line-fill"></i>
+                        <span>School Analytics</span>
+                    </a>
+                    <a href="resources.html" class="sidebar-nav-item ${currentPage === 'resources.html' ? 'active' : ''}">
+                        <i class="bi bi-folder2-open"></i>
+                        <span>Resource Library</span>
+                    </a>
+                `;
+            }
         }
 
-        // 2. Setup Topbar Role Switcher & Features Button
+        // 2. Setup Clean User Profile Pill Dropdown (Without debug pills)
         const topbar = document.querySelector('.app-topbar');
         if (topbar) {
-            const topbarLeft = topbar.querySelector('.topbar-left');
-            if (topbarLeft && !topbarLeft.querySelector('.topbar-role-switcher')) {
-                const isStudent = ['student.html', 'materials.html', 'quiz.html', 'quiz-result.html', 'study-plan.html', 'performance.html'].includes(currentPage);
-                const isTeacher = currentPage === 'teacher.html';
-                const isAdmin = currentPage === 'admin.html';
-
-                const switcher = document.createElement('div');
-                switcher.className = 'topbar-role-switcher ms-3 d-none d-sm-flex';
-                switcher.innerHTML = `
-                    <button class="role-pill ${isStudent ? 'active' : ''}" onclick="Auth.switchRole('student')" title="Switch to Student View">
-                        <i class="bi bi-mortarboard-fill"></i> Student
-                    </button>
-                    <button class="role-pill ${isTeacher ? 'active' : ''}" onclick="Auth.switchRole('teacher')" title="Switch to Teacher View">
-                        <i class="bi bi-person-workspace"></i> Teacher
-                    </button>
-                    <button class="role-pill ${isAdmin ? 'active' : ''}" onclick="Auth.switchRole('admin')" title="Switch to Admin View">
-                        <i class="bi bi-shield-lock-fill"></i> Admin
-                    </button>
-                    <button class="role-pill all-features-btn ms-1" onclick="SmartModal.openFeatureHub()" title="View All 9 Features">
-                        <i class="bi bi-grid-3x3-gap-fill"></i> All Features
-                    </button>
-                `;
-                topbarLeft.appendChild(switcher);
-            }
-
-            // 3. Setup User Profile Pill Dropdown
             const userPill = topbar.querySelector('.user-profile-pill');
             if (userPill && !userPill.parentElement.classList.contains('user-dropdown-container')) {
                 const container = document.createElement('div');
@@ -177,11 +205,35 @@ const Auth = {
                 userPill.parentNode.insertBefore(container, userPill);
                 container.appendChild(userPill);
 
-                // Update User Pill Text dynamically
+                // Update User Pill Text dynamically matching the user account
                 const nameEl = userPill.querySelector('.user-info-name');
                 const roleEl = userPill.querySelector('.user-info-role');
+                const avatarEl = userPill.querySelector('.user-avatar-img');
+
                 if (nameEl) nameEl.textContent = user.full_name;
-                if (roleEl) roleEl.innerHTML = `${user.role.charAt(0).toUpperCase() + user.role.slice(1)} <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i>`;
+                
+                if (roleEl) {
+                    let roleSubtitle = 'Student &bull; Class 10';
+                    if (user.role === 'teacher') roleSubtitle = 'Teacher &bull; Faculty';
+                    else if (user.role === 'admin') roleSubtitle = 'Admin &bull; Principal';
+                    roleEl.innerHTML = `${roleSubtitle} <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i>`;
+                }
+
+                if (avatarEl) {
+                    if (user.role === 'teacher') {
+                        avatarEl.style.background = 'linear-gradient(135deg, #dcfce7, #86efac)';
+                        avatarEl.style.color = '#166534';
+                        avatarEl.innerHTML = '<i class="bi bi-person-workspace"></i>';
+                    } else if (user.role === 'admin') {
+                        avatarEl.style.background = 'linear-gradient(135deg, #ede9fe, #c4b5fd)';
+                        avatarEl.style.color = '#5b21b6';
+                        avatarEl.innerHTML = '<i class="bi bi-shield-lock-fill"></i>';
+                    } else {
+                        avatarEl.style.background = 'linear-gradient(135deg, #dbeafe, #93c5fd)';
+                        avatarEl.style.color = '#1e40af';
+                        avatarEl.innerHTML = '<i class="bi bi-mortarboard-fill"></i>';
+                    }
+                }
 
                 // Add Dropdown Menu
                 const dropdown = document.createElement('div');
@@ -190,24 +242,20 @@ const Auth = {
                 dropdown.innerHTML = `
                     <div class="user-dropdown-header">
                         <div style="font-weight: 700; font-size: 0.88rem; color: #0f172a;">${user.full_name}</div>
-                        <div style="font-size: 0.75rem; color: #64748b;">${user.email} &bull; <span style="text-transform: capitalize; color: #1e6bff; font-weight: 600;">${user.role}</span></div>
+                        <div style="font-size: 0.75rem; color: #64748b;">${user.email} &bull; <span style="text-transform: capitalize; color: #2563eb; font-weight: 700;">${user.role}</span></div>
                     </div>
+                    <div style="padding: 0.4rem 0.75rem 0.2rem 0.75rem; font-size: 0.7rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Switch Account</div>
                     <div class="user-dropdown-item" onclick="Auth.switchRole('student')">
                         <i class="bi bi-mortarboard text-primary"></i>
-                        <span>Student View (Bindhu Shree)</span>
+                        <span>Student Account (Bindhu Shree)</span>
                     </div>
                     <div class="user-dropdown-item" onclick="Auth.switchRole('teacher')">
                         <i class="bi bi-person-workspace text-success"></i>
-                        <span>Teacher View</span>
+                        <span>Teacher Account (Dr. Ramesh Kumar)</span>
                     </div>
                     <div class="user-dropdown-item" onclick="Auth.switchRole('admin')">
                         <i class="bi bi-shield-lock text-purple"></i>
-                        <span>Admin View</span>
-                    </div>
-                    <div class="user-dropdown-divider"></div>
-                    <div class="user-dropdown-item" onclick="SmartModal.openFeatureHub()">
-                        <i class="bi bi-grid-3x3-gap-fill text-warning"></i>
-                        <span>Explore All 9 Features</span>
+                        <span>Admin Account (School Principal)</span>
                     </div>
                     <div class="user-dropdown-divider"></div>
                     <div class="user-dropdown-item text-danger" onclick="Auth.logout()">
@@ -229,8 +277,7 @@ const Auth = {
             }
         }
 
-        // 4. Inject Features Hub Modal HTML if missing
-        this.injectFeatureHubModal();
+        // 3. Inject Toast Container
         this.injectToastContainer();
     },
 
