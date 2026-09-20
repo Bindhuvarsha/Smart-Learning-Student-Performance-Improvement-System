@@ -123,6 +123,11 @@ const Auth = {
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
+                    <a href="ai-teacher.html" class="sidebar-nav-item ${currentPage === 'ai-teacher.html' ? 'active' : ''}">
+                        <i class="bi bi-robot text-primary"></i>
+                        <span>AI Teacher</span>
+                        <span style="margin-left: auto; background: #eff6ff; color: #2563eb; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 4px;">24/7</span>
+                    </a>
                     <a href="materials.html" class="sidebar-nav-item ${currentPage === 'materials.html' ? 'active' : ''}">
                         <i class="bi bi-journal-bookmark"></i>
                         <span>My Learning</span>
@@ -150,6 +155,11 @@ const Auth = {
                     <a href="teacher.html" class="sidebar-nav-item ${currentPage === 'teacher.html' ? 'active' : ''}">
                         <i class="bi bi-grid-fill"></i>
                         <span>Class Overview</span>
+                    </a>
+                    <a href="ai-teacher.html" class="sidebar-nav-item ${currentPage === 'ai-teacher.html' ? 'active' : ''}">
+                        <i class="bi bi-robot text-success"></i>
+                        <span>AI Teacher Co-Pilot</span>
+                        <span style="margin-left: auto; background: #ecfdf5; color: #10b981; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 4px;">AI</span>
                     </a>
                     <a href="teacher.html#performance-table" class="sidebar-nav-item">
                         <i class="bi bi-people-fill"></i>
@@ -193,6 +203,11 @@ const Auth = {
                     </a>
 
                     <div class="sidebar-section-title">Academic & Learning Portals</div>
+                    <a href="ai-teacher.html" class="sidebar-nav-item ${currentPage === 'ai-teacher.html' ? 'active' : ''}">
+                        <i class="bi bi-robot text-primary"></i>
+                        <span>AI Teacher Classroom</span>
+                        <span style="margin-left: auto; background: #eff6ff; color: #2563eb; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 4px;">24/7</span>
+                    </a>
                     <a href="student.html" class="sidebar-nav-item ${currentPage === 'student.html' ? 'active' : ''}">
                         <i class="bi bi-grid-fill"></i>
                         <span>Student Dashboard</span>
@@ -221,7 +236,7 @@ const Auth = {
                     <div class="sidebar-section-title">Platform Hub</div>
                     <a href="#" class="sidebar-nav-item" onclick="SmartModal.openFeatureHub(); return false;">
                         <i class="bi bi-grid-3x3-gap-fill text-warning"></i>
-                        <span>All 9 Features Hub</span>
+                        <span>All Features Hub</span>
                     </a>
                 `;
             }
@@ -457,6 +472,18 @@ const Auth = {
                                 </div>
                             </a>
 
+                            <!-- Screen 10: AI Teacher -->
+                            <a href="ai-teacher.html" class="feature-hub-card" style="border: 1.5px solid #bfdbfe; background: #f8fbff;">
+                                <div class="feature-hub-card-icon" style="background: #dbeafe; color: #1e40af;">
+                                    <i class="bi bi-robot"></i>
+                                </div>
+                                <div>
+                                    <div class="feature-hub-card-title">10. AI Teacher (Dr. Priya AI)</div>
+                                    <div class="feature-hub-card-desc">24/7 Virtual classroom with voice readout, concept master, lesson planner & remedial worksheet generator.</div>
+                                    <span class="feature-hub-card-badge" style="background: #eff6ff; color: #1d4ed8;">AI Teacher</span>
+                                </div>
+                            </a>
+
                         </div>
                     </div>
                     <div class="smart-modal-footer">
@@ -481,10 +508,10 @@ const Auth = {
         if (document.getElementById('btnOpenAiAssistant')) return;
 
         const widgetHtml = `
-            <button class="ai-assistant-fab" id="btnOpenAiAssistant" onclick="SmartAiTutor.toggle()" title="Ask doubts to AI Tutor">
+            <button class="ai-assistant-fab" id="btnOpenAiAssistant" onclick="SmartAiTutor.toggle()" title="Ask doubts to AI Teacher">
                 <span class="pulse-dot"></span>
                 <i class="bi bi-stars"></i>
-                <span>AI Tutor</span>
+                <span>AI Teacher</span>
             </button>
 
             <div class="ai-assistant-modal" id="aiAssistantModal">
@@ -494,11 +521,16 @@ const Auth = {
                             <i class="bi bi-robot"></i>
                         </div>
                         <div>
-                            <div style="font-weight: 700; font-size: 0.95rem;">Smart School AI Tutor</div>
-                            <div style="font-size: 0.72rem; opacity: 0.9;">Online &bull; 24/7 Academic Support</div>
+                            <div style="font-weight: 700; font-size: 0.95rem;">Dr. Priya AI – AI Teacher</div>
+                            <div style="font-size: 0.72rem; opacity: 0.9;">Online &bull; 24/7 Academic Classroom</div>
                         </div>
                     </div>
-                    <button onclick="SmartAiTutor.toggle()" style="background: none; border: none; color: #ffffff; font-size: 1.25rem; cursor: pointer; padding: 0.2rem 0.5rem;">&times;</button>
+                    <div style="display: flex; align-items: center; gap: 0.4rem;">
+                        <a href="ai-teacher.html" style="font-size: 0.72rem; color: #ffffff; background: rgba(255,255,255,0.25); padding: 0.2rem 0.5rem; border-radius: 6px; text-decoration: none; font-weight: 600;">
+                            Full Classroom &rarr;
+                        </a>
+                        <button onclick="SmartAiTutor.toggle()" style="background: none; border: none; color: #ffffff; font-size: 1.25rem; cursor: pointer; padding: 0.2rem 0.4rem;">&times;</button>
+                    </div>
                 </div>
 
                 <div class="ai-modal-body" id="aiChatBody">

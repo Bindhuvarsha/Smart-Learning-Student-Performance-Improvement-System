@@ -69,6 +69,14 @@ const API = {
         return this.request('/auth/logout');
     },
 
+    // AI Teacher Endpoint
+    aiTeacherChat(question, subject = 'Mathematics', mode = 'student') {
+        return this.request('/ai-teacher/chat', {
+            method: 'POST',
+            body: { question, subject, mode }
+        });
+    },
+
     // Student Endpoints
     getStudentDashboard() {
         return this.request('/student/dashboard');
