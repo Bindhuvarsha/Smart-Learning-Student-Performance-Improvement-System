@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Study Plan – Smart School</title>
+    <!-- Google Fonts & Bootstrap Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Sidebar -->
+        <aside class="app-sidebar" id="appSidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon"><i class="bi bi-book-half"></i></div>
+                <div class="sidebar-brand-title">Smart School</div>
+                <div class="sidebar-brand-subtitle">Learn &bull; Grow &bull; Succeed</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="student.html" class="sidebar-nav-item">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="materials.html" class="sidebar-nav-item">
+                    <i class="bi bi-journal-bookmark"></i>
+                    <span>My Learning</span>
+                </a>
+                <a href="quiz.html" class="sidebar-nav-item">
+                    <i class="bi bi-check2-square"></i>
+                    <span>Practice Tests</span>
+                </a>
+                <a href="performance.html" class="sidebar-nav-item">
+                    <i class="bi bi-graph-up"></i>
+                    <span>Performance</span>
+                </a>
+                <a href="resources.html" class="sidebar-nav-item">
+                    <i class="bi bi-folder2-open"></i>
+                    <span>Resources</span>
+                </a>
+                <a href="student.html" class="sidebar-nav-item">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="sidebar-nav-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="app-content">
+            <!-- Topbar (Screen 5) -->
+            <header class="app-topbar">
+                <div class="topbar-left">
+                    <button class="btn-sidebar-toggle" id="btnToggleSidebar"><i class="bi bi-list"></i></button>
+                </div>
+                <div class="topbar-right">
+                    <div class="notification-bell">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </div>
+                    <div class="user-profile-pill">
+                        <div class="user-avatar-img"><i class="bi bi-person-fill"></i></div>
+                        <div class="user-info-text">
+                            <div class="user-info-name">Bindhu Shree</div>
+                            <div class="user-info-role">Student <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page-body" style="max-width: 960px;">
+                
+                <!-- Page Header -->
+                <div class="page-header mb-4">
+                    <h2 class="page-title">Personalized Study Plan</h2>
+                </div>
+
+                <!-- Recommendation Banner (Screen 5) -->
+                <div class="recommend-banner">
+                    <i class="bi bi-lightbulb-fill" style="font-size: 1.25rem;"></i>
+                    <span>Based on your performance, here are your recommended topics to improve.</span>
+                </div>
+
+                <!-- 4 Study Plan Items (Screen 5) -->
+                <div class="study-plan-list">
+                    
+                    <!-- Item 1: Algebra - Basics -->
+                    <div class="study-plan-item" style="cursor: pointer;" onclick="openStudyTopic('Algebra &ndash; Basics', 'Mathematics', '3 lessons &bull; 2 quizzes', '#ebf3ff', '#1e6bff', 'bi-calculator', ['Quadratic Formulas & Roots', 'Solving by Factorization', 'Completing the Square Method'])">
+                        <div class="study-plan-left">
+                            <div class="study-plan-icon" style="background-color: #ebf3ff; color: #1e6bff;">
+                                <i class="bi bi-calculator"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; font-size: 0.95rem; color: #0f172a;">Algebra &ndash; Basics</div>
+                                <div style="font-size: 0.78rem; color: #64748b;">Mathematics &bull; 3 lessons &bull; 2 quizzes</div>
+                            </div>
+                        </div>
+                        <button class="btn-smart-primary" style="padding: 0.45rem 1.4rem; border-radius: 8px;" onclick="event.stopPropagation(); openStudyTopic('Algebra &ndash; Basics', 'Mathematics', '3 lessons &bull; 2 quizzes', '#ebf3ff', '#1e6bff', 'bi-calculator', ['Quadratic Formulas & Roots', 'Solving by Factorization', 'Completing the Square Method'])">
+                            Start
+                        </button>
+                    </div>
+
+                    <!-- Item 2: Grammar Practice -->
+                    <div class="study-plan-item" style="cursor: pointer;" onclick="openStudyTopic('Grammar Practice', 'English', '3 lessons &bull; 2 quizzes', '#fdf0f3', '#f43f5e', 'bi-spellcheck', ['Active and Passive Voice Rules', 'Direct to Indirect Speech Transformations', 'Subject-Verb Agreement Exercises'])">
+                        <div class="study-plan-left">
+                            <div class="study-plan-icon" style="background-color: #fdf0f3; color: #f43f5e;">
+                                <i class="bi bi-spellcheck"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; font-size: 0.95rem; color: #0f172a;">Grammar Practice</div>
+                                <div style="font-size: 0.78rem; color: #64748b;">English &bull; 3 lessons &bull; 2 quizzes</div>
+                            </div>
+                        </div>
+                        <button class="btn-smart-primary" style="padding: 0.45rem 1.4rem; border-radius: 8px;" onclick="event.stopPropagation(); openStudyTopic('Grammar Practice', 'English', '3 lessons &bull; 2 quizzes', '#fdf0f3', '#f43f5e', 'bi-spellcheck', ['Active and Passive Voice Rules', 'Direct to Indirect Speech Transformations', 'Subject-Verb Agreement Exercises'])">
+                            Start
+                        </button>
+                    </div>
+
+                    <!-- Item 3: Indian History - Ancient India -->
+                    <div class="study-plan-item" style="cursor: pointer;" onclick="openStudyTopic('Indian History &ndash; Ancient India', 'Social Science', '2 lessons &bull; 1 quiz', '#fef5ec', '#f97316', 'bi-hourglass-split', ['Indus Valley Urban Architecture', 'Vedic Literature & Philosophy', 'Maurya Empire Governance'])">
+                        <div class="study-plan-left">
+                            <div class="study-plan-icon" style="background-color: #fef5ec; color: #f97316;">
+                                <i class="bi bi-hourglass-split"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; font-size: 0.95rem; color: #0f172a;">Indian History &ndash; Ancient India</div>
+                                <div style="font-size: 0.78rem; color: #64748b;">Social Science &bull; 2 lessons &bull; 1 quiz</div>
+                            </div>
+                        </div>
+                        <button class="btn-smart-primary" style="padding: 0.45rem 1.4rem; border-radius: 8px;" onclick="event.stopPropagation(); openStudyTopic('Indian History &ndash; Ancient India', 'Social Science', '2 lessons &bull; 1 quiz', '#fef5ec', '#f97316', 'bi-hourglass-split', ['Indus Valley Urban Architecture', 'Vedic Literature & Philosophy', 'Maurya Empire Governance'])">
+                            Start
+                        </button>
+                    </div>
+
+                    <!-- Item 4: Geometry - Shapes and Angles -->
+                    <div class="study-plan-item" style="cursor: pointer;" onclick="openStudyTopic('Geometry &ndash; Shapes and Angles', 'Mathematics', '2 lessons &bull; 2 quizzes', '#ebf3ff', '#1e6bff', 'bi-triangle', ['Triangle Congruence & Similarity Criteria', 'Pythagoras Theorem Proofs', 'Circle Tangent Theorems'])">
+                        <div class="study-plan-left">
+                            <div class="study-plan-icon" style="background-color: #ebf3ff; color: #1e6bff;">
+                                <i class="bi bi-triangle"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; font-size: 0.95rem; color: #0f172a;">Geometry &ndash; Shapes and Angles</div>
+                                <div style="font-size: 0.78rem; color: #64748b;">Mathematics &bull; 2 lessons &bull; 2 quizzes</div>
+                            </div>
+                        </div>
+                        <button class="btn-smart-primary" style="padding: 0.45rem 1.4rem; border-radius: 8px;" onclick="event.stopPropagation(); openStudyTopic('Geometry &ndash; Shapes and Angles', 'Mathematics', '2 lessons &bull; 2 quizzes', '#ebf3ff', '#1e6bff', 'bi-triangle', ['Triangle Congruence & Similarity Criteria', 'Pythagoras Theorem Proofs', 'Circle Tangent Theorems'])">
+                            Start
+                        </button>
+                    </div>
+
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Study Topic Modal -->
+    <div class="smart-modal-backdrop" id="studyTopicModal">
+        <div class="smart-modal-dialog">
+            <div class="smart-modal-header">
+                <h3 class="smart-modal-title">
+                    <i class="bi bi-compass-fill text-primary"></i>
+                    <span id="studyTopicTitle">Study Module</span>
+                </h3>
+                <button class="smart-modal-close" onclick="closeStudyTopicModal()">&times;</button>
+            </div>
+            <div class="smart-modal-body">
+                <div class="d-flex align-items-center gap-3 p-3 mb-3 rounded-3" id="studyTopicBanner" style="background: #ebf3ff;">
+                    <div id="studyTopicIcon" style="width: 48px; height: 48px; border-radius: 12px; background: #ffffff; color: #1e6bff; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">
+                        <i class="bi bi-calculator"></i>
+                    </div>
+                    <div>
+                        <h4 id="studyTopicHeading" style="font-weight: 700; font-size: 1.1rem; color: #0f172a; margin: 0 0 2px 0;">Algebra &ndash; Basics</h4>
+                        <div id="studyTopicMeta" style="font-size: 0.8rem; color: #64748b;">Mathematics &bull; Remedial Module</div>
+                    </div>
+                </div>
+
+                <h5 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">Interactive Learning Pathway</h5>
+                <div id="studyTopicLessonsList" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem;"></div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                    <a href="quiz.html" class="btn-smart-primary text-center" style="padding: 0.65rem 1rem; border-radius: 8px;">
+                        <i class="bi bi-play-circle-fill me-1"></i> Start Topic Quiz
+                    </a>
+                    <a href="resources.html" class="btn-smart-outline text-center" style="padding: 0.65rem 1rem; border-radius: 8px;">
+                        <i class="bi bi-file-earmark-pdf me-1"></i> Read Summary Notes
+                    </a>
+                </div>
+            </div>
+            <div class="smart-modal-footer">
+                <button class="btn-smart-outline" onclick="closeStudyTopicModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('btnToggleSidebar')?.addEventListener('click', () => {
+            document.getElementById('appSidebar').classList.toggle('show');
+        });
+
+        function openStudyTopic(title, subject, meta, bg, color, icon, lessons) {
+            document.getElementById('studyTopicTitle').textContent = title.replace(/&ndash;/g, '–');
+            document.getElementById('studyTopicHeading').innerHTML = title;
+            document.getElementById('studyTopicMeta').innerHTML = `${subject} &bull; ${meta}`;
+            
+            const banner = document.getElementById('studyTopicBanner');
+            banner.style.background = bg;
+
+            const iconDiv = document.getElementById('studyTopicIcon');
+            iconDiv.style.color = color;
+            iconDiv.innerHTML = `<i class="bi ${icon}"></i>`;
+
+            const list = document.getElementById('studyTopicLessonsList');
+            list.innerHTML = lessons.map((les, idx) => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.65rem 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; background: #ffffff;">
+                    <div style="display: flex; align-items: center; gap: 0.65rem;">
+                        <span style="width: 24px; height: 24px; border-radius: 50%; background: #f1f5f9; color: #475569; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">${idx + 1}</span>
+                        <span style="font-size: 0.88rem; font-weight: 600; color: #0f172a;">${les}</span>
+                    </div>
+                    <button class="btn-smart-outline" style="padding: 0.2rem 0.65rem; font-size: 0.75rem; border-radius: 6px;" onclick="SmartToast.show('Starting lesson: ${les}', 'info')">
+                        Learn &rarr;
+                    </button>
+                </div>
+            `).join('');
+
+            document.getElementById('studyTopicModal').classList.add('show');
+        }
+
+        function closeStudyTopicModal() {
+            document.getElementById('studyTopicModal').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

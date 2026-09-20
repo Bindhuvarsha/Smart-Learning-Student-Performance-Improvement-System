@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Test – Smart School</title>
+    <!-- Google Fonts & Bootstrap Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Sidebar (Practice Tests active) -->
+        <aside class="app-sidebar" id="appSidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon"><i class="bi bi-book-half"></i></div>
+                <div class="sidebar-brand-title">Smart School</div>
+                <div class="sidebar-brand-subtitle">Learn &bull; Grow &bull; Succeed</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="student.html" class="sidebar-nav-item">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="materials.html" class="sidebar-nav-item">
+                    <i class="bi bi-journal-bookmark"></i>
+                    <span>My Learning</span>
+                </a>
+                <a href="quiz.html" class="sidebar-nav-item active">
+                    <i class="bi bi-check2-square"></i>
+                    <span>Practice Tests</span>
+                </a>
+                <a href="performance.html" class="sidebar-nav-item">
+                    <i class="bi bi-graph-up"></i>
+                    <span>Performance</span>
+                </a>
+                <a href="resources.html" class="sidebar-nav-item">
+                    <i class="bi bi-folder2-open"></i>
+                    <span>Resources</span>
+                </a>
+                <a href="student.html" class="sidebar-nav-item">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="sidebar-nav-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="app-content">
+            <!-- Topbar (Screen 4) -->
+            <header class="app-topbar">
+                <div class="topbar-left">
+                    <button class="btn-sidebar-toggle" id="btnToggleSidebar"><i class="bi bi-list"></i></button>
+                </div>
+                <div class="topbar-right">
+                    <div class="notification-bell">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </div>
+                    <div class="user-profile-pill">
+                        <div class="user-avatar-img"><i class="bi bi-person-fill"></i></div>
+                        <div class="user-info-text">
+                            <div class="user-info-name">Bindhu Shree</div>
+                            <div class="user-info-role">Student <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page-body" style="display: flex; flex-direction: column; align-items: center;">
+                
+                <div style="width: 100%; max-width: 780px;">
+                    
+                    <!-- Practice Test Card (Screen 4) -->
+                    <div class="practice-test-card">
+                        
+                        <!-- Test Top Bar with Title and Timer -->
+                        <div class="test-top-bar">
+                            <a href="student.html" class="test-back-btn">
+                                <i class="bi bi-arrow-left"></i>
+                                <span id="quizSubjectTitle">Mathematics Practice Test</span>
+                            </a>
+                            <div class="test-timer-badge">
+                                <i class="bi bi-stopwatch"></i>
+                                <span id="quizTimerDisplay">00:25:00</span>
+                            </div>
+                        </div>
+
+                        <!-- Progress indicator -->
+                        <div class="d-flex justify-content-between align-items-center mb-2" style="font-size: 0.8rem; color: #64748b; font-weight: 600;">
+                            <span id="quizQuestionCounter">Question 1 of 5</span>
+                            <span id="quizScorePreview">Progress: 20%</span>
+                        </div>
+                        <div class="quiz-progress-bar-container">
+                            <div class="quiz-progress-fill" id="quizProgressBar" style="width: 20%;"></div>
+                        </div>
+
+                        <!-- Question Title -->
+                        <div class="question-text" id="questionText">
+                            1. Which of the following is a prime number?
+                        </div>
+
+                        <!-- Options Container -->
+                        <div class="options-group mb-4" id="optionsContainer">
+                            <!-- Injected dynamically or initially populated -->
+                            <div class="custom-radio-option" onclick="handleOptionClick(0)">
+                                <div class="custom-radio-circle"></div>
+                                <span>4</span>
+                            </div>
+                            <div class="custom-radio-option selected" onclick="handleOptionClick(1)">
+                                <div class="custom-radio-circle"></div>
+                                <span>7</span>
+                            </div>
+                            <div class="custom-radio-option" onclick="handleOptionClick(2)">
+                                <div class="custom-radio-circle"></div>
+                                <span>9</span>
+                            </div>
+                            <div class="custom-radio-option" onclick="handleOptionClick(3)">
+                                <div class="custom-radio-circle"></div>
+                                <span>12</span>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Navigation Buttons (Screen 4) -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+                            <button id="btnPrevQuestion" class="btn-smart-outline" onclick="prevQuestion()" disabled>
+                                &larr; Previous
+                            </button>
+                            <button id="btnNextQuestion" class="btn-smart-primary" style="padding: 0.55rem 1.75rem;" onclick="nextQuestion()">
+                                Next &rarr;
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('btnToggleSidebar')?.addEventListener('click', () => {
+            document.getElementById('appSidebar').classList.toggle('show');
+        });
+
+        const questions = [
+            {
+                q: "1. Which of the following is a prime number?",
+                options: ["4", "7", "9", "12"],
+                correct: 1,
+                explanation: "7 is a prime number because it is only divisible by 1 and itself."
+            },
+            {
+                q: "2. Solve for x: 3x - 7 = 14",
+                options: ["5", "6", "7", "8"],
+                correct: 2,
+                explanation: "3x = 14 + 7 = 21, hence x = 21 / 3 = 7."
+            },
+            {
+                q: "3. What is the sum of interior angles in a triangle?",
+                options: ["90°", "180°", "270°", "360°"],
+                correct: 1,
+                explanation: "The interior angles of any planar triangle always sum to 180°."
+            },
+            {
+                q: "4. The value of sin(90°) is:",
+                options: ["0", "1/2", "1", "Undefined"],
+                correct: 2,
+                explanation: "In trigonometry, sin(90°) = 1."
+            },
+            {
+                q: "5. If the radius of a circle is 7 cm, its circumference is: (π ≈ 22/7)",
+                options: ["22 cm", "44 cm", "88 cm", "154 cm"],
+                correct: 1,
+                explanation: "Circumference = 2 * π * r = 2 * (22/7) * 7 = 44 cm."
+            }
+        ];
+
+        let currentIndex = 0;
+        let userAnswers = { 0: 1 }; // Default question 1 selected as 7 per mockup
+
+        function renderQuestion(index) {
+            const q = questions[index];
+            document.getElementById('questionText').textContent = q.q;
+            document.getElementById('quizQuestionCounter').textContent = `Question ${index + 1} of ${questions.length}`;
+            
+            const pct = Math.round(((index + 1) / questions.length) * 100);
+            document.getElementById('quizProgressBar').style.width = `${pct}%`;
+            document.getElementById('quizScorePreview').textContent = `Progress: ${pct}%`;
+
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+
+            q.options.forEach((opt, i) => {
+                const isSelected = userAnswers[index] === i;
+                const div = document.createElement('div');
+                div.className = `custom-radio-option ${isSelected ? 'selected' : ''}`;
+                div.onclick = () => handleOptionClick(i);
+                div.innerHTML = `
+                    <div class="custom-radio-circle"></div>
+                    <span>${opt}</span>
+                `;
+                container.appendChild(div);
+            });
+
+            document.getElementById('btnPrevQuestion').disabled = index === 0;
+
+            const nextBtn = document.getElementById('btnNextQuestion');
+            if (index === questions.length - 1) {
+                nextBtn.innerHTML = 'Submit Test <i class="bi bi-check2-circle ms-1"></i>';
+                nextBtn.className = 'btn-smart-primary';
+                nextBtn.style.background = '#10b981';
+                nextBtn.style.borderColor = '#10b981';
+            } else {
+                nextBtn.innerHTML = 'Next &rarr;';
+                nextBtn.className = 'btn-smart-primary';
+                nextBtn.style.background = '';
+                nextBtn.style.borderColor = '';
+            }
+        }
+
+        function handleOptionClick(optionIndex) {
+            userAnswers[currentIndex] = optionIndex;
+            renderQuestion(currentIndex);
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion(currentIndex);
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                renderQuestion(currentIndex);
+            } else {
+                submitQuiz();
+            }
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const detailedResults = questions.map((q, idx) => {
+                const selected = userAnswers[idx];
+                const isCorrect = selected === q.correct;
+                if (isCorrect) score++;
+                return {
+                    question: q.q,
+                    options: q.options,
+                    selected: selected,
+                    correct: q.correct,
+                    isCorrect: isCorrect,
+                    explanation: q.explanation
+                };
+            });
+
+            const resultData = {
+                title: "Mathematics Practice Test",
+                score: score,
+                total: questions.length,
+                percentage: Math.round((score / questions.length) * 100),
+                timeSpent: "3m 45s",
+                detailedResults: detailedResults
+            };
+
+            localStorage.setItem('latest_quiz_result', JSON.stringify(resultData));
+            SmartToast.show('Test submitted successfully! Redirecting to results...', 'success');
+            setTimeout(() => {
+                window.location.href = 'quiz-result.html';
+            }, 600);
+        }
+
+        // Live Countdown Timer (Screen 4: 00:25:00)
+        let totalSeconds = 25 * 60;
+        const timerElem = document.getElementById('quizTimerDisplay');
+        setInterval(() => {
+            if (totalSeconds > 0) {
+                totalSeconds--;
+                const hrs = Math.floor(totalSeconds / 3600);
+                const mins = Math.floor((totalSeconds % 3600) / 60);
+                const secs = totalSeconds % 60;
+                timerElem.textContent = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+        }, 1000);
+
+        // Initial render
+        renderQuestion(0);
+    </script>
+</body>
+</html>

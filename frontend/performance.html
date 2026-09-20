@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Progress – Smart School</title>
+    <!-- Google Fonts & Bootstrap Icons & Chart.js -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Sidebar -->
+        <aside class="app-sidebar" id="appSidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon"><i class="bi bi-book-half"></i></div>
+                <div class="sidebar-brand-title">Smart School</div>
+                <div class="sidebar-brand-subtitle">Learn &bull; Grow &bull; Succeed</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="student.html" class="sidebar-nav-item">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="materials.html" class="sidebar-nav-item">
+                    <i class="bi bi-journal-bookmark"></i>
+                    <span>My Learning</span>
+                </a>
+                <a href="quiz.html" class="sidebar-nav-item">
+                    <i class="bi bi-check2-square"></i>
+                    <span>Practice Tests</span>
+                </a>
+                <a href="performance.html" class="sidebar-nav-item active">
+                    <i class="bi bi-graph-up"></i>
+                    <span>Performance</span>
+                </a>
+                <a href="resources.html" class="sidebar-nav-item">
+                    <i class="bi bi-folder2-open"></i>
+                    <span>Resources</span>
+                </a>
+                <a href="student.html" class="sidebar-nav-item">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="sidebar-nav-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="app-content">
+            <!-- Topbar (Screen 6) -->
+            <header class="app-topbar">
+                <div class="topbar-left">
+                    <button class="btn-sidebar-toggle" id="btnToggleSidebar"><i class="bi bi-list"></i></button>
+                </div>
+                <div class="topbar-right">
+                    <div class="notification-bell">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </div>
+                    <div class="user-profile-pill">
+                        <div class="user-avatar-img"><i class="bi bi-person-fill"></i></div>
+                        <div class="user-info-text">
+                            <div class="user-info-name">Bindhu Shree</div>
+                            <div class="user-info-role">Student <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page-body">
+                
+                <!-- Page Header with Dropdown (Screen 6) -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <div>
+                        <h2 class="page-title">My Progress</h2>
+                    </div>
+                    <div>
+                        <select id="performanceTimeframeSelect" onchange="updatePerformanceTimeframe()" style="padding: 0.4rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color); background: #ffffff; font-size: 0.85rem; color: #475569; font-weight: 500; outline: none; cursor: pointer;">
+                            <option value="4weeks">Last 4 Weeks</option>
+                            <option value="3months">Last 3 Months</option>
+                            <option value="term">This Term</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Top Row: Overall Score Donut + Subject-wise Performance (Screen 6) -->
+                <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    
+                    <!-- Left: Overall Score Donut Chart -->
+                    <div class="content-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem 1.5rem;">
+                        <div style="width: 150px; height: 150px; position: relative; margin-bottom: 1rem;">
+                            <canvas id="overallScoreDonutChart"></canvas>
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.8rem; font-weight: 800; color: #0f172a;" id="donutScoreVal">
+                                78%
+                            </div>
+                        </div>
+                        <div style="font-weight: 700; font-size: 0.95rem; color: #0f172a; margin-bottom: 0.25rem;">Overall Score</div>
+                        <div style="font-size: 0.82rem; font-weight: 600; color: #10b981;" id="donutScoreDelta">
+                            &uarr; 12% <span style="font-weight: 400; color: #64748b;">from last month</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Subject-wise Performance Progress Bars -->
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h3 class="content-card-title">Subject-wise Performance</h3>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 0.9rem;" id="subjectBarsContainer">
+                            <!-- Mathematics -->
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem;">
+                                    <span>Mathematics</span>
+                                    <span id="scoreMath">82%</span>
+                                </div>
+                                <div class="progress-thin" style="background-color: #f1f5f9;">
+                                    <div id="barMath" style="height: 100%; width: 82%; background-color: #3b82f6; border-radius: 4px; transition: width 0.4s ease;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Science -->
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem;">
+                                    <span>Science</span>
+                                    <span id="scoreSci">88%</span>
+                                </div>
+                                <div class="progress-thin" style="background-color: #f1f5f9;">
+                                    <div id="barSci" style="height: 100%; width: 88%; background-color: #06b6d4; border-radius: 4px; transition: width 0.4s ease;"></div>
+                                </div>
+                            </div>
+
+                            <!-- English -->
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem;">
+                                    <span>English</span>
+                                    <span id="scoreEng">75%</span>
+                                </div>
+                                <div class="progress-thin" style="background-color: #f1f5f9;">
+                                    <div id="barEng" style="height: 100%; width: 75%; background-color: #f43f5e; border-radius: 4px; transition: width 0.4s ease;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Social Science -->
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem;">
+                                    <span>Social Science</span>
+                                    <span id="scoreSoc">60%</span>
+                                </div>
+                                <div class="progress-thin" style="background-color: #f1f5f9;">
+                                    <div id="barSoc" style="height: 100%; width: 60%; background-color: #f97316; border-radius: 4px; transition: width 0.4s ease;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Kannada -->
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem;">
+                                    <span>Kannada</span>
+                                    <span id="scoreKan">80%</span>
+                                </div>
+                                <div class="progress-thin" style="background-color: #f1f5f9;">
+                                    <div id="barKan" style="height: 100%; width: 80%; background-color: #8b5cf6; border-radius: 4px; transition: width 0.4s ease;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bottom: Your Improvement Line Chart (Screen 6) -->
+                <div class="content-card mb-4">
+                    <div class="content-card-header">
+                        <h3 class="content-card-title">Your Improvement</h3>
+                        <div style="display: flex; align-items: center; gap: 1.25rem; font-size: 0.8rem; font-weight: 500;">
+                            <div style="display: flex; align-items: center; gap: 0.4rem;">
+                                <span style="width: 14px; height: 2px; background-color: #94a3b8; display: inline-block;"></span>
+                                <span style="color: #64748b;">Previous</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.4rem;">
+                                <span style="width: 14px; height: 2px; background-color: #1e6bff; display: inline-block;"></span>
+                                <span style="color: #1e6bff; font-weight: 600;">Current</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 280px; position: relative;">
+                        <canvas id="improvementLineChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Machine Learning Academic Trajectory Card -->
+                <div class="content-card" style="border-left: 4px solid #1e6bff; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.6rem;">
+                            <div style="width: 36px; height: 36px; border-radius: 8px; background: #ebf3ff; color: #1e6bff; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                                <i class="bi bi-cpu-fill"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0;">AI Predictive Model & Remedial Engine</h4>
+                                <div style="font-size: 0.75rem; color: #64748b;">Powered by Scikit-Learn Random Forest Regressor & Risk Classifier</div>
+                            </div>
+                        </div>
+                        <span class="badge bg-success" style="padding: 0.35rem 0.75rem; border-radius: 9999px; font-size: 0.75rem;">Low Risk Profile</span>
+                    </div>
+
+                    <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin-bottom: 1rem;">
+                        Based on Bindhu Shree's historical quiz submissions and practice trends, the model predicts an estimated <strong>84.5%</strong> in the upcoming term examination. Remedial action in <strong>Algebra</strong> and <strong>Physics</strong> can boost performance by an estimated <strong>+12% to +15%</strong>.
+                    </p>
+
+                    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                        <a href="study-plan.html" class="btn-smart-primary" style="padding: 0.45rem 1.25rem; font-size: 0.85rem; border-radius: 8px;">
+                            <i class="bi bi-compass me-1"></i> View Personalized Study Plan
+                        </a>
+                        <a href="quiz.html" class="btn-smart-outline" style="padding: 0.45rem 1.25rem; font-size: 0.85rem; border-radius: 8px;">
+                            <i class="bi bi-check2-circle me-1"></i> Take Practice Assessment
+                        </a>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('btnToggleSidebar')?.addEventListener('click', () => {
+            document.getElementById('appSidebar').classList.toggle('show');
+        });
+
+        // Overall Score Donut (Screen 6)
+        let donutChart = null;
+        const donutCtx = document.getElementById('overallScoreDonutChart');
+        if (donutCtx) {
+            donutChart = new Chart(donutCtx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [78, 22],
+                        backgroundColor: ['#10b981', '#f1f5f9'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '80%',
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        // Improvement Line Chart (Screen 6)
+        let lineChart = null;
+        const lineCtx = document.getElementById('improvementLineChart');
+        if (lineCtx) {
+            lineChart = new Chart(lineCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [
+                        {
+                            label: 'Previous',
+                            data: [42, 50, 56, 62],
+                            borderColor: '#cbd5e1',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Current',
+                            data: [45, 60, 72, 85],
+                            borderColor: '#1e6bff',
+                            backgroundColor: 'rgba(30, 107, 255, 0.08)',
+                            fill: true,
+                            borderWidth: 2.5,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#1e6bff',
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { stepSize: 25 },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: {
+                            grid: { color: '#f8fafc' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updatePerformanceTimeframe() {
+            const val = document.getElementById('performanceTimeframeSelect').value;
+            if (val === '4weeks') {
+                document.getElementById('donutScoreVal').textContent = '78%';
+                document.getElementById('donutScoreDelta').innerHTML = '&uarr; 12% <span style="font-weight: 400; color: #64748b;">from last month</span>';
+                if (donutChart) {
+                    donutChart.data.datasets[0].data = [78, 22];
+                    donutChart.update();
+                }
+                if (lineChart) {
+                    lineChart.data.labels = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+                    lineChart.data.datasets[0].data = [42, 50, 56, 62];
+                    lineChart.data.datasets[1].data = [45, 60, 72, 85];
+                    lineChart.update();
+                }
+                updateBars(82, 88, 75, 60, 80);
+            } else if (val === '3months') {
+                document.getElementById('donutScoreVal').textContent = '74%';
+                document.getElementById('donutScoreDelta').innerHTML = '&uarr; 8% <span style="font-weight: 400; color: #64748b;">over 90 days</span>';
+                if (donutChart) {
+                    donutChart.data.datasets[0].data = [74, 26];
+                    donutChart.update();
+                }
+                if (lineChart) {
+                    lineChart.data.labels = ['Month 1', 'Month 2', 'Month 3'];
+                    lineChart.data.datasets[0].data = [50, 58, 64];
+                    lineChart.data.datasets[1].data = [55, 68, 78];
+                    lineChart.update();
+                }
+                updateBars(76, 82, 70, 58, 75);
+            } else {
+                document.getElementById('donutScoreVal').textContent = '82%';
+                document.getElementById('donutScoreDelta').innerHTML = '&uarr; 15% <span style="font-weight: 400; color: #64748b;">this term overall</span>';
+                if (donutChart) {
+                    donutChart.data.datasets[0].data = [82, 18];
+                    donutChart.update();
+                }
+                if (lineChart) {
+                    lineChart.data.labels = ['Midterm 1', 'Quarterly', 'Midterm 2', 'Pre-Final'];
+                    lineChart.data.datasets[0].data = [55, 62, 70, 75];
+                    lineChart.data.datasets[1].data = [65, 75, 82, 88];
+                    lineChart.update();
+                }
+                updateBars(85, 90, 80, 68, 85);
+            }
+            SmartToast.show('Analytics timeframe updated!', 'info');
+        }
+
+        function updateBars(m, s, e, soc, k) {
+            document.getElementById('scoreMath').textContent = m + '%';
+            document.getElementById('barMath').style.width = m + '%';
+            document.getElementById('scoreSci').textContent = s + '%';
+            document.getElementById('barSci').style.width = s + '%';
+            document.getElementById('scoreEng').textContent = e + '%';
+            document.getElementById('barEng').style.width = e + '%';
+            document.getElementById('scoreSoc').textContent = soc + '%';
+            document.getElementById('barSoc').style.width = soc + '%';
+            document.getElementById('scoreKan').textContent = k + '%';
+            document.getElementById('barKan').style.width = k + '%';
+        }
+    </script>
+</body>
+</html>

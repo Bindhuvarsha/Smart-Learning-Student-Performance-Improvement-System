@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Resources – Smart School</title>
+    <!-- Google Fonts & Bootstrap Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Sidebar -->
+        <aside class="app-sidebar" id="appSidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon"><i class="bi bi-book-half"></i></div>
+                <div class="sidebar-brand-title">Smart School</div>
+                <div class="sidebar-brand-subtitle">Learn &bull; Grow &bull; Succeed</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="student.html" class="sidebar-nav-item">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="materials.html" class="sidebar-nav-item">
+                    <i class="bi bi-journal-bookmark"></i>
+                    <span>My Learning</span>
+                </a>
+                <a href="quiz.html" class="sidebar-nav-item">
+                    <i class="bi bi-check2-square"></i>
+                    <span>Practice Tests</span>
+                </a>
+                <a href="performance.html" class="sidebar-nav-item">
+                    <i class="bi bi-graph-up"></i>
+                    <span>Performance</span>
+                </a>
+                <a href="resources.html" class="sidebar-nav-item active">
+                    <i class="bi bi-folder2-open"></i>
+                    <span>Resources</span>
+                </a>
+                <a href="student.html" class="sidebar-nav-item">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="sidebar-nav-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="app-content">
+            <!-- Topbar (Screen 8) -->
+            <header class="app-topbar">
+                <div class="topbar-left">
+                    <button class="btn-sidebar-toggle" id="btnToggleSidebar"><i class="bi bi-list"></i></button>
+                </div>
+                <div class="topbar-right">
+                    <div class="notification-bell">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </div>
+                    <div class="user-profile-pill">
+                        <div class="user-avatar-img"><i class="bi bi-person-fill"></i></div>
+                        <div class="user-info-text">
+                            <div class="user-info-name">Bindhu Shree</div>
+                            <div class="user-info-role">Student <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page-body" style="max-width: 900px;">
+                
+                <!-- Page Header (Screen 8) -->
+                <div class="page-header mb-4">
+                    <h2 class="page-title">Learning Resources</h2>
+                </div>
+
+                <!-- Tabs (Screen 8) -->
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem;" id="resourceTabsGroup">
+                    <button class="resource-tab-btn active-tab" onclick="switchResourceCategory('notes', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background-color: #ebf3ff; color: #1e6bff; border: 1px solid #bfdbfe; font-weight: 600; cursor: pointer;">
+                        Notes
+                    </button>
+                    <button class="resource-tab-btn" onclick="switchResourceCategory('videos', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer;">
+                        Videos
+                    </button>
+                    <button class="resource-tab-btn" onclick="switchResourceCategory('quizzes', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer;">
+                        Quizzes
+                    </button>
+                    <button class="resource-tab-btn" onclick="switchResourceCategory('ebooks', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer;">
+                        eBooks
+                    </button>
+                </div>
+
+                <!-- Search Input Bar (Screen 8) -->
+                <div style="position: relative; margin-bottom: 1.5rem;">
+                    <i class="bi bi-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
+                    <input type="text" id="resourceSearchInput" oninput="handleResourceSearch()" placeholder="Search resources by title, subject or topic..." 
+                           style="width: 100%; padding: 0.65rem 1rem 0.65rem 2.5rem; border-radius: 8px; border: 1px solid var(--border-color); background: #ffffff; font-size: 0.88rem; outline: none;">
+                </div>
+
+                <!-- Resource Items List (Screen 8) -->
+                <div id="resourcesListContainer" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <!-- Populated dynamically -->
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Document Preview Modal -->
+    <div class="smart-modal-backdrop" id="resourceDocModal">
+        <div class="smart-modal-dialog" style="max-width: 720px;">
+            <div class="smart-modal-header">
+                <h3 class="smart-modal-title">
+                    <i class="bi bi-file-earmark-pdf-fill text-danger"></i>
+                    <span id="resourceModalTitle">Document Preview</span>
+                </h3>
+                <button class="smart-modal-close" onclick="closeResourceModal()">&times;</button>
+            </div>
+            <div class="smart-modal-body">
+                <div class="p-3 mb-3 rounded-3" style="background: #f8fafc; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <div style="font-weight: 700; font-size: 1rem; color: #0f172a;" id="resourceModalHeading">Algebra Formula Sheet</div>
+                        <div style="font-size: 0.8rem; color: #64748b;" id="resourceModalMeta">Mathematics &bull; Class 10 &bull; 2.1 MB</div>
+                    </div>
+                    <span class="badge bg-primary-subtle text-primary" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">Verified Guide</span>
+                </div>
+
+                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; font-family: monospace; font-size: 0.85rem; line-height: 1.6; max-height: 350px; overflow-y: auto;" id="resourceModalContent">
+                    <!-- Content injected -->
+                </div>
+            </div>
+            <div class="smart-modal-footer">
+                <button class="btn-smart-outline" onclick="closeResourceModal()">Close</button>
+                <button class="btn-smart-primary" onclick="downloadResourceFile()">
+                    <i class="bi bi-download me-1"></i> Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('btnToggleSidebar')?.addEventListener('click', () => {
+            document.getElementById('appSidebar').classList.toggle('show');
+        });
+
+        const allResources = [
+            {
+                id: 1,
+                title: "Algebra Notes (PDF)",
+                subject: "Mathematics",
+                size: "2.1 MB",
+                category: "notes",
+                color: "#fee2e2",
+                textColor: "#ef4444",
+                icon: "bi-file-earmark-pdf",
+                content: `### CLASS 10 MATHEMATICS - ALGEBRA QUICK REVISION
+
+1. QUADRATIC EQUATIONS:
+   Standard Form: ax² + bx + c = 0 (where a ≠ 0)
+   Discriminant (D) = b² - 4ac
+   - If D > 0: Two distinct real roots
+   - If D = 0: Two equal real roots (x = -b / 2a)
+   - If D < 0: No real roots
+
+2. QUADRATIC FORMULA:
+   x = [-b ± √(b² - 4ac)] / (2a)
+
+3. ARITHMETIC PROGRESSION (A.P.):
+   - nth term: an = a + (n - 1)d
+   - Sum of first n terms: Sn = (n / 2) [2a + (n - 1)d]
+
+4. LINEAR EQUATIONS IN TWO VARIABLES:
+   a1*x + b1*y + c1 = 0
+   a2*x + b2*y + c2 = 0
+   - Unique solution: (a1/a2) ≠ (b1/b2)
+   - Infinitely many: (a1/a2) = (b1/b2) = (c1/c2)`
+            },
+            {
+                id: 2,
+                title: "Grammar Basics (PDF)",
+                subject: "English",
+                size: "1.8 MB",
+                category: "notes",
+                color: "#fce7f3",
+                textColor: "#ec4899",
+                icon: "bi-file-earmark-pdf",
+                content: `### CLASS 10 ENGLISH GRAMMAR CHEAT SHEET
+
+1. ACTIVE AND PASSIVE VOICE:
+   - Rule: Subject + Verb + Object → Object + Helping Verb + Past Participle (V3) + by + Subject
+   - Present Simple: "He writes a letter" → "A letter is written by him"
+   - Past Simple: "She painted the wall" → "The wall was painted by her"
+
+2. DIRECT AND INDIRECT SPEECH:
+   - "He said, 'I am reading a book'" → "He said that he was reading a book"
+   - Universal truths do not change tense: "The teacher said, 'The sun rises in the east'" → "The teacher said that the sun rises in the east"
+
+3. MODALS:
+   - Can/Could: Ability, permission
+   - Must/Should: Obligation, recommendation
+   - May/Might: Possibility, formal request`
+            },
+            {
+                id: 3,
+                title: "Indian History Notes (PDF)",
+                subject: "Social Science",
+                size: "2.5 MB",
+                category: "notes",
+                color: "#ffedd5",
+                textColor: "#f97316",
+                icon: "bi-file-earmark-pdf",
+                content: `### CLASS 10 SOCIAL SCIENCE - INDIAN HISTORY SUMMARY
+
+1. NATIONALISM IN INDIA:
+   - Rowlatt Act (1919) & Jallianwala Bagh Massacre (13 April 1919)
+   - Non-Cooperation Movement (1920-1922) led by Mahatma Gandhi
+   - Chauri Chaura Incident (1922) leading to suspension
+
+2. CIVIL DISOBEDIENCE MOVEMENT:
+   - The Famous Salt March (Dandi March): 12 March 1930 to 6 April 1930
+   - Gandhi-Irwin Pact (1931)
+   - Round Table Conferences in London
+
+3. SENSE OF COLLECTIVE BELONGING:
+   - Creation of the image of Bharat Mata by Bankim Chandra Chattopadhyay
+   - The Tricolour flag designed during the Swadeshi movement`
+            },
+            {
+                id: 4,
+                title: "Science Formulas (PDF)",
+                subject: "Science",
+                size: "1.2 MB",
+                category: "notes",
+                color: "#d1fae5",
+                textColor: "#10b981",
+                icon: "bi-file-earmark-pdf",
+                content: `### CLASS 10 SCIENCE - ESSENTIAL FORMULAS & LAWS
+
+1. PHYSICS - LIGHT:
+   - Mirror Formula: 1/f = 1/v + 1/u
+   - Lens Formula: 1/f = 1/v - 1/u
+   - Magnification (Mirror): m = -v/u = h'/h
+   - Power of Lens: P = 1 / f (in metres), Unit: Dioptre (D)
+
+2. PHYSICS - ELECTRICITY:
+   - Ohm's Law: V = I * R
+   - Resistance: R = ρ * (L / A)
+   - Resistors in Series: Rs = R1 + R2 + R3
+   - Resistors in Parallel: 1/Rp = 1/R1 + 1/R2 + 1/R3
+   - Joule's Law of Heating: H = I² * R * t
+
+3. CHEMISTRY - CHEMICAL REACTIONS:
+   - Combination: A + B → AB
+   - Decomposition: AB → A + B
+   - Displacement: A + BC → AC + B
+   - Neutralization: Acid + Base → Salt + Water`
+            },
+            {
+                id: 5,
+                title: "Trigonometry Video Masterclass",
+                subject: "Mathematics",
+                size: "45 min",
+                category: "videos",
+                color: "#e0f2fe",
+                textColor: "#0284c7",
+                icon: "bi-play-circle-fill",
+                content: `Video Tutorial: Complete Trigonometric Ratios, Values of Specific Angles (0°, 30°, 45°, 60°, 90°), and proving Trigonometric Identities with step-by-step problem walkthroughs.`
+            },
+            {
+                id: 6,
+                title: "Chemical Reactions Video Lab",
+                subject: "Science",
+                size: "30 min",
+                category: "videos",
+                color: "#dcfce7",
+                textColor: "#166534",
+                icon: "bi-play-circle-fill",
+                content: `Visual Laboratory Demonstration: Observing displacement reactions, exothermic heat evolution in calcium oxide, and electrolysis of water.`
+            },
+            {
+                id: 7,
+                title: "Class 10 Model Practice Quiz",
+                subject: "Mathematics",
+                size: "15 Questions",
+                category: "quizzes",
+                color: "#fef9c3",
+                textColor: "#ca8a04",
+                icon: "bi-check2-square",
+                content: `Curriculum diagnostic practice test covering Algebra, Coordinate Geometry, Triangles, and Circles with detailed solutions.`
+            },
+            {
+                id: 8,
+                title: "NCERT Class 10 Science Exemplar",
+                subject: "Science",
+                size: "14.2 MB",
+                category: "ebooks",
+                color: "#ede9fe",
+                textColor: "#7c3aed",
+                icon: "bi-book-half",
+                content: `Complete digital textbook including all chapters, practice problems, higher order thinking skills (HOTS) questions and exemplar solutions.`
+            }
+        ];
+
+        let currentCategory = 'notes';
+        let activeResource = null;
+
+        function renderResources(items) {
+            const container = document.getElementById('resourcesListContainer');
+            if (!items || items.length === 0) {
+                container.innerHTML = `
+                    <div class="content-card text-center py-4" style="padding: 2rem;">
+                        <i class="bi bi-search text-muted fs-2 mb-2"></i>
+                        <p class="text-muted mb-0">No resources found matching your search criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = items.map(r => `
+                <div class="study-plan-item" style="cursor: pointer;" onclick="openResourceModal(${r.id})">
+                    <div class="study-plan-left">
+                        <div class="study-plan-icon" style="background-color: ${r.color}; color: ${r.textColor};">
+                            <i class="bi ${r.icon}"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 700; font-size: 0.95rem; color: #0f172a;">${r.title}</div>
+                            <div style="font-size: 0.78rem; color: #64748b;">${r.subject} &bull; ${r.size}</div>
+                        </div>
+                    </div>
+                    <button class="btn-smart-primary" style="padding: 0.4rem 1.25rem; border-radius: 8px;" onclick="event.stopPropagation(); openResourceModal(${r.id})">
+                        ${r.category === 'videos' ? 'Watch' : r.category === 'quizzes' ? 'Take Quiz' : 'Download'}
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function switchResourceCategory(category, btnElem) {
+            currentCategory = category;
+            document.querySelectorAll('.resource-tab-btn').forEach(b => {
+                b.style.background = '#ffffff';
+                b.style.color = '#64748b';
+                b.style.borderColor = 'var(--border-color)';
+            });
+            btnElem.style.background = '#ebf3ff';
+            btnElem.style.color = '#1e6bff';
+            btnElem.style.borderColor = '#bfdbfe';
+
+            handleResourceSearch();
+        }
+
+        function handleResourceSearch() {
+            const query = document.getElementById('resourceSearchInput').value.toLowerCase().trim();
+            let filtered = allResources.filter(r => r.category === currentCategory);
+            if (query) {
+                filtered = allResources.filter(r => 
+                    (r.category === currentCategory || query.length > 2) &&
+                    (r.title.toLowerCase().includes(query) || r.subject.toLowerCase().includes(query))
+                );
+            }
+            renderResources(filtered);
+        }
+
+        function openResourceModal(id) {
+            const r = allResources.find(res => res.id === id);
+            if (!r) return;
+            activeResource = r;
+
+            if (r.category === 'quizzes') {
+                window.location.href = 'quiz.html';
+                return;
+            }
+
+            document.getElementById('resourceModalTitle').textContent = r.title;
+            document.getElementById('resourceModalHeading').textContent = r.title;
+            document.getElementById('resourceModalMeta').textContent = `${r.subject} • Class 10 • ${r.size}`;
+            document.getElementById('resourceModalContent').textContent = r.content;
+
+            document.getElementById('resourceDocModal').classList.add('show');
+        }
+
+        function closeResourceModal() {
+            document.getElementById('resourceDocModal').classList.remove('show');
+        }
+
+        function downloadResourceFile() {
+            if (activeResource) {
+                closeResourceModal();
+                SmartToast.show(`Downloading "${activeResource.title}" (${activeResource.size})...`, 'success');
+            }
+        }
+
+        // Initial render
+        renderResources(allResources.filter(r => r.category === 'notes'));
+    </script>
+</body>
+</html>

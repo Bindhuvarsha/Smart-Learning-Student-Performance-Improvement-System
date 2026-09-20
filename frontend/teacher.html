@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard – Smart School</title>
+    <!-- Google Fonts & Bootstrap Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Sidebar -->
+        <aside class="app-sidebar" id="appSidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon"><i class="bi bi-book-half"></i></div>
+                <div class="sidebar-brand-title">Smart School</div>
+                <div class="sidebar-brand-subtitle">Learn &bull; Grow &bull; Succeed</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="teacher.html" class="sidebar-nav-item active">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="materials.html" class="sidebar-nav-item">
+                    <i class="bi bi-journal-bookmark"></i>
+                    <span>My Learning</span>
+                </a>
+                <a href="quiz.html" class="sidebar-nav-item">
+                    <i class="bi bi-check2-square"></i>
+                    <span>Practice Tests</span>
+                </a>
+                <a href="performance.html" class="sidebar-nav-item">
+                    <i class="bi bi-graph-up"></i>
+                    <span>Performance</span>
+                </a>
+                <a href="resources.html" class="sidebar-nav-item">
+                    <i class="bi bi-folder2-open"></i>
+                    <span>Resources</span>
+                </a>
+                <a href="teacher.html" class="sidebar-nav-item">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="sidebar-nav-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="app-content">
+            <!-- Topbar (Screen 7) -->
+            <header class="app-topbar">
+                <div class="topbar-left">
+                    <button class="btn-sidebar-toggle" id="btnToggleSidebar"><i class="bi bi-list"></i></button>
+                </div>
+                <div class="topbar-right">
+                    <div class="notification-bell">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </div>
+                    <div class="user-profile-pill">
+                        <div class="user-avatar-img" style="background: linear-gradient(135deg, #dcfce7, #86efac); color: #166534;">
+                            <i class="bi bi-person-workspace"></i>
+                        </div>
+                        <div class="user-info-text">
+                            <div class="user-info-name">Teacher</div>
+                            <div class="user-info-role">Faculty <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page-body">
+                
+                <!-- Page Header with Filters (Screen 7) -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <div>
+                        <h2 class="page-title">Class Overview</h2>
+                    </div>
+                    <div style="display: flex; gap: 0.75rem;">
+                        <select id="teacherClassFilter" onchange="filterStudents()" style="padding: 0.4rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color); background: #ffffff; font-size: 0.85rem; color: #475569; font-weight: 500; outline: none; cursor: pointer;">
+                            <option value="all">All Classes</option>
+                            <option value="10A" selected>Class 10A</option>
+                            <option value="10B">Class 10B</option>
+                            <option value="9A">Class 9A</option>
+                        </select>
+                        <select id="teacherSubjectFilter" onchange="filterStudents()" style="padding: 0.4rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color); background: #ffffff; font-size: 0.85rem; color: #475569; font-weight: 500; outline: none; cursor: pointer;">
+                            <option value="all">All Subjects</option>
+                            <option value="math">Mathematics</option>
+                            <option value="sci">Science</option>
+                            <option value="eng">English</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 4 Stat Cards (Screen 7) -->
+                <div class="stat-card-grid">
+                    <!-- Total Students -->
+                    <div class="stat-pill-card" style="background-color: #eff6ff; border-color: #dbeafe;">
+                        <div>
+                            <div class="stat-info-label" style="color: #1e40af;">Total Students</div>
+                            <div class="stat-info-val" id="statTotalStudents" style="color: #1e40af;">32</div>
+                        </div>
+                    </div>
+
+                    <!-- At Risk Students -->
+                    <div class="stat-pill-card" style="background-color: #fef2f2; border-color: #fee2e2;">
+                        <div>
+                            <div class="stat-info-label" style="color: #991b1b;">At Risk Students</div>
+                            <div class="stat-info-val" id="statAtRiskStudents" style="color: #ef4444;">8</div>
+                        </div>
+                    </div>
+
+                    <!-- Average Score -->
+                    <div class="stat-pill-card" style="background-color: #ecfdf5; border-color: #d1fae5;">
+                        <div>
+                            <div class="stat-info-label" style="color: #065f46;">Average Score</div>
+                            <div class="stat-info-val" id="statAvgScore" style="color: #10b981;">68%</div>
+                        </div>
+                    </div>
+
+                    <!-- Improvement -->
+                    <div class="stat-pill-card" style="background-color: #f5f3ff; border-color: #ede9fe;">
+                        <div>
+                            <div class="stat-info-label" style="color: #5b21b6;">Improvement</div>
+                            <div class="stat-info-val" style="color: #8b5cf6;">&#9650; +10%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-Column Grid: Student Performance Table + Weak Topics (Top 5) -->
+                <div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.5rem;">
+                    
+                    <!-- Left: Student Performance Table (Screen 7) -->
+                    <div class="content-card" style="padding: 1.25rem 1.5rem;">
+                        <div class="content-card-header d-flex justify-content-between align-items-center">
+                            <h3 class="content-card-title">Student Performance</h3>
+                            <span style="font-size: 0.75rem; color: #64748b;">Click any student to view report</span>
+                        </div>
+
+                        <table class="smart-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Class</th>
+                                    <th>Avg. Score</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="teacherStudentTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Right: Weak Topics (Top 5) (Screen 7) -->
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h3 class="content-card-title">Weak Topics (Top 5)</h3>
+                        </div>
+
+                        <div class="weak-topics-list">
+                            <!-- Mathematics -->
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="assignTopicRemedial('Mathematics')">
+                                <span class="weak-topic-dot red"></span>
+                                <span class="weak-topic-name">Mathematics &bull; Algebra</span>
+                                <span class="weak-topic-count">5 students</span>
+                            </div>
+
+                            <!-- English -->
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="assignTopicRemedial('English')">
+                                <span class="weak-topic-dot red"></span>
+                                <span class="weak-topic-name">English &bull; Grammar</span>
+                                <span class="weak-topic-count">4 students</span>
+                            </div>
+
+                            <!-- Science -->
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="assignTopicRemedial('Science')">
+                                <span class="weak-topic-dot orange"></span>
+                                <span class="weak-topic-name">Science &bull; Physics</span>
+                                <span class="weak-topic-count">3 students</span>
+                            </div>
+
+                            <!-- Social Science -->
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="assignTopicRemedial('Social Science')">
+                                <span class="weak-topic-dot orange"></span>
+                                <span class="weak-topic-name">Social Science &bull; History</span>
+                                <span class="weak-topic-count">2 students</span>
+                            </div>
+
+                            <!-- Kannada -->
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="assignTopicRemedial('Kannada')">
+                                <span class="weak-topic-dot blue"></span>
+                                <span class="weak-topic-name">Kannada &bull; Sandhi</span>
+                                <span class="weak-topic-count">1 student</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Student Detail Modal -->
+    <div class="smart-modal-backdrop" id="studentDetailModal">
+        <div class="smart-modal-dialog">
+            <div class="smart-modal-header">
+                <h3 class="smart-modal-title">
+                    <i class="bi bi-person-badge-fill text-primary"></i>
+                    <span id="modalStudentName">Student Report</span>
+                </h3>
+                <button class="smart-modal-close" onclick="closeStudentModal()">&times;</button>
+            </div>
+            <div class="smart-modal-body">
+                <div class="d-flex align-items-center justify-content-between p-3 mb-3 rounded-3" style="background: #f8fafc; border: 1px solid var(--border-color);">
+                    <div>
+                        <div style="font-weight: 700; font-size: 1.05rem; color: #0f172a;" id="modalStudentFullName">Bindhu Shree</div>
+                        <div style="font-size: 0.8rem; color: #64748b;" id="modalStudentMeta">Class 10A &bull; Roll No: 10101 &bull; 94% Attendance</div>
+                    </div>
+                    <div>
+                        <span id="modalStudentStatusBadge" class="badge-status-good">Good</span>
+                    </div>
+                </div>
+
+                <h5 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">Subject Performance Breakdown</h5>
+                <div id="modalSubjectBreakdown" style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem;"></div>
+
+                <div class="p-3 mb-3 rounded-3" style="background: #eff6ff; border: 1px solid #bfdbfe;">
+                    <div style="font-weight: 700; font-size: 0.88rem; color: #1e40af; margin-bottom: 0.25rem;">
+                        <i class="bi bi-cpu me-1"></i> AI / ML Academic Prediction
+                    </div>
+                    <div style="font-size: 0.82rem; color: #1e3a8a;" id="modalStudentPrediction">
+                        Expected Final Exam Score: <strong>84.2%</strong> &bull; Risk Level: <span class="badge bg-success">Low Risk</span>
+                    </div>
+                </div>
+
+                <h5 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Identified Weak Topics</h5>
+                <div id="modalWeakTopics" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem;"></div>
+            </div>
+            <div class="smart-modal-footer">
+                <button class="btn-smart-primary" onclick="sendRemedialFromModal()">
+                    <i class="bi bi-send-fill me-1"></i> Send Remedial Worksheet
+                </button>
+                <button class="btn-smart-outline" onclick="closeStudentModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('btnToggleSidebar')?.addEventListener('click', () => {
+            document.getElementById('appSidebar').classList.toggle('show');
+        });
+
+        const studentsData = [
+            {
+                id: 1,
+                name: "Asha B",
+                class: "10A",
+                score: 85,
+                status: "good",
+                attendance: "96%",
+                prediction: "88.5% (Low Risk)",
+                subjects: { Maths: 88, Science: 82, English: 90, Social: 84, Kannada: 86 },
+                weakTopics: ["Trigonometry"]
+            },
+            {
+                id: 2,
+                name: "Rahul K",
+                class: "10A",
+                score: 62,
+                status: "needs-support",
+                attendance: "84%",
+                prediction: "64.0% (Medium Risk)",
+                subjects: { Maths: 54, Science: 60, English: 70, Social: 58, Kannada: 68 },
+                weakTopics: ["Algebra", "Physics: Motion", "History"]
+            },
+            {
+                id: 3,
+                name: "Sneha M",
+                class: "10A",
+                score: 78,
+                status: "good",
+                attendance: "92%",
+                prediction: "81.0% (Low Risk)",
+                subjects: { Maths: 76, Science: 80, English: 82, Social: 74, Kannada: 78 },
+                weakTopics: ["Chemical Reactions"]
+            },
+            {
+                id: 4,
+                name: "Vijay S",
+                class: "10B",
+                score: 55,
+                status: "needs-support",
+                attendance: "78%",
+                prediction: "56.5% (High Risk)",
+                subjects: { Maths: 48, Science: 52, English: 64, Social: 55, Kannada: 56 },
+                weakTopics: ["Quadratic Equations", "Acids & Bases", "Grammar"]
+            },
+            {
+                id: 5,
+                name: "Pooja D",
+                class: "10B",
+                score: 88,
+                status: "good",
+                attendance: "98%",
+                prediction: "91.2% (Low Risk)",
+                subjects: { Maths: 92, Science: 89, English: 85, Social: 87, Kannada: 90 },
+                weakTopics: ["None identified"]
+            },
+            {
+                id: 6,
+                name: "Bindhu Shree",
+                class: "10A",
+                score: 78,
+                status: "good",
+                attendance: "94%",
+                prediction: "84.5% (Low Risk)",
+                subjects: { Maths: 85, Science: 70, English: 90, Social: 75, Kannada: 80 },
+                weakTopics: ["Algebra Basics", "Newton's Laws"]
+            }
+        ];
+
+        let selectedStudent = null;
+
+        function renderStudentTable(students) {
+            const tbody = document.getElementById('teacherStudentTableBody');
+            tbody.innerHTML = students.map(s => `
+                <tr style="cursor: pointer;" onclick="openStudentModal(${s.id})">
+                    <td style="font-weight: 600; color: #0f172a;">${s.name}</td>
+                    <td>${s.class}</td>
+                    <td style="font-weight: 600;">${s.score}%</td>
+                    <td>
+                        <span class="${s.status === 'good' ? 'badge-status-good' : 'badge-status-needs-support'}">
+                            ${s.status === 'good' ? 'Good' : 'Needs Support'}
+                        </span>
+                    </td>
+                    <td style="text-align: right;">
+                        <button class="btn-smart-outline" style="padding: 0.2rem 0.65rem; font-size: 0.75rem;" onclick="event.stopPropagation(); openStudentModal(${s.id})">
+                            View &rarr;
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterStudents() {
+            const classVal = document.getElementById('teacherClassFilter').value;
+            let filtered = studentsData;
+            if (classVal !== 'all') {
+                filtered = filtered.filter(s => s.class === classVal);
+            }
+            renderStudentTable(filtered);
+            document.getElementById('statTotalStudents').textContent = filtered.length;
+            const atRisk = filtered.filter(s => s.status === 'needs-support').length;
+            document.getElementById('statAtRiskStudents').textContent = atRisk;
+            const avg = Math.round(filtered.reduce((acc, curr) => acc + curr.score, 0) / (filtered.length || 1));
+            document.getElementById('statAvgScore').textContent = `${avg}%`;
+        }
+
+        function openStudentModal(id) {
+            const s = studentsData.find(st => st.id === id);
+            if (!s) return;
+            selectedStudent = s;
+
+            document.getElementById('modalStudentName').textContent = `${s.name}'s Report`;
+            document.getElementById('modalStudentFullName').textContent = s.name;
+            document.getElementById('modalStudentMeta').textContent = `Class ${s.class} • Roll No: 1010${s.id} • ${s.attendance} Attendance`;
+            
+            const badge = document.getElementById('modalStudentStatusBadge');
+            badge.className = s.status === 'good' ? 'badge-status-good' : 'badge-status-needs-support';
+            badge.textContent = s.status === 'good' ? 'Good' : 'Needs Support';
+
+            document.getElementById('modalStudentPrediction').innerHTML = `Expected Final Exam Score: <strong>${s.prediction}</strong>`;
+
+            const breakdown = document.getElementById('modalSubjectBreakdown');
+            breakdown.innerHTML = Object.entries(s.subjects).map(([sub, sc]) => `
+                <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 600; margin-bottom: 2px;">
+                        <span>${sub}</span>
+                        <span>${sc}%</span>
+                    </div>
+                    <div class="progress-thin" style="background: #f1f5f9;">
+                        <div style="height: 100%; width: ${sc}%; background: ${sc >= 75 ? '#10b981' : sc >= 60 ? '#f59e0b' : '#ef4444'}; border-radius: 4px;"></div>
+                    </div>
+                </div>
+            `).join('');
+
+            const weakDiv = document.getElementById('modalWeakTopics');
+            weakDiv.innerHTML = s.weakTopics.map(t => `
+                <span style="background: #fee2e2; color: #ef4444; font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 9999px;">
+                    ${t}
+                </span>
+            `).join('');
+
+            document.getElementById('studentDetailModal').classList.add('show');
+        }
+
+        function closeStudentModal() {
+            document.getElementById('studentDetailModal').classList.remove('show');
+        }
+
+        function sendRemedialFromModal() {
+            if (selectedStudent) {
+                closeStudentModal();
+                SmartToast.show(`Remedial worksheet dispatched to ${selectedStudent.name} successfully!`, 'success');
+            }
+        }
+
+        function assignTopicRemedial(subject) {
+            SmartToast.show(`Assigned targeted ${subject} remedial module to affected students!`, 'success');
+        }
+
+        // Initialize table
+        filterStudents();
+    </script>
+</body>
+</html>

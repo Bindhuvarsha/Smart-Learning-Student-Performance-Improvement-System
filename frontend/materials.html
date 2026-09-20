@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Materials – Smart School</title>
+    <!-- Google Fonts & Bootstrap Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Sidebar -->
+        <aside class="app-sidebar" id="appSidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon"><i class="bi bi-book-half"></i></div>
+                <div class="sidebar-brand-title">Smart School</div>
+                <div class="sidebar-brand-subtitle">Learn &bull; Grow &bull; Succeed</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="student.html" class="sidebar-nav-item">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="materials.html" class="sidebar-nav-item active">
+                    <i class="bi bi-journal-bookmark"></i>
+                    <span>My Learning</span>
+                </a>
+                <a href="quiz.html" class="sidebar-nav-item">
+                    <i class="bi bi-check2-square"></i>
+                    <span>Practice Tests</span>
+                </a>
+                <a href="performance.html" class="sidebar-nav-item">
+                    <i class="bi bi-graph-up"></i>
+                    <span>Performance</span>
+                </a>
+                <a href="resources.html" class="sidebar-nav-item">
+                    <i class="bi bi-folder2-open"></i>
+                    <span>Resources</span>
+                </a>
+                <a href="student.html" class="sidebar-nav-item">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="sidebar-nav-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="app-content">
+            <!-- Topbar (Screen 3) -->
+            <header class="app-topbar">
+                <div class="topbar-left">
+                    <button class="btn-sidebar-toggle" id="btnToggleSidebar"><i class="bi bi-list"></i></button>
+                </div>
+                <div class="topbar-right">
+                    <div class="notification-bell">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </div>
+                    <div class="user-profile-pill">
+                        <div class="user-avatar-img"><i class="bi bi-person-fill"></i></div>
+                        <div class="user-info-text">
+                            <div class="user-info-name">Bindhu Shree</div>
+                            <div class="user-info-role">Student <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page-body">
+                <!-- Header (Screen 3) -->
+                <div class="page-header mb-4">
+                    <h2 class="page-title">Learning Materials</h2>
+                    <p class="page-subtitle">Choose a subject and start learning</p>
+                </div>
+
+                <!-- 5 Subject Cards Grid (Screen 3) -->
+                <div class="subject-grid">
+                    <!-- Mathematics -->
+                    <div class="subject-card math" onclick="openSubjectModal('Mathematics', 'bi-calculator', '#1e6bff', '#eaf2ff', ['Quadratic Equations', 'Coordinate Geometry', 'Trigonometric Identities', 'Arithmetic Progressions', 'Surface Areas and Volumes'])" style="cursor: pointer;">
+                        <div class="subject-card-icon">
+                            <i class="bi bi-calculator"></i>
+                        </div>
+                        <div class="subject-card-name">Mathematics</div>
+                    </div>
+
+                    <!-- Science -->
+                    <div class="subject-card sci" onclick="openSubjectModal('Science', 'bi-radioactive', '#10b981', '#e8f8f0', ['Chemical Reactions and Equations', 'Acids, Bases and Salts', 'Light - Reflection and Refraction', 'Electricity & Magnetism', 'Life Processes'])" style="cursor: pointer;">
+                        <div class="subject-card-icon">
+                            <i class="bi bi-radioactive"></i>
+                        </div>
+                        <div class="subject-card-name">Science</div>
+                    </div>
+
+                    <!-- English -->
+                    <div class="subject-card eng" onclick="openSubjectModal('English', 'bi-book', '#f43f5e', '#fdf0f3', ['Active and Passive Voice', 'Direct and Indirect Speech', 'A Letter to God', 'Nelson Mandela: Long Walk to Freedom', 'Analytical Essay Writing'])" style="cursor: pointer;">
+                        <div class="subject-card-icon">
+                            <i class="bi bi-book"></i>
+                        </div>
+                        <div class="subject-card-name">English</div>
+                    </div>
+
+                    <!-- Social Science -->
+                    <div class="subject-card soc" onclick="openSubjectModal('Social Science', 'bi-globe2', '#f97316', '#fef5ec', ['The Rise of Nationalism in Europe', 'Resources and Development', 'Power Sharing in Democracy', 'Money and Credit', 'Sectors of Indian Economy'])" style="cursor: pointer;">
+                        <div class="subject-card-icon">
+                            <i class="bi bi-globe2"></i>
+                        </div>
+                        <div class="subject-card-name">Social Science</div>
+                    </div>
+
+                    <!-- Kannada -->
+                    <div class="subject-card kan" onclick="openSubjectModal('Kannada', 'bi-translate', '#8b5cf6', '#f4eefd', ['Kannada Grammar & Sandhi', 'Sankalpa Geethe', 'Vachana Sahitya', 'Huliya Kathe', 'Prabandha Rachane'])" style="cursor: pointer;">
+                        <div class="subject-card-icon">
+                            <i class="bi bi-translate"></i>
+                        </div>
+                        <div class="subject-card-name">Kannada</div>
+                    </div>
+                </div>
+
+                <!-- Recommended for You (Screen 3) -->
+                <div class="mt-4">
+                    <h4 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem;">Recommended for You</h4>
+
+                    <a href="study-plan.html" style="text-decoration: none; color: inherit;">
+                        <div class="study-plan-item" style="transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                            <div class="study-plan-left">
+                                <div class="study-plan-icon" style="background-color: #ebf3ff; color: #1e6bff;">
+                                    <i class="bi bi-journal-code"></i>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 700; font-size: 0.95rem; color: #0f172a;">Algebra &ndash; Basics and Practice</div>
+                                    <div style="font-size: 0.78rem; color: #64748b;">Mathematics &bull; 15 min &bull; High Remedial Priority</div>
+                                </div>
+                            </div>
+                            <div style="color: #1e6bff; font-size: 1.25rem;">
+                                <i class="bi bi-arrow-right"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Subject Detail Modal -->
+    <div class="smart-modal-backdrop" id="subjectDetailModal">
+        <div class="smart-modal-dialog">
+            <div class="smart-modal-header">
+                <h3 class="smart-modal-title" id="subjectModalTitle">
+                    <i class="bi bi-book"></i>
+                    <span>Subject Details</span>
+                </h3>
+                <button class="smart-modal-close" onclick="closeSubjectModal()">&times;</button>
+            </div>
+            <div class="smart-modal-body">
+                <div class="d-flex align-items-center gap-3 mb-3 p-3 rounded-3" id="subjectModalBanner" style="background: #eaf2ff;">
+                    <div id="subjectModalIcon" style="width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                        <i class="bi bi-calculator"></i>
+                    </div>
+                    <div>
+                        <h4 id="subjectModalHeading" style="font-weight: 700; font-size: 1.15rem; color: #0f172a; margin-bottom: 2px;">Mathematics</h4>
+                        <p style="font-size: 0.8rem; color: #64748b; margin: 0;">Class 10 &bull; 5 Chapters &bull; Curriculum Aligned</p>
+                    </div>
+                </div>
+
+                <h5 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">Key Topics & Chapters</h5>
+                <div id="subjectChaptersList" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem;"></div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                    <a href="quiz.html" class="btn-smart-primary text-center" style="padding: 0.65rem 1rem; border-radius: 8px;">
+                        <i class="bi bi-play-circle-fill me-1"></i> Start Practice Test
+                    </a>
+                    <a href="resources.html" class="btn-smart-outline text-center" style="padding: 0.65rem 1rem; border-radius: 8px;">
+                        <i class="bi bi-file-earmark-pdf me-1"></i> Read Study Notes
+                    </a>
+                </div>
+            </div>
+            <div class="smart-modal-footer">
+                <button class="btn-smart-outline" onclick="closeSubjectModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('btnToggleSidebar')?.addEventListener('click', () => {
+            document.getElementById('appSidebar').classList.toggle('show');
+        });
+
+        function openSubjectModal(name, icon, color, bg, chapters) {
+            document.getElementById('subjectModalTitle').innerHTML = `<i class="bi ${icon}" style="color: ${color};"></i> <span>${name}</span>`;
+            document.getElementById('subjectModalHeading').textContent = name;
+            
+            const banner = document.getElementById('subjectModalBanner');
+            banner.style.background = bg;
+            
+            const iconDiv = document.getElementById('subjectModalIcon');
+            iconDiv.style.background = '#ffffff';
+            iconDiv.style.color = color;
+            iconDiv.innerHTML = `<i class="bi ${icon}"></i>`;
+
+            const list = document.getElementById('subjectChaptersList');
+            list.innerHTML = chapters.map((ch, idx) => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.65rem 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; background: #ffffff;">
+                    <span style="font-size: 0.88rem; font-weight: 600; color: #0f172a;">${idx + 1}. ${ch}</span>
+                    <a href="quiz.html" class="btn-smart-outline" style="padding: 0.25rem 0.65rem; font-size: 0.75rem; border-radius: 6px;">Quiz &rarr;</a>
+                </div>
+            `).join('');
+
+            document.getElementById('subjectDetailModal').classList.add('show');
+        }
+
+        function closeSubjectModal() {
+            document.getElementById('subjectDetailModal').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

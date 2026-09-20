@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart School – Login</title>
+    <!-- Google Fonts & Bootstrap Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: #ffffff;">
+
+    <div class="login-split-container">
+        
+        <!-- Left Hero Section (Screen 1 in reference mockup) -->
+        <div class="login-left-hero">
+            <div style="max-width: 480px;">
+                <!-- Brand Logo & Motto -->
+                <div class="d-flex flex-column align-items-center mb-4 text-center">
+                    <div class="sidebar-brand-icon mx-auto" style="width: 54px; height: 54px; font-size: 1.8rem; margin-bottom: 0.75rem;">
+                        <i class="bi bi-book-half"></i>
+                    </div>
+                    <div style="font-size: 1.6rem; font-weight: 800; color: #0f2942; letter-spacing: -0.5px;">Smart School</div>
+                    <div style="font-size: 0.8rem; color: #64748b; font-weight: 500; letter-spacing: 0.5px;">Learn &bull; Grow &bull; Succeed</div>
+                </div>
+
+                <!-- Main Tagline -->
+                <h1 style="font-size: 2.2rem; font-weight: 800; color: #0b2238; line-height: 1.25; margin-bottom: 1rem;">
+                    Better Learning<br><span style="color: #1e6bff;">Brighter Futures</span>
+                </h1>
+                <p style="font-size: 0.95rem; color: #475569; line-height: 1.6; margin-bottom: 2rem;">
+                    Empowering students from local schools with personalized learning and better opportunities.
+                </p>
+
+                <!-- Vector Illustration of School & Students -->
+                <div style="position: relative; max-width: 380px; margin: 0 auto;">
+                    <svg viewBox="0 0 400 260" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Grass & Hill -->
+                        <ellipse cx="200" cy="250" rx="190" ry="40" fill="#a7f3d0" />
+                        <ellipse cx="200" cy="240" rx="170" ry="30" fill="#34d399" />
+                        
+                        <!-- Trees -->
+                        <circle cx="60" cy="180" r="28" fill="#10b981" />
+                        <circle cx="75" cy="165" r="22" fill="#059669" />
+                        <rect x="66" y="195" width="8" height="25" fill="#92400e" rx="3" />
+                        
+                        <circle cx="340" cy="180" r="28" fill="#10b981" />
+                        <circle cx="325" cy="165" r="22" fill="#059669" />
+                        <rect x="331" y="195" width="8" height="25" fill="#92400e" rx="3" />
+
+                        <!-- School Building -->
+                        <rect x="110" y="100" width="180" height="110" fill="#fbbf24" rx="6" />
+                        <polygon points="200,45 90,105 310,105" fill="#ef4444" />
+                        <!-- Clock Tower -->
+                        <rect x="180" y="55" width="40" height="45" fill="#f59e0b" />
+                        <circle cx="200" cy="75" r="12" fill="#ffffff" stroke="#92400e" stroke-width="2" />
+                        <line x1="200" y1="75" x2="200" y2="69" stroke="#92400e" stroke-width="2" />
+                        <line x1="200" y1="75" x2="205" y2="75" stroke="#92400e" stroke-width="2" />
+                        <!-- Windows -->
+                        <rect x="130" y="125" width="26" height="26" fill="#60a5fa" rx="3" />
+                        <rect x="244" y="125" width="26" height="26" fill="#60a5fa" rx="3" />
+                        <rect x="130" y="165" width="26" height="26" fill="#60a5fa" rx="3" />
+                        <rect x="244" y="165" width="26" height="26" fill="#60a5fa" rx="3" />
+                        <!-- Door -->
+                        <rect x="182" y="155" width="36" height="55" fill="#92400e" rx="4" />
+                        <circle cx="210" cy="185" r="2.5" fill="#fbbf24" />
+
+                        <!-- Students in Front -->
+                        <!-- Student 1 (Left) -->
+                        <circle cx="95" cy="205" r="14" fill="#fde68a" />
+                        <path d="M 85 200 Q 95 188 105 200 Z" fill="#1e293b" />
+                        <rect x="85" y="219" width="20" height="26" rx="4" fill="#3b82f6" />
+                        <rect x="80" y="222" width="6" height="18" rx="2" fill="#ef4444" />
+                        
+                        <!-- Student 2 (Center Girl with Ponytail) -->
+                        <circle cx="160" cy="195" r="14" fill="#fde68a" />
+                        <circle cx="174" cy="192" r="6" fill="#78350f" />
+                        <path d="M 150 190 Q 160 178 170 190 Z" fill="#78350f" />
+                        <rect x="150" y="209" width="20" height="32" rx="4" fill="#ec4899" />
+                        <rect x="145" y="212" width="6" height="20" rx="2" fill="#8b5cf6" />
+
+                        <!-- Student 3 (Right Boy with backpack) -->
+                        <circle cx="235" cy="200" r="14" fill="#fde68a" />
+                        <path d="M 225 195 Q 235 183 245 195 Z" fill="#1e293b" />
+                        <rect x="225" y="214" width="20" height="28" rx="4" fill="#10b981" />
+                        <rect x="245" y="217" width="7" height="20" rx="2" fill="#f97316" />
+
+                        <!-- Student 4 (Far Right) -->
+                        <circle cx="295" cy="205" r="14" fill="#fde68a" />
+                        <path d="M 285 200 Q 295 188 305 200 Z" fill="#78350f" />
+                        <rect x="285" y="219" width="20" height="25" rx="4" fill="#6366f1" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Form Section -->
+        <div class="login-right-form">
+            <div class="login-form-box">
+                <h2 style="font-size: 1.8rem; font-weight: 800; color: #0b2238; margin-bottom: 0.35rem;">Welcome Back!</h2>
+                <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 2rem;">Login to continue your learning journey</p>
+
+                <form id="login-form">
+                    <!-- Username Input -->
+                    <div style="margin-bottom: 1.25rem;">
+                        <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #334155; margin-bottom: 0.4rem;">Username / Email</label>
+                        <div style="position: relative; display: flex; align-items: center;">
+                            <i class="bi bi-person" style="position: absolute; left: 1rem; color: #94a3b8; font-size: 1.1rem;"></i>
+                            <input type="text" id="username" placeholder="Username / Email" required 
+                                   style="width: 100%; padding: 0.8rem 1rem 0.8rem 2.75rem; border: 1.5px solid #e2e8f0; border-radius: 10px; font-size: 0.9rem; outline: none; transition: border-color 0.2s;"
+                                   onfocus="this.style.borderColor='#1e6bff'" onblur="this.style.borderColor='#e2e8f0'">
+                        </div>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; font-size: 0.82rem; font-weight: 600; color: #334155; margin-bottom: 0.4rem;">Password</label>
+                        <div style="position: relative; display: flex; align-items: center;">
+                            <i class="bi bi-lock" style="position: absolute; left: 1rem; color: #94a3b8; font-size: 1.1rem;"></i>
+                            <input type="password" id="password" placeholder="Password" required
+                                   style="width: 100%; padding: 0.8rem 2.75rem 0.8rem 2.75rem; border: 1.5px solid #e2e8f0; border-radius: 10px; font-size: 0.9rem; outline: none; transition: border-color 0.2s;"
+                                   onfocus="this.style.borderColor='#1e6bff'" onblur="this.style.borderColor='#e2e8f0'">
+                            <i class="bi bi-eye" id="togglePassword" style="position: absolute; right: 1rem; color: #94a3b8; font-size: 1.1rem; cursor: pointer;"></i>
+                        </div>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button type="submit" class="btn-smart-primary" style="width: 100%; padding: 0.85rem; font-size: 0.95rem; border-radius: 10px; margin-bottom: 1rem;">
+                        Login
+                    </button>
+
+                    <!-- Register Link -->
+                    <div style="text-align: center; font-size: 0.82rem; color: #64748b; margin-bottom: 1.5rem;">
+                        Don't have an account? <a href="#" style="color: #1e6bff; text-decoration: none; font-weight: 600;">Register</a>
+                    </div>
+
+                    <!-- "or" Divider -->
+                    <div style="position: relative; text-align: center; margin-bottom: 1.5rem;">
+                        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 0;">
+                        <span style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #ffffff; padding: 0 10px; font-size: 0.78rem; color: #94a3b8;">or</span>
+                    </div>
+
+                    <!-- 3 Role Login Cards (Screen 1 in reference mockup) -->
+                    <div class="role-select-cards">
+                        <button type="button" class="role-card-btn active" data-demo-role="student">
+                            <i class="bi bi-book-half" style="font-size: 1.35rem; color: #1e6bff;"></i>
+                            <span>Student</span>
+                        </button>
+                        <button type="button" class="role-card-btn" data-demo-role="teacher">
+                            <i class="bi bi-person-video3" style="font-size: 1.35rem; color: #10b981;"></i>
+                            <span>Teacher</span>
+                        </button>
+                        <button type="button" class="role-card-btn" data-demo-role="admin">
+                            <i class="bi bi-shield-lock" style="font-size: 1.35rem; color: #8b5cf6;"></i>
+                            <span>Admin</span>
+                        </button>
+                    </div>
+
+                    <!-- Direct Access Link -->
+                    <div style="text-align: center; margin-top: 1.25rem;">
+                        <a href="student.html" style="font-size: 0.8rem; color: #1e6bff; text-decoration: none; font-weight: 600;">
+                            <i class="bi bi-arrow-right-circle me-1"></i> Or explore all 9 features directly in demo mode &rarr;
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Password visibility toggle
+        const togglePassword = document.querySelector('#togglePassword');
+        const passwordInput = document.querySelector('#password');
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('bi-eye');
+            this.classList.toggle('bi-eye-slash');
+        });
+
+        // Form submit
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            try {
+                const res = await API.login(u, p);
+                if (res.success && res.user) {
+                    Auth.setUser(res.user);
+                    if (res.user.role === 'student') window.location.href = 'student.html';
+                    else if (res.user.role === 'teacher') window.location.href = 'teacher.html';
+                    else if (res.user.role === 'admin') window.location.href = 'admin.html';
+                }
+            } catch (err) {
+                alert('Login failed: ' + (err.message || 'Invalid credentials'));
+            }
+        });
+    </script>
+</body>
+</html>

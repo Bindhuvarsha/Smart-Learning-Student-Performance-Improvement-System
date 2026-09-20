@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard – Smart School</title>
+    <!-- Google Fonts & Bootstrap Icons & Chart.js -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Sidebar -->
+        <aside class="app-sidebar" id="appSidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon"><i class="bi bi-book-half"></i></div>
+                <div class="sidebar-brand-title">Smart School</div>
+                <div class="sidebar-brand-subtitle">Learn &bull; Grow &bull; Succeed</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="admin.html" class="sidebar-nav-item active">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="materials.html" class="sidebar-nav-item">
+                    <i class="bi bi-journal-bookmark"></i>
+                    <span>My Learning</span>
+                </a>
+                <a href="quiz.html" class="sidebar-nav-item">
+                    <i class="bi bi-check2-square"></i>
+                    <span>Practice Tests</span>
+                </a>
+                <a href="performance.html" class="sidebar-nav-item">
+                    <i class="bi bi-graph-up"></i>
+                    <span>Performance</span>
+                </a>
+                <a href="resources.html" class="sidebar-nav-item">
+                    <i class="bi bi-folder2-open"></i>
+                    <span>Resources</span>
+                </a>
+                <a href="admin.html" class="sidebar-nav-item">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="sidebar-nav-item">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="app-content">
+            <!-- Topbar (Screen 9) -->
+            <header class="app-topbar">
+                <div class="topbar-left">
+                    <button class="btn-sidebar-toggle" id="btnToggleSidebar"><i class="bi bi-list"></i></button>
+                </div>
+                <div class="topbar-right">
+                    <div class="notification-bell">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </div>
+                    <div class="user-profile-pill">
+                        <div class="user-avatar-img" style="background: linear-gradient(135deg, #ede9fe, #c4b5fd); color: #5b21b6;">
+                            <i class="bi bi-shield-lock-fill"></i>
+                        </div>
+                        <div class="user-info-text">
+                            <div class="user-info-name">Admin</div>
+                            <div class="user-info-role">Administrator <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page-body">
+                
+                <!-- Page Header with Action Buttons (Screen 9) -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2 class="page-title">School Overview</h2>
+                        <p class="page-subtitle">Manage institution, teachers, students, and academic analytics</p>
+                    </div>
+                    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                        <button class="btn-smart-primary" onclick="openAddStudentModal()" style="padding: 0.45rem 1rem; border-radius: 8px;">
+                            <i class="bi bi-person-plus-fill me-1"></i> Add Student
+                        </button>
+                        <button class="btn-smart-outline" onclick="openAddTeacherModal()" style="padding: 0.45rem 1rem; border-radius: 8px;">
+                            <i class="bi bi-person-workspace me-1"></i> Add Teacher
+                        </button>
+                        <button class="btn-smart-outline" onclick="exportSchoolReport()" style="padding: 0.45rem 1rem; border-radius: 8px;">
+                            <i class="bi bi-file-earmark-arrow-down me-1"></i> Export Report
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4 Stat Cards (Screen 9) -->
+                <div class="stat-card-grid">
+                    <!-- Total Students -->
+                    <div class="stat-pill-card" style="background-color: #eff6ff; border-color: #dbeafe;">
+                        <div>
+                            <div class="stat-info-label" style="color: #1e40af;">Total Students</div>
+                            <div class="stat-info-val" id="adminTotalStudents" style="color: #1e40af;">120</div>
+                        </div>
+                    </div>
+
+                    <!-- Total Teachers -->
+                    <div class="stat-pill-card" style="background-color: #ecfdf5; border-color: #d1fae5;">
+                        <div>
+                            <div class="stat-info-label" style="color: #065f46;">Total Teachers</div>
+                            <div class="stat-info-val" id="adminTotalTeachers" style="color: #10b981;">8</div>
+                        </div>
+                    </div>
+
+                    <!-- Classes -->
+                    <div class="stat-pill-card" style="background-color: #f0f9ff; border-color: #e0f2fe;">
+                        <div>
+                            <div class="stat-info-label" style="color: #0369a1;">Classes</div>
+                            <div class="stat-info-val" style="color: #0284c7;">6</div>
+                        </div>
+                    </div>
+
+                    <!-- Subjects -->
+                    <div class="stat-pill-card" style="background-color: #faf5ff; border-color: #f3e8ff;">
+                        <div>
+                            <div class="stat-info-label" style="color: #6b21a8;">Subjects</div>
+                            <div class="stat-info-val" style="color: #8b5cf6;">5</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-Column Grid: Recent Activities + School Performance Chart (Screen 9) -->
+                <div style="display: grid; grid-template-columns: 1.2fr 1.4fr; gap: 1.5rem;">
+                    
+                    <!-- Left: Recent Activities (Screen 9) -->
+                    <div class="content-card">
+                        <div class="content-card-header d-flex justify-content-between align-items-center">
+                            <h3 class="content-card-title">Recent Activities</h3>
+                            <span style="font-size: 0.75rem; color: #10b981; font-weight: 600;"><i class="bi bi-broadcast me-1"></i>Live Updates</span>
+                        </div>
+
+                        <div id="adminActivitiesList" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                            <!-- Activity 1 -->
+                            <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 50%; background-color: #ebf3ff; color: #1e6bff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem;">
+                                    <i class="bi bi-person-check-fill"></i>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 700; font-size: 0.9rem; color: #0f172a;">New student registered</div>
+                                    <div style="font-size: 0.78rem; color: #64748b;">Asha B &bull; Class 10A &bull; 2 hours ago</div>
+                                </div>
+                            </div>
+
+                            <!-- Activity 2 -->
+                            <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 50%; background-color: #ecfdf5; color: #10b981; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem;">
+                                    <i class="bi bi-check2-circle"></i>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 700; font-size: 0.9rem; color: #0f172a;">Test completed</div>
+                                    <div style="font-size: 0.78rem; color: #64748b;">Mathematics &bull; Class 10A &bull; 3 hours ago</div>
+                                </div>
+                            </div>
+
+                            <!-- Activity 3 -->
+                            <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
+                                <div style="width: 38px; height: 38px; border-radius: 50%; background-color: #fef5ec; color: #f97316; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem;">
+                                    <i class="bi bi-journal-plus"></i>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 700; font-size: 0.9rem; color: #0f172a;">Resource added</div>
+                                    <div style="font-size: 0.78rem; color: #64748b;">Science Notes &bull; 4 hours ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: School Performance Bar Chart (Screen 9) -->
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h3 class="content-card-title">School Performance</h3>
+                        </div>
+                        <div style="height: 260px; position: relative;">
+                            <canvas id="schoolPerformanceBarChart"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Add Student Modal -->
+    <div class="smart-modal-backdrop" id="addStudentModal">
+        <div class="smart-modal-dialog">
+            <div class="smart-modal-header">
+                <h3 class="smart-modal-title"><i class="bi bi-person-plus-fill text-primary"></i> Enroll New Student</h3>
+                <button class="smart-modal-close" onclick="closeAddStudentModal()">&times;</button>
+            </div>
+            <div class="smart-modal-body">
+                <form id="formAddStudent" onsubmit="handleAddStudent(event)">
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600; font-size: 0.85rem;">Full Name</label>
+                        <input type="text" id="newStudentName" class="form-control" placeholder="e.g. Bindhu Shree" required style="padding: 0.55rem 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; width: 100%;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600; font-size: 0.85rem;">Class / Section</label>
+                        <select id="newStudentClass" class="form-select" style="padding: 0.55rem 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; width: 100%;">
+                            <option value="10A">Class 10A</option>
+                            <option value="10B">Class 10B</option>
+                            <option value="9A">Class 9A</option>
+                            <option value="9B">Class 9B</option>
+                            <option value="8A">Class 8A</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600; font-size: 0.85rem;">Roll Number</label>
+                        <input type="text" id="newStudentRoll" class="form-control" placeholder="e.g. 10108" required style="padding: 0.55rem 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; width: 100%;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600; font-size: 0.85rem;">Email Address</label>
+                        <input type="email" id="newStudentEmail" class="form-control" placeholder="student@smartschool.edu" required style="padding: 0.55rem 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; width: 100%;">
+                    </div>
+                    <div class="d-flex justify-content-end gap-2 mt-4">
+                        <button type="button" class="btn-smart-outline" onclick="closeAddStudentModal()">Cancel</button>
+                        <button type="submit" class="btn-smart-primary">Register Student</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Teacher Modal -->
+    <div class="smart-modal-backdrop" id="addTeacherModal">
+        <div class="smart-modal-dialog">
+            <div class="smart-modal-header">
+                <h3 class="smart-modal-title"><i class="bi bi-person-workspace text-success"></i> Add New Faculty</h3>
+                <button class="smart-modal-close" onclick="closeAddTeacherModal()">&times;</button>
+            </div>
+            <div class="smart-modal-body">
+                <form id="formAddTeacher" onsubmit="handleAddTeacher(event)">
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600; font-size: 0.85rem;">Faculty Name</label>
+                        <input type="text" id="newTeacherName" class="form-control" placeholder="e.g. Prof. Arvind Rao" required style="padding: 0.55rem 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; width: 100%;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600; font-size: 0.85rem;">Department / Subject</label>
+                        <select id="newTeacherSubject" class="form-select" style="padding: 0.55rem 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; width: 100%;">
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Science">Science (Physics & Chemistry)</option>
+                            <option value="English">English</option>
+                            <option value="Social Science">Social Science</option>
+                            <option value="Kannada">Kannada</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600; font-size: 0.85rem;">Email Address</label>
+                        <input type="email" id="newTeacherEmail" class="form-control" placeholder="faculty@smartschool.edu" required style="padding: 0.55rem 0.85rem; border: 1px solid var(--border-color); border-radius: 8px; width: 100%;">
+                    </div>
+                    <div class="d-flex justify-content-end gap-2 mt-4">
+                        <button type="button" class="btn-smart-outline" onclick="closeAddTeacherModal()">Cancel</button>
+                        <button type="submit" class="btn-smart-primary">Register Faculty</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('btnToggleSidebar')?.addEventListener('click', () => {
+            document.getElementById('appSidebar').classList.toggle('show');
+        });
+
+        // School Performance Bar Chart (Screen 9)
+        const ctx = document.getElementById('schoolPerformanceBarChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10'],
+                    datasets: [{
+                        data: [65, 74, 82, 68, 78],
+                        backgroundColor: '#3b82f6',
+                        borderRadius: 6,
+                        barThickness: 28
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { stepSize: 25 },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        let studentCount = 120;
+        let teacherCount = 8;
+
+        function openAddStudentModal() {
+            document.getElementById('addStudentModal').classList.add('show');
+        }
+
+        function closeAddStudentModal() {
+            document.getElementById('addStudentModal').classList.remove('show');
+        }
+
+        function handleAddStudent(e) {
+            e.preventDefault();
+            const name = document.getElementById('newStudentName').value;
+            const cls = document.getElementById('newStudentClass').value;
+            studentCount++;
+            document.getElementById('adminTotalStudents').textContent = studentCount;
+
+            // Prepend to activity list
+            const list = document.getElementById('adminActivitiesList');
+            const item = document.createElement('div');
+            item.style.display = 'flex';
+            item.style.alignItems = 'flex-start';
+            item.style.gap = '0.85rem';
+            item.innerHTML = `
+                <div style="width: 38px; height: 38px; border-radius: 50%; background-color: #ebf3ff; color: #1e6bff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem;">
+                    <i class="bi bi-person-check-fill"></i>
+                </div>
+                <div>
+                    <div style="font-weight: 700; font-size: 0.9rem; color: #0f172a;">New student enrolled</div>
+                    <div style="font-size: 0.78rem; color: #64748b;">${name} &bull; Class ${cls} &bull; Just now</div>
+                </div>
+            `;
+            list.insertBefore(item, list.firstChild);
+
+            closeAddStudentModal();
+            document.getElementById('formAddStudent').reset();
+            SmartToast.show(`Student ${name} successfully enrolled in Class ${cls}!`, 'success');
+        }
+
+        function openAddTeacherModal() {
+            document.getElementById('addTeacherModal').classList.add('show');
+        }
+
+        function closeAddTeacherModal() {
+            document.getElementById('addTeacherModal').classList.remove('show');
+        }
+
+        function handleAddTeacher(e) {
+            e.preventDefault();
+            const name = document.getElementById('newTeacherName').value;
+            const sub = document.getElementById('newTeacherSubject').value;
+            teacherCount++;
+            document.getElementById('adminTotalTeachers').textContent = teacherCount;
+
+            const list = document.getElementById('adminActivitiesList');
+            const item = document.createElement('div');
+            item.style.display = 'flex';
+            item.style.alignItems = 'flex-start';
+            item.style.gap = '0.85rem';
+            item.innerHTML = `
+                <div style="width: 38px; height: 38px; border-radius: 50%; background-color: #dcfce7; color: #166534; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem;">
+                    <i class="bi bi-person-workspace"></i>
+                </div>
+                <div>
+                    <div style="font-weight: 700; font-size: 0.9rem; color: #0f172a;">New faculty onboarded</div>
+                    <div style="font-size: 0.78rem; color: #64748b;">${name} &bull; ${sub} &bull; Just now</div>
+                </div>
+            `;
+            list.insertBefore(item, list.firstChild);
+
+            closeAddTeacherModal();
+            document.getElementById('formAddTeacher').reset();
+            SmartToast.show(`Faculty member ${name} added to ${sub} department!`, 'success');
+        }
+
+        function exportSchoolReport() {
+            SmartToast.show('Generating Comprehensive School Performance Report (PDF/Excel)...', 'info');
+            setTimeout(() => {
+                SmartToast.show('School Performance Report downloaded successfully!', 'success');
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

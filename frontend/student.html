@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard – Smart School</title>
+    <!-- Google Fonts & Bootstrap Icons & Chart.js -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Sidebar (Matching Reference Mockup) -->
+        <aside class="app-sidebar" id="appSidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon">
+                    <i class="bi bi-book-half"></i>
+                </div>
+                <div class="sidebar-brand-title">Smart School</div>
+                <div class="sidebar-brand-subtitle">Learn &bull; Grow &bull; Succeed</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="student.html" class="sidebar-nav-item active">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="materials.html" class="sidebar-nav-item">
+                    <i class="bi bi-journal-bookmark"></i>
+                    <span>My Learning</span>
+                </a>
+                <a href="quiz.html" class="sidebar-nav-item">
+                    <i class="bi bi-check2-square"></i>
+                    <span>Practice Tests</span>
+                </a>
+                <a href="performance.html" class="sidebar-nav-item">
+                    <i class="bi bi-graph-up"></i>
+                    <span>Performance</span>
+                </a>
+                <a href="resources.html" class="sidebar-nav-item">
+                    <i class="bi bi-folder2-open"></i>
+                    <span>Resources</span>
+                </a>
+                <a href="student.html" class="sidebar-nav-item">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="sidebar-nav-item" id="sidebarLogout">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main App Content -->
+        <div class="app-content">
+            
+            <!-- Topbar (Screen 2) -->
+            <header class="app-topbar">
+                <div class="topbar-left">
+                    <button class="btn-sidebar-toggle" id="btnToggleSidebar">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+                <div class="topbar-right">
+                    <div class="notification-bell">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </div>
+                    <div class="user-profile-pill">
+                        <div class="user-avatar-img">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div class="user-info-text">
+                            <div class="user-info-name" id="topbarUserName">Bindhu Shree</div>
+                            <div class="user-info-role">Student <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Body: Screen 2 Student Dashboard -->
+            <main class="page-body">
+                
+                <!-- Greeting Header -->
+                <div class="page-header mb-4">
+                    <h2 class="page-title" style="font-size: 1.5rem;">Hello, Bindhu Shree! 👋</h2>
+                    <p class="page-subtitle">Keep going! You're making progress.</p>
+                </div>
+
+                <!-- 4 Stat Cards (Screen 2) -->
+                <div class="stat-card-grid">
+                    <!-- Total Subjects -->
+                    <div class="stat-pill-card">
+                        <div class="stat-icon-wrapper blue">
+                            <i class="bi bi-journal-text"></i>
+                        </div>
+                        <div>
+                            <div class="stat-info-label">Total Subjects</div>
+                            <div class="stat-info-val" id="statTotalSubjects">5</div>
+                        </div>
+                    </div>
+
+                    <!-- Completed Tests -->
+                    <div class="stat-pill-card">
+                        <div class="stat-icon-wrapper green">
+                            <i class="bi bi-check2-circle"></i>
+                        </div>
+                        <div>
+                            <div class="stat-info-label">Completed Tests</div>
+                            <div class="stat-info-val" id="statCompletedTests">6</div>
+                        </div>
+                    </div>
+
+                    <!-- Average Score -->
+                    <div class="stat-pill-card">
+                        <div class="stat-icon-wrapper purple">
+                            <i class="bi bi-mortarboard-fill"></i>
+                        </div>
+                        <div>
+                            <div class="stat-info-label">Average Score</div>
+                            <div class="stat-info-val" style="color: #8b5cf6;" id="statAvgScore">78%</div>
+                        </div>
+                    </div>
+
+                    <!-- Improvement -->
+                    <div class="stat-pill-card">
+                        <div class="stat-icon-wrapper orange">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <div>
+                            <div class="stat-info-label">Improvement</div>
+                            <div class="stat-info-val highlight-green" id="statImprovement">+12%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-Column Grid: Your Performance Chart + Weak Topics Card -->
+                <div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.5rem;">
+                    
+                    <!-- Left: Your Performance Chart -->
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h3 class="content-card-title">Your Performance</h3>
+                        </div>
+                        <div style="height: 280px; position: relative;">
+                            <canvas id="studentPerformanceBarChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Right: Weak Topics Card -->
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h3 class="content-card-title">Weak Topics</h3>
+                        </div>
+
+                        <div class="weak-topics-list mb-4">
+                            <!-- Mathematics -->
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="window.location.href='study-plan.html'" title="Click to view personalized study plan for Mathematics">
+                                <span class="weak-topic-dot red"></span>
+                                <div>
+                                    <div class="weak-topic-name">Mathematics</div>
+                                    <div class="weak-topic-sub">(Algebra, Geometry)</div>
+                                </div>
+                            </div>
+                            <!-- English -->
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="window.location.href='study-plan.html'" title="Click to view personalized study plan for English">
+                                <span class="weak-topic-dot orange"></span>
+                                <div>
+                                    <div class="weak-topic-name">English</div>
+                                    <div class="weak-topic-sub">(Grammar)</div>
+                                </div>
+                            </div>
+                            <!-- Social Science -->
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="window.location.href='study-plan.html'" title="Click to view personalized study plan for Social Science">
+                                <span class="weak-topic-dot yellow"></span>
+                                <div>
+                                    <div class="weak-topic-name">Social Science</div>
+                                    <div class="weak-topic-sub">(History)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- View Study Plan Button -->
+                        <a href="study-plan.html" class="btn-smart-primary" style="width: 100%; border-radius: 8px;">
+                            View Study Plan
+                        </a>
+                    </div>
+
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Sidebar toggle for mobile
+        document.getElementById('btnToggleSidebar')?.addEventListener('click', () => {
+            document.getElementById('appSidebar').classList.toggle('show');
+        });
+
+        // Initialize Performance Bar Chart (Screen 2)
+        const ctx = document.getElementById('studentPerformanceBarChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Maths', 'Science', 'English', 'Social', 'Kannada'],
+                    datasets: [{
+                        label: 'Score (%)',
+                        data: [58, 72, 85, 60, 80],
+                        backgroundColor: [
+                            '#3b82f6', // Maths (Blue)
+                            '#10b981', // Science (Green)
+                            '#f43f5e', // English (Red/Pink)
+                            '#f97316', // Social (Orange)
+                            '#06b6d4'  // Kannada (Cyan)
+                        ],
+                        borderRadius: 6,
+                        barThickness: 28
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { stepSize: 25 },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
