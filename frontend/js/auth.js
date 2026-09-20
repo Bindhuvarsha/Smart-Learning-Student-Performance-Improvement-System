@@ -170,7 +170,7 @@ const Auth = {
                 `;
             } else if (user.role === 'admin') {
                 sidebarNav.innerHTML = `
-                    <div class="sidebar-section-title">Admin Portal</div>
+                    <div class="sidebar-section-title">Admin Management</div>
                     <a href="admin.html" class="sidebar-nav-item ${currentPage === 'admin.html' ? 'active' : ''}">
                         <i class="bi bi-shield-lock-fill"></i>
                         <span>School Overview</span>
@@ -191,13 +191,56 @@ const Auth = {
                         <i class="bi bi-folder2-open"></i>
                         <span>Resource Library</span>
                     </a>
+
+                    <div class="sidebar-section-title">Academic & Learning Portals</div>
+                    <a href="student.html" class="sidebar-nav-item ${currentPage === 'student.html' ? 'active' : ''}">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Student Dashboard</span>
+                    </a>
+                    <a href="materials.html" class="sidebar-nav-item ${currentPage === 'materials.html' ? 'active' : ''}">
+                        <i class="bi bi-journal-bookmark"></i>
+                        <span>Learning Materials</span>
+                    </a>
+                    <a href="quiz.html" class="sidebar-nav-item ${currentPage === 'quiz.html' ? 'active' : ''}">
+                        <i class="bi bi-check2-square"></i>
+                        <span>Practice Tests</span>
+                    </a>
+                    <a href="study-plan.html" class="sidebar-nav-item ${currentPage === 'study-plan.html' ? 'active' : ''}">
+                        <i class="bi bi-compass"></i>
+                        <span>Personalized Study Plan</span>
+                    </a>
+                    <a href="performance.html" class="sidebar-nav-item ${currentPage === 'performance.html' ? 'active' : ''}">
+                        <i class="bi bi-graph-up"></i>
+                        <span>Student Performance & AI</span>
+                    </a>
+                    <a href="teacher.html" class="sidebar-nav-item ${currentPage === 'teacher.html' ? 'active' : ''}">
+                        <i class="bi bi-people-fill"></i>
+                        <span>Teacher & Class Overview</span>
+                    </a>
+
+                    <div class="sidebar-section-title">Platform Hub</div>
+                    <a href="#" class="sidebar-nav-item" onclick="SmartModal.openFeatureHub(); return false;">
+                        <i class="bi bi-grid-3x3-gap-fill text-warning"></i>
+                        <span>All 9 Features Hub</span>
+                    </a>
                 `;
             }
         }
 
-        // 2. Setup Clean User Profile Pill Dropdown (Without debug pills)
+        // 2. Setup Clean User Profile Pill & All Features Topbar Button
         const topbar = document.querySelector('.app-topbar');
         if (topbar) {
+            // Add All Features button in topbar right
+            const topbarRight = topbar.querySelector('.topbar-right');
+            if (topbarRight && !topbarRight.querySelector('.btn-all-features-pill')) {
+                const hubBtn = document.createElement('button');
+                hubBtn.className = 'btn-all-features-pill me-2';
+                hubBtn.innerHTML = '<i class="bi bi-grid-3x3-gap-fill me-1"></i> All Features';
+                hubBtn.title = 'Explore all 9 Smart School modules';
+                hubBtn.onclick = () => SmartModal.openFeatureHub();
+                topbarRight.insertBefore(hubBtn, topbarRight.firstChild);
+            }
+
             const userPill = topbar.querySelector('.user-profile-pill');
             if (userPill && !userPill.parentElement.classList.contains('user-dropdown-container')) {
                 const container = document.createElement('div');
@@ -258,6 +301,11 @@ const Auth = {
                         <span>Admin Account (School Principal)</span>
                     </div>
                     <div class="user-dropdown-divider"></div>
+                    <div class="user-dropdown-item" onclick="SmartModal.openFeatureHub()">
+                        <i class="bi bi-grid-3x3-gap-fill text-warning"></i>
+                        <span>Explore All 9 Features</span>
+                    </div>
+                    <div class="user-dropdown-divider"></div>
                     <div class="user-dropdown-item text-danger" onclick="Auth.logout()">
                         <i class="bi bi-box-arrow-left"></i>
                         <span>Logout</span>
@@ -277,7 +325,8 @@ const Auth = {
             }
         }
 
-        // 3. Inject Toast Container
+        // 3. Inject Modals & Containers
+        this.injectFeatureHubModal();
         this.injectToastContainer();
     },
 

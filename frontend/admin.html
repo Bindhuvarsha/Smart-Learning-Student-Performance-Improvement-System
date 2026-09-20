@@ -23,16 +23,16 @@
             </div>
 
             <nav class="sidebar-nav">
-                <div class="sidebar-section-title">Admin Portal</div>
+                <div class="sidebar-section-title">Admin Management</div>
                 <a href="admin.html" class="sidebar-nav-item active">
                     <i class="bi bi-shield-lock-fill"></i>
                     <span>School Overview</span>
                 </a>
-                <a href="admin.html#students-table" class="sidebar-nav-item">
+                <a href="#students-table" class="sidebar-nav-item">
                     <i class="bi bi-mortarboard-fill"></i>
                     <span>Student Management</span>
                 </a>
-                <a href="admin.html#faculty-table" class="sidebar-nav-item">
+                <a href="#faculty-table" class="sidebar-nav-item">
                     <i class="bi bi-person-video3"></i>
                     <span>Faculty Roster</span>
                 </a>
@@ -43,6 +43,38 @@
                 <a href="resources.html" class="sidebar-nav-item">
                     <i class="bi bi-folder2-open"></i>
                     <span>Resource Library</span>
+                </a>
+
+                <div class="sidebar-section-title">Academic & Learning Portals</div>
+                <a href="student.html" class="sidebar-nav-item">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Student Dashboard</span>
+                </a>
+                <a href="materials.html" class="sidebar-nav-item">
+                    <i class="bi bi-journal-bookmark"></i>
+                    <span>Learning Materials</span>
+                </a>
+                <a href="quiz.html" class="sidebar-nav-item">
+                    <i class="bi bi-check2-square"></i>
+                    <span>Practice Tests</span>
+                </a>
+                <a href="study-plan.html" class="sidebar-nav-item">
+                    <i class="bi bi-compass"></i>
+                    <span>Personalized Study Plan</span>
+                </a>
+                <a href="performance.html" class="sidebar-nav-item">
+                    <i class="bi bi-graph-up"></i>
+                    <span>Student Performance & AI</span>
+                </a>
+                <a href="teacher.html" class="sidebar-nav-item">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Teacher & Class Overview</span>
+                </a>
+
+                <div class="sidebar-section-title">Platform Hub</div>
+                <a href="#" class="sidebar-nav-item" onclick="SmartModal.openFeatureHub(); return false;">
+                    <i class="bi bi-grid-3x3-gap-fill text-warning"></i>
+                    <span>All 9 Features Hub</span>
                 </a>
             </nav>
 
@@ -192,6 +224,97 @@
 
                 </div>
 
+                <!-- Student Management Section (#students-table) -->
+                <div class="content-card mt-4" id="students-table" style="scroll-margin-top: 80px;">
+                    <div class="content-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div>
+                            <h3 class="content-card-title"><i class="bi bi-mortarboard-fill text-primary me-2"></i>Student Management & Enrollment</h3>
+                            <p style="font-size: 0.8rem; color: #64748b; margin: 2px 0 0 0;">Manage enrolled students, academic standing, attendance records, and risk levels</p>
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap align-items-center">
+                            <div style="position: relative; width: 220px;">
+                                <i class="bi bi-search" style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 0.85rem;"></i>
+                                <input type="text" id="adminStudentSearch" placeholder="Search students..." oninput="filterAdminStudents()" style="width: 100%; padding: 0.4rem 0.75rem 0.4rem 2.2rem; border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.85rem; outline: none;">
+                            </div>
+                            <select id="adminClassFilter" onchange="filterAdminStudents()" style="padding: 0.4rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color); background: #ffffff; font-size: 0.85rem; color: #475569; font-weight: 500; outline: none; cursor: pointer;">
+                                <option value="all">All Classes</option>
+                                <option value="10A">Class 10A</option>
+                                <option value="10B">Class 10B</option>
+                                <option value="9A">Class 9A</option>
+                                <option value="9B">Class 9B</option>
+                                <option value="8A">Class 8A</option>
+                            </select>
+                            <button class="btn-smart-primary" onclick="openAddStudentModal()" style="padding: 0.4rem 0.9rem; font-size: 0.85rem; border-radius: 8px;">
+                                <i class="bi bi-plus-lg me-1"></i> Add Student
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="smart-table" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Student Name</th>
+                                    <th>Roll No</th>
+                                    <th>Class</th>
+                                    <th>Attendance</th>
+                                    <th>Avg. Score</th>
+                                    <th>Risk Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminStudentTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Faculty Roster Section (#faculty-table) -->
+                <div class="content-card mt-4" id="faculty-table" style="scroll-margin-top: 80px;">
+                    <div class="content-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div>
+                            <h3 class="content-card-title"><i class="bi bi-person-video3 text-success me-2"></i>Faculty Roster & Departments</h3>
+                            <p style="font-size: 0.8rem; color: #64748b; margin: 2px 0 0 0;">Manage teaching faculty, subject assignments, assigned classes, and active status</p>
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap align-items-center">
+                            <div style="position: relative; width: 220px;">
+                                <i class="bi bi-search" style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 0.85rem;"></i>
+                                <input type="text" id="adminTeacherSearch" placeholder="Search faculty..." oninput="filterAdminTeachers()" style="width: 100%; padding: 0.4rem 0.75rem 0.4rem 2.2rem; border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.85rem; outline: none;">
+                            </div>
+                            <select id="adminDeptFilter" onchange="filterAdminTeachers()" style="padding: 0.4rem 0.85rem; border-radius: 8px; border: 1px solid var(--border-color); background: #ffffff; font-size: 0.85rem; color: #475569; font-weight: 500; outline: none; cursor: pointer;">
+                                <option value="all">All Departments</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Science">Science</option>
+                                <option value="English">English</option>
+                                <option value="Social Science">Social Science</option>
+                                <option value="Kannada">Kannada</option>
+                            </select>
+                            <button class="btn-smart-primary" onclick="openAddTeacherModal()" style="padding: 0.4rem 0.9rem; font-size: 0.85rem; border-radius: 8px; background: #10b981; border-color: #10b981;">
+                                <i class="bi bi-plus-lg me-1"></i> Add Faculty
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="smart-table" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Faculty Name</th>
+                                    <th>Department</th>
+                                    <th>Assigned Classes</th>
+                                    <th>Email Address</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminTeacherTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </main>
         </div>
     </div>
@@ -316,6 +439,152 @@
         let studentCount = 120;
         let teacherCount = 8;
 
+        const adminStudents = [
+            { id: 1, name: "Bindhu Shree", roll: "10106", class: "10A", attendance: "94%", score: 88, risk: "Low Risk", status: "good" },
+            { id: 2, name: "Alex Johnson", roll: "10101", class: "10A", attendance: "76%", score: 68, risk: "Medium Risk", status: "needs-support" },
+            { id: 3, name: "Priya Sharma", roll: "10102", class: "10A", attendance: "96%", score: 95, risk: "Low Risk", status: "good" },
+            { id: 4, name: "Rahul Verma", roll: "10103", class: "10A", attendance: "62%", score: 50, risk: "High Risk", status: "needs-support" },
+            { id: 5, name: "Anita Desai", roll: "10104", class: "10A", attendance: "88%", score: 85, risk: "Low Risk", status: "good" },
+            { id: 6, name: "David Lee", roll: "10105", class: "10A", attendance: "82%", score: 78, risk: "Low Risk", status: "good" },
+            { id: 7, name: "Vijay S", roll: "10201", class: "10B", attendance: "78%", score: 55, risk: "High Risk", status: "needs-support" },
+            { id: 8, name: "Pooja D", roll: "10202", class: "10B", attendance: "98%", score: 88, risk: "Low Risk", status: "good" }
+        ];
+
+        const adminTeachers = [
+            { id: 1, name: "Dr. Ramesh Kumar", dept: "Mathematics", classes: "Class 10A, 10B", email: "teacher@smartschool.edu", status: "Active" },
+            { id: 2, name: "Prof. Sarah Smith", dept: "Science", classes: "Class 10A, 9A", email: "smith@smartschool.edu", status: "Active" },
+            { id: 3, name: "Prof. Rajesh Rao", dept: "Science", classes: "Class 10B, 9B", email: "rao@smartschool.edu", status: "Active" },
+            { id: 4, name: "Mrs. Lakshmi Narayan", dept: "English", classes: "Class 10A, 10B", email: "lakshmi@smartschool.edu", status: "Active" },
+            { id: 5, name: "Mr. Suresh Gowda", dept: "Social Science", classes: "Class 10A, 9A", email: "suresh@smartschool.edu", status: "Active" },
+            { id: 6, name: "Smt. Geetha Bhat", dept: "Kannada", classes: "Class 10A, 10B", email: "geetha@smartschool.edu", status: "Active" }
+        ];
+
+        function renderAdminStudents(list = adminStudents) {
+            const tbody = document.getElementById('adminStudentTableBody');
+            if (!tbody) return;
+            if (list.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: #94a3b8; padding: 2rem;">No students found matching your criteria.</td></tr>`;
+                return;
+            }
+            tbody.innerHTML = list.map(s => `
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="width: 34px; height: 34px; border-radius: 50%; background: #eff6ff; color: #2563eb; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem;">
+                                ${s.name.charAt(0)}
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${s.name}</div>
+                                <div style="font-size: 0.75rem; color: #64748b;">ID: #${s.id}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="font-family: monospace; font-size: 0.85rem; color: #475569;">${s.roll}</td>
+                    <td><span style="background: #f1f5f9; padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: 600; font-size: 0.8rem; color: #334155;">${s.class}</span></td>
+                    <td style="font-weight: 600; color: #0f172a;">${s.attendance}</td>
+                    <td>
+                        <div style="font-weight: 700; color: ${s.score >= 75 ? '#10b981' : s.score >= 60 ? '#f59e0b' : '#ef4444'};">
+                            ${s.score}%
+                        </div>
+                    </td>
+                    <td>
+                        <span class="${s.status === 'good' ? 'badge-status-good' : 'badge-status-needs-support'}">
+                            ${s.risk}
+                        </span>
+                    </td>
+                    <td style="text-align: right;">
+                        <button class="btn btn-sm btn-link text-primary p-0 me-2" onclick="viewAdminStudent(${s.id})" title="View Student Report"><i class="bi bi-eye"></i></button>
+                        <button class="btn btn-sm btn-link text-danger p-0" onclick="deleteAdminStudent(${s.id})" title="Remove Student"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterAdminStudents() {
+            const q = (document.getElementById('adminStudentSearch')?.value || '').toLowerCase();
+            const cls = document.getElementById('adminClassFilter')?.value || 'all';
+            const filtered = adminStudents.filter(s => {
+                const matchQ = s.name.toLowerCase().includes(q) || s.roll.includes(q);
+                const matchCls = cls === 'all' || s.class === cls;
+                return matchQ && matchCls;
+            });
+            renderAdminStudents(filtered);
+        }
+
+        function deleteAdminStudent(id) {
+            const idx = adminStudents.findIndex(s => s.id === id);
+            if (idx !== -1) {
+                const name = adminStudents[idx].name;
+                adminStudents.splice(idx, 1);
+                studentCount--;
+                document.getElementById('adminTotalStudents').textContent = studentCount;
+                filterAdminStudents();
+                SmartToast.show(`Removed student ${name} from registry`, 'info');
+            }
+        }
+
+        function viewAdminStudent(id) {
+            const s = adminStudents.find(st => st.id === id);
+            if (s) {
+                SmartToast.show(`Viewing ${s.name}'s Profile • Score: ${s.score}% (${s.risk})`, 'info');
+            }
+        }
+
+        function renderAdminTeachers(list = adminTeachers) {
+            const tbody = document.getElementById('adminTeacherTableBody');
+            if (!tbody) return;
+            if (list.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #94a3b8; padding: 2rem;">No faculty members found.</td></tr>`;
+                return;
+            }
+            tbody.innerHTML = list.map(t => `
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="width: 34px; height: 34px; border-radius: 50%; background: #ecfdf5; color: #059669; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem;">
+                                <i class="bi bi-person-workspace"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; color: #0f172a; font-size: 0.88rem;">${t.name}</div>
+                                <div style="font-size: 0.75rem; color: #64748b;">Faculty ID: #FAC-${t.id}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><span style="background: #e0f2fe; color: #0369a1; padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: 600; font-size: 0.8rem;">${t.dept}</span></td>
+                    <td style="font-size: 0.85rem; color: #475569;">${t.classes}</td>
+                    <td style="font-size: 0.85rem; color: #64748b;">${t.email}</td>
+                    <td><span class="badge-status-good" style="background: #ecfdf5; color: #059669;">${t.status}</span></td>
+                    <td style="text-align: right;">
+                        <button class="btn btn-sm btn-link text-primary p-0 me-2" onclick="SmartToast.show('Assigned classes updated for ${t.name}', 'success')" title="Manage Class Assignment"><i class="bi bi-pencil-square"></i></button>
+                        <button class="btn btn-sm btn-link text-danger p-0" onclick="deleteAdminTeacher(${t.id})" title="Remove Faculty"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterAdminTeachers() {
+            const q = (document.getElementById('adminTeacherSearch')?.value || '').toLowerCase();
+            const dept = document.getElementById('adminDeptFilter')?.value || 'all';
+            const filtered = adminTeachers.filter(t => {
+                const matchQ = t.name.toLowerCase().includes(q) || t.email.toLowerCase().includes(q);
+                const matchDept = dept === 'all' || t.dept === dept;
+                return matchQ && matchDept;
+            });
+            renderAdminTeachers(filtered);
+        }
+
+        function deleteAdminTeacher(id) {
+            const idx = adminTeachers.findIndex(t => t.id === id);
+            if (idx !== -1) {
+                const name = adminTeachers[idx].name;
+                adminTeachers.splice(idx, 1);
+                teacherCount--;
+                document.getElementById('adminTotalTeachers').textContent = teacherCount;
+                filterAdminTeachers();
+                SmartToast.show(`Removed faculty ${name} from registry`, 'info');
+            }
+        }
+
         function openAddStudentModal() {
             document.getElementById('addStudentModal').classList.add('show');
         }
@@ -328,8 +597,21 @@
             e.preventDefault();
             const name = document.getElementById('newStudentName').value;
             const cls = document.getElementById('newStudentClass').value;
+            const roll = document.getElementById('newStudentRoll').value || '10109';
             studentCount++;
             document.getElementById('adminTotalStudents').textContent = studentCount;
+
+            adminStudents.unshift({
+                id: adminStudents.length + 1,
+                name: name,
+                roll: roll,
+                class: cls,
+                attendance: '100%',
+                score: 85,
+                risk: 'Low Risk',
+                status: 'good'
+            });
+            filterAdminStudents();
 
             // Prepend to activity list
             const list = document.getElementById('adminActivitiesList');
@@ -365,8 +647,19 @@
             e.preventDefault();
             const name = document.getElementById('newTeacherName').value;
             const sub = document.getElementById('newTeacherSubject').value;
+            const email = document.getElementById('newTeacherEmail').value || 'faculty@smartschool.edu';
             teacherCount++;
             document.getElementById('adminTotalTeachers').textContent = teacherCount;
+
+            adminTeachers.unshift({
+                id: adminTeachers.length + 1,
+                name: name,
+                dept: sub,
+                classes: 'Class 10A, 10B',
+                email: email,
+                status: 'Active'
+            });
+            filterAdminTeachers();
 
             const list = document.getElementById('adminActivitiesList');
             const item = document.createElement('div');
@@ -395,6 +688,10 @@
                 SmartToast.show('School Performance Report downloaded successfully!', 'success');
             }, 1000);
         }
+
+        // Initialize tables on load
+        renderAdminStudents();
+        renderAdminTeachers();
     </script>
 </body>
 </html>
