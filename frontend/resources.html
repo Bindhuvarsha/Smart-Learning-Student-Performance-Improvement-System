@@ -3,11 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Resources & Textbooks – Smart School</title>
+    <title>Learning Resources & Official Textbooks – Smart School</title>
     <!-- Google Fonts & Bootstrap Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .textbook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        .textbook-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .textbook-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
+            border-color: #bfdbfe;
+        }
+        .textbook-badge-row {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .textbook-sub-filter-btn {
+            padding: 0.3rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+        .textbook-sub-filter-btn.active {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #2563eb;
+        }
+        .textbook-cover-icon {
+            width: 52px;
+            height: 64px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            font-weight: 800;
+            font-size: 0.65rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -84,88 +148,62 @@
                 </div>
             </header>
 
-            <main class="page-body" style="max-width: 960px;">
+            <main class="page-body" style="max-width: 1080px;">
                 
                 <!-- Page Header (Screen 8) -->
                 <div class="page-header mb-4">
                     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
                         <div>
-                            <h2 class="page-title" style="margin-bottom: 0.25rem;">Learning Resources & Textbooks</h2>
-                            <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Access official state syllabus textbooks, revision notes, interactive quizzes, and lab videos.</p>
+                            <h2 class="page-title" style="margin-bottom: 0.25rem;">Learning Resources & Official Textbooks</h2>
+                            <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Access official Karnataka KSEAB 10th standard textbooks, revision notes, interactive quizzes, and lab videos.</p>
                         </div>
                         <div>
-                            <span class="badge bg-success-subtle text-success" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 700;">
-                                <i class="bi bi-patch-check-fill me-1"></i> 2026-27 Academic Curriculum
+                            <span class="badge bg-success-subtle text-success" style="padding: 0.45rem 0.85rem; font-size: 0.82rem; font-weight: 700;">
+                                <i class="bi bi-patch-check-fill me-1"></i> 6 Official Textbooks (2026-27)
                             </span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Featured Official Textbook Banner (Screen 8 Enhancement) -->
-                <div class="content-card" style="background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border: 1.5px solid #a7f3d0; padding: 1.5rem; margin-bottom: 1.5rem; position: relative; overflow: hidden;">
-                    <div style="position: absolute; right: -15px; top: -15px; font-size: 7rem; opacity: 0.07; color: #059669; pointer-events: none;">
-                        <i class="bi bi-book-half"></i>
-                    </div>
-                    <div style="display: flex; gap: 1.25rem; align-items: flex-start; flex-wrap: wrap; position: relative; z-index: 1;">
-                        <div style="width: 68px; height: 86px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; box-shadow: 0 8px 16px rgba(16, 185, 129, 0.25); flex-shrink: 0; text-align: center; padding: 0.35rem;">
-                            <i class="bi bi-book-half" style="font-size: 1.75rem; line-height: 1;"></i>
-                            <span style="font-size: 0.62rem; font-weight: 800; margin-top: 0.3rem; letter-spacing: 0.5px;">MATHS</span>
-                        </div>
-                        <div style="flex-grow: 1;">
-                            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap;">
-                                <span style="background: #10b981; color: #ffffff; font-size: 0.68rem; font-weight: 800; padding: 0.15rem 0.55rem; border-radius: 4px; text-transform: uppercase;">Official Textbook</span>
-                                <span style="background: #e0f2fe; color: #0284c7; font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 4px;">KSEAB 2026-27</span>
-                                <span style="background: #ede9fe; color: #7c3aed; font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 4px;">9.9 MB PDF</span>
-                            </div>
-                            <h3 style="font-size: 1.15rem; font-weight: 800; color: #064e3b; margin: 0 0 0.35rem 0;">
-                                10th Kannada Maths Part-1 (2026-27) &bull; ಗಣಿತ ಭಾಗ-೧
-                            </h3>
-                            <p style="font-size: 0.83rem; color: #047857; margin: 0 0 1rem 0; line-height: 1.45;">
-                                Complete 10th standard Mathematics textbook in Kannada medium. Covers Chapters 1–8: Arithmetic Progressions, Triangles, Linear Equations, Circles, Constructions, Coordinate Geometry, Real Numbers, and Polynomials.
-                            </p>
-                            <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
-                                <button class="btn-smart-primary" onclick="openResourceModal(9)" style="padding: 0.45rem 1rem; font-size: 0.82rem; background: #059669; border-color: #059669;">
-                                    <i class="bi bi-eye-fill me-1"></i> Read Online / View PDF
-                                </button>
-                                <a href="textbooks/10th-Kannada-Maths-Part-1-2026-27.pdf" download="10th-Kannada-Maths-Part-1-2026-27.pdf" class="btn-smart-outline" style="padding: 0.45rem 1rem; font-size: 0.82rem; color: #065f46; border-color: #a7f3d0; background: #ffffff; text-decoration: none; display: inline-flex; align-items: center;">
-                                    <i class="bi bi-download me-1"></i> Download PDF (9.9 MB)
-                                </a>
-                                <button class="btn-smart-outline" onclick="window.location.href='ai-teacher.html?subject=Mathematics&textbook=10th-Kannada-Maths-Part-1'" style="padding: 0.45rem 1rem; font-size: 0.82rem; color: #2563eb; border-color: #bfdbfe; background: #ffffff;">
-                                    <i class="bi bi-robot me-1 text-primary"></i> Ask AI Teacher
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tabs (Screen 8) -->
+                <!-- Main Tabs (Screen 8) -->
                 <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; overflow-x: auto; padding-bottom: 0.25rem;" id="resourceTabsGroup">
                     <button class="resource-tab-btn active-tab" onclick="switchResourceCategory('textbooks', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background-color: #ebf3ff; color: #1e6bff; border: 1px solid #bfdbfe; font-weight: 700; cursor: pointer; white-space: nowrap;">
-                        <i class="bi bi-journal-bookmark-fill me-1"></i> Textbooks (ಪಠ್ಯಪುಸ್ತಕಗಳು)
+                        <i class="bi bi-journal-bookmark-fill me-1"></i> Textbooks (6 ಪಠ್ಯಪುಸ್ತಕಗಳು)
                     </button>
                     <button class="resource-tab-btn" onclick="switchResourceCategory('notes', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer; white-space: nowrap;">
-                        Notes
+                        Notes & Formulas
                     </button>
                     <button class="resource-tab-btn" onclick="switchResourceCategory('videos', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer; white-space: nowrap;">
-                        Videos
+                        Video Lessons
                     </button>
                     <button class="resource-tab-btn" onclick="switchResourceCategory('quizzes', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer; white-space: nowrap;">
                         Quizzes
                     </button>
                     <button class="resource-tab-btn" onclick="switchResourceCategory('ebooks', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer; white-space: nowrap;">
-                        eBooks
+                        All eBooks
                     </button>
                 </div>
 
                 <!-- Search Input Bar (Screen 8) -->
-                <div style="position: relative; margin-bottom: 1.5rem;">
+                <div style="position: relative; margin-bottom: 1.25rem;">
                     <i class="bi bi-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
-                    <input type="text" id="resourceSearchInput" oninput="handleResourceSearch()" placeholder="Search textbooks, notes, formulas or video lessons..." 
-                           style="width: 100%; padding: 0.65rem 1rem 0.65rem 2.5rem; border-radius: 8px; border: 1px solid var(--border-color); background: #ffffff; font-size: 0.88rem; outline: none;">
+                    <input type="text" id="resourceSearchInput" oninput="handleResourceSearch()" placeholder="Search textbooks (Maths, Science, Kannada, English, Hindi, Social), chapters or notes..." 
+                           style="width: 100%; padding: 0.65rem 1rem 0.65rem 2.5rem; border-radius: 10px; border: 1px solid var(--border-color); background: #ffffff; font-size: 0.88rem; outline: none; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
                 </div>
 
-                <!-- Resource Items List (Screen 8) -->
-                <div id="resourcesListContainer" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <!-- Sub-filters for Textbooks -->
+                <div id="textbookSubjectFilters" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; overflow-x: auto; padding-bottom: 0.25rem;">
+                    <button class="textbook-sub-filter-btn active" onclick="filterTextbookBySubject('all', this)">All Subjects (6)</button>
+                    <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Mathematics', this)">📐 Mathematics</button>
+                    <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Science', this)">🔬 Science</button>
+                    <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Social Science', this)">🏛️ Social Science</button>
+                    <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Kannada', this)">📝 Kannada</button>
+                    <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('English', this)">📖 English</button>
+                    <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Hindi', this)">🇮🇳 Hindi</button>
+                </div>
+
+                <!-- Resource Items Container -->
+                <div id="resourcesListContainer">
                     <!-- Populated dynamically -->
                 </div>
 
@@ -175,11 +213,11 @@
 
     <!-- Document & Textbook Preview Modal -->
     <div class="smart-modal-backdrop" id="resourceDocModal">
-        <div class="smart-modal-dialog" style="max-width: 820px;">
+        <div class="smart-modal-dialog" style="max-width: 860px;">
             <div class="smart-modal-header">
                 <h3 class="smart-modal-title">
-                    <i class="bi bi-file-earmark-pdf-fill text-danger"></i>
-                    <span id="resourceModalTitle">Document Preview</span>
+                    <i class="bi bi-book-half text-primary"></i>
+                    <span id="resourceModalTitle">Textbook Viewer</span>
                 </h3>
                 <button class="smart-modal-close" onclick="closeResourceModal()">&times;</button>
             </div>
@@ -223,15 +261,19 @@
         });
 
         const allResources = [
+            // 1. Mathematics Textbook
             {
                 id: 9,
                 title: "10th Kannada Maths Part-1 (2026-27) – ಗಣಿತ ಭಾಗ-೧",
-                subject: "Mathematics (ಕನ್ನಡ ಮಾಧ್ಯಮ)",
+                subject: "Mathematics",
+                medium: "ಕನ್ನಡ ಮಾಧ್ಯಮ (Kannada Medium)",
                 size: "9.9 MB",
                 category: "textbooks",
-                color: "#ecfdf5",
-                textColor: "#059669",
-                icon: "bi-book-half",
+                color: "#10b981",
+                bgGradient: "linear-gradient(135deg, #10b981, #059669)",
+                textColor: "#ffffff",
+                icon: "bi-calculator",
+                abbr: "MATHS",
                 pdfUrl: "textbooks/10th-Kannada-Maths-Part-1-2026-27.pdf",
                 isTextbook: true,
                 chapters: [
@@ -258,20 +300,201 @@
   - ಪೈಥಾಗೊರಸ್ ಪ್ರಮೇಯ: AC² = AB² + BC²
 
 • ಅಧ್ಯಾಯ 3: ಎರಡು ಚರಾಕ್ಷರಗಳುಳ್ಳ ರೇಖಾತ್ಮಕ ಸಮೀಕರಣಗಳ ಜೋಡಿಗಳು
-  - ಆದೇಶ ವಿಧಾನ, ವರ್ಜಿಸುವ ವಿಧಾನ ಮತ್ತು ನಕ್ಷಾ ವಿಧಾನ
-
 • ಅಧ್ಯಾಯ 4: ವೃತ್ತಗಳು (Circles)
-  - ಸ್ಪರ್ಶ ಬಿಂದುವಿನಲ್ಲಿ ಎಳೆದ ತ್ರಿಜ್ಯವು ಸ್ಪರ್ಶಕಕ್ಕೆ ಲಂಬವಾಗಿರುತ್ತದೆ.
-
 • ಅಧ್ಯಾಯ 5: ರಚನೆಗಳು (Constructions)
 • ಅಧ್ಯಾಯ 6: ನಿರ್ದೇಶಾಂಕ ರೇಖಾಗಣಿತ (Coordinate Geometry)
-  - ದೂರ ಸೂತ್ರ: d = √[(x2 - x1)² + (y2 - y1)²]
 • ಅಧ್ಯಾಯ 7: ವಾಸ್ತವ ಸಂಖ್ಯೆಗಳು (Real Numbers)
 • ಅಧ್ಯಾಯ 8: ಬಹುಪದೋಕ್ತಿಗಳು (Polynomials)`
             },
+
+            // 2. First Language Kannada Textbook
+            {
+                id: 10,
+                title: "10th Siri Kannada Textbook – ಪ್ರಥಮ ಭಾಷೆ ಸಿರಿ ಕನ್ನಡ",
+                subject: "Kannada",
+                medium: "ಪ್ರಥಮ ಭಾಷೆ (First Language)",
+                size: "3.3 MB",
+                category: "textbooks",
+                color: "#8b5cf6",
+                bgGradient: "linear-gradient(135deg, #8b5cf6, #6d28d9)",
+                textColor: "#ffffff",
+                icon: "bi-translate",
+                abbr: "ಕನ್ನಡ",
+                pdfUrl: "textbooks/10th-Kannada-Textbook.pdf",
+                isTextbook: true,
+                chapters: [
+                    "ಗದ್ಯ 1: ಯುದ್ಧ (ಸಾರಾ ಅಬೂಬಕ್ಕರ್)",
+                    "ಗದ್ಯ 2: ಶಬರಿ (ಪು.ತಿ. ನರಸಿಂಹಾಚಾರ್)",
+                    "ಗದ್ಯ 3: ಲಂಡನ್ ನಗರ (ವಿ.ಕೃ. ಗೋಕಾಕ್)",
+                    "ಗದ್ಯ 4: ಭಾಗ್ಯಶಿಲ್ಪಿಗಳು (ಡಿ.ವಿ.ಜಿ & ಇತರರು)",
+                    "ಪದ್ಯ 1: ಸಂಕಲ್ಪ ಗೀತೆ (ಜಿ.ಎಸ್. ಶಿವರುದ್ರಪ್ಪ)",
+                    "ಪದ್ಯ 2: ಹಕ್ಕಿ ಹಾರುತ್ತಿದೆ ನೋಡಿದಿರಾ (ದ.ರಾ. ಬೇಂದ್ರೆ)",
+                    "ಪದ್ಯ 3: ಹಲಗಲಿ ಬೇಡರು (ಜನಪದ ಲಾವಣಿ)",
+                    "ಪಠ್ಯಪೂರಕ ಅಧ್ಯಯನ & ಕನ್ನಡ ವ್ಯಾಕರಣ (ಸಂಧಿ, ಸಮಾಸ, ಛಂದಸ್ಸು, ಅಲಂಕಾರ)"
+                ],
+                content: `ಕರ್ನಾಟಕ ಶಾಲಾ ಪರೀಕ್ಷೆ ಮತ್ತು ಮೌಲ್ಯನಿರ್ಣಯ ಮಂಡಳಿ (KSEAB)
+ಹತ್ತನೇ ತರಗತಿ ಪ್ರಥಮ ಭಾಷೆ ಸಿರಿ ಕನ್ನಡ ಪಠ್ಯಪುಸ್ತಕ
+
+ಪ್ರಮುಖ ಅಧ್ಯಾಯಗಳು ಮತ್ತು ವ್ಯಾಕರಣಾಂಶಗಳು:
+1. ಗದ್ಯ ವಿಭಾಗ:
+   - ಯುದ್ಧ, ಶಬರಿ, ಲಂಡನ್ ನಗರ, ಭಾಗ್ಯಶಿಲ್ಪಿಗಳು
+2. ಪದ್ಯ ವಿಭಾಗ:
+   - ಸಂಕಲ್ಪ ಗೀತೆ, ಹಕ್ಕಿ ಹಾರುತ್ತಿದೆ ನೋಡಿದಿರಾ, ಹಲಗಲಿ ಬೇಡರು
+3. ವ್ಯಾಕರಣ ಭಾಗ:
+   - ಕನ್ನಡ ಸಂಧಿಗಳು: ಲೋಪ, ಆಗಮ, ಆದೇಶ ಸಂಧಿಗಳು
+   - ಸಮಾಸಗಳು: ತತ್ಪುರುಷ, ಕರ್ಮಧಾರಯ, ದ್ವಿಗು, ದ್ವಂದ್ವ, ಬಹುವ್ರೀಹಿ
+   - ತತ್ಸಮ-ತದ್ಭವ, ನಾಣ್ಣುಡಿಗಳು ಮತ್ತು ಪ್ರಬಂಧ ರಚನೆ`
+            },
+
+            // 3. English Textbook
+            {
+                id: 11,
+                title: "10th English Textbook – Reader & Supplementary",
+                subject: "English",
+                medium: "First / Second Language",
+                size: "8.7 MB",
+                category: "textbooks",
+                color: "#ec4899",
+                bgGradient: "linear-gradient(135deg, #ec4899, #be185d)",
+                textColor: "#ffffff",
+                icon: "bi-journal-text",
+                abbr: "ENGLISH",
+                pdfUrl: "textbooks/10th-English-Textbook.pdf",
+                isTextbook: true,
+                chapters: [
+                    "Unit 1: A Hero (R. K. Narayan)",
+                    "Unit 2: There's a Girl by the Tracks! (Deven Kanal)",
+                    "Unit 3: Gentleman of Rio en Medio (Juan A.A. Sedillo)",
+                    "Unit 4: Dr. B. R. Ambedkar (Sri R. Venkataraman)",
+                    "Unit 5: The Concert (Shanta Rameshwar Rao)",
+                    "Poem 1: Grandma Climbs a Tree (Ruskin Bond)",
+                    "Poem 2: Quality of Mercy (William Shakespeare)",
+                    "Grammar: Active/Passive Voice, Reported Speech, Clause Analysis"
+                ],
+                content: `Karnataka School Examination and Assessment Board (KSEAB)
+Class 10 English Reader and Supplementary Textbook
+
+Key Units & Modules:
+• Unit 1: A Hero (R. K. Narayan) - Swami's courage and heroism
+• Unit 2: There's a Girl by the Tracks! - Baleshwar Mishra's compassion
+• Unit 3: Gentleman of Rio en Medio - Don Anselmo's principles
+• Unit 4: Dr. B. R. Ambedkar - Architect of the Indian Constitution
+• Unit 5: The Concert - Smita and Anant's story with Pandit Ravi Shankar
+• Grammar: Voice change, Direct/Indirect speech, Prepositions, and Essay writing`
+            },
+
+            // 4. Social Science Part-1 Textbook
+            {
+                id: 12,
+                title: "10th Social Science Part-1 (Kannada) – ಸಮಾಜ ವಿಜ್ಞಾನ ಭಾಗ-೧",
+                subject: "Social Science",
+                medium: "ಕನ್ನಡ ಮಾಧ್ಯಮ (Kannada Medium)",
+                size: "6.4 MB",
+                category: "textbooks",
+                color: "#f97316",
+                bgGradient: "linear-gradient(135deg, #f97316, #c2410c)",
+                textColor: "#ffffff",
+                icon: "bi-globe2",
+                abbr: "SOCIAL",
+                pdfUrl: "textbooks/10th-Social-Science-Part-1.pdf",
+                isTextbook: true,
+                chapters: [
+                    "ಇತಿಹಾಸ 1: ಭಾರತಕ್ಕೆ ಯುರೋಪಿಯನ್ನರ ಆಗಮನ",
+                    "ಇತಿಹಾಸ 2: ಬ್ರಿಟಿಷ್ ಆಳ್ವಿಕೆಯ ವಿಸ್ತರಣೆ & ಪರಿಣಾಮಗಳು",
+                    "ಇತಿಹಾಸ 3: 1857ರ ಪ್ರಥಮ ಸ್ವಾತಂತ್ರ್ಯ ಸಂಗ್ರಾಮ",
+                    "ರಾಜ್ಯಶಾಸ್ತ್ರ: ಭಾರತದ ಸಮಸ್ಯೆಗಳು ಹಾಗೂ ಅವುಗಳ ಪರಿಹಾರೋಪಾಯಗಳು",
+                    "ಸಮಾಜಶಾಸ್ತ್ರ: ಸಾಮಾಜಿಕ ಸ್ತರವಿನ್ಯಾಸ & ದುಡಿಮೆ",
+                    "ಭೂಗೋಳ: ಭಾರತದ ಸ್ಥಾನ, ವಿಸ್ತೀರ್ಣ, ಪ್ರಾಕೃತಿಕ ಲಕ್ಷಣಗಳು & ಮಣ್ಣುಗಳು",
+                    "ಅರ್ಥಶಾಸ್ತ್ರ: ಆರ್ಥಿಕಾಭಿವೃದ್ಧಿ ಮತ್ತು ಗ್ರಾಮೀಣಾಭಿವೃದ್ಧಿ",
+                    "ವ್ಯವಹಾರ ಅಧ್ಯಯನ: ಬ್ಯಾಂಕಿಂಗ್ ವ್ಯವಹಾರಗಳು & ಗ್ರಾಹಕರ ಶಿಕ್ಷಣ"
+                ],
+                content: `ಕರ್ನಾಟಕ ಶಾಲಾ ಪರೀಕ್ಷೆ ಮತ್ತು ಮೌಲ್ಯನಿರ್ಣಯ ಮಂಡಳಿ (KSEAB)
+10ನೇ ತರಗತಿ ಸಮಾಜ ವಿಜ್ಞಾನ ಭಾಗ - ೧ (ಕನ್ನಡ ಮಾಧ್ಯಮ)
+
+ವಿಷಯ ವಿಭಾಗಗಳು:
+1. ಇತಿಹಾಸ: ಯುರೋಪಿಯನ್ನರ ಆಗಮನ, ಪ್ಲಾಸಿ ಕದನ, ಬಕ್ಸಾರ್ ಕದನ, 1857ರ ಸಂಗ್ರಾಮ
+2. ರಾಜ್ಯಶಾಸ್ತ್ರ: ಭ್ರಷ್ಟಾಚಾರ, ನಿರುದ್ಯೋಗ, ಕೋಮುವಾದ ಮತ್ತು ಲಿಂಗ ಅಸಮಾನತೆ
+3. ಸಮಾಜಶಾಸ್ತ್ರ: ಅಸ್ಪೃಶ್ಯತೆ ನಿವಾರಣಾ ಕ್ರಮಗಳು, ಶ್ರಮ ವಿಭಜನೆ
+4. ಭೂಗೋಳ: ಹಿಮಾಲಯ, ಗಂಗಾ ಬಯಲು, ದಖನ್ ಪ್ರಸ್ಥಭೂಮಿ, ಭಾರತದ ಮಣ್ಣುಗಳು
+5. ಅರ್ಥಶಾಸ್ತ್ರ & ಬ್ಯಾಂಕಿಂಗ್: ರಾಷ್ಟ್ರೀಯ ವರಮಾನ, ಬ್ಯಾಂಕ್ ಖಾತೆಗಳ ವಿಧಗಳು`
+            },
+
+            // 5. Science Part-1 Textbook
+            {
+                id: 13,
+                title: "10th Science Part-1 (Kannada 2025-26) – ವಿಜ್ಞಾನ ಭಾಗ-೧",
+                subject: "Science",
+                medium: "ಕನ್ನಡ ಮಾಧ್ಯಮ (Kannada Medium)",
+                size: "50.2 MB",
+                category: "textbooks",
+                color: "#0d9488",
+                bgGradient: "linear-gradient(135deg, #0d9488, #115e59)",
+                textColor: "#ffffff",
+                icon: "bi-radioactive",
+                abbr: "SCIENCE",
+                pdfUrl: "textbooks/10th-Science-Part-1-2025-26.pdf",
+                isTextbook: true,
+                chapters: [
+                    "ಅಧ್ಯಾಯ 1: ರಾಸಾಯನಿಕ ಕ್ರಿಯೆಗಳು ಮತ್ತು ಸಮೀಕರಣಗಳು",
+                    "ಅಧ್ಯಾಯ 2: ಆಮ್ಲಗಳು, ಪ್ರತ್ಯಾಮ್ಲಗಳು ಮತ್ತು ಲವಣಗಳು",
+                    "ಅಧ್ಯಾಯ 3: ಲೋಹಗಳು ಮತ್ತು ಅಲೋಹಗಳು",
+                    "ಅಧ್ಯಾಯ 6: ಜೀವ ಕ್ರಿಯೆಗಳು (Life Processes)",
+                    "ಅಧ್ಯಾಯ 7: ನಿಯಂತ್ರಣ ಮತ್ತು ಸಹಭಾಗಿತ್ವ",
+                    "ಅಧ್ಯಾಯ 10: ಬೆಳಕು – ಪ್ರತಿಫಲನ ಮತ್ತು ವಕ್ರೀಭವನ",
+                    "ಅಧ್ಯಾಯ 11: ಮಾನವನ ಕಣ್ಣು ಮತ್ತು ವರ್ಣಮಯ ಜಗತ್ತು"
+                ],
+                content: `ಕರ್ನಾಟಕ ಶಾಲಾ ಪರೀಕ್ಷೆ ಮತ್ತು ಮೌಲ್ಯನಿರ್ಣಯ ಮಂಡಳಿ (KSEAB)
+10ನೇ ತರಗತಿ ವಿಜ್ಞಾನ ಭಾಗ - ೧ (2025-26 ಅಧಿಕೃತ ಪಠ್ಯಪುಸ್ತಕ)
+
+ಅಧ್ಯಾಯಗಳ ಮುಖ್ಯಾಂಶಗಳು:
+1. ರಾಸಾಯನಿಕ ಕ್ರಿಯೆಗಳು: ಸಂಯೋಗ, ವಿಭಜನೆ, ಸ್ಥಾನಪಲ್ಲಟ, ದ್ವಿಸ್ಥಾನಪಲ್ಲಟ, ರೆಡಾಕ್ಸ್
+2. ಆಮ್ಲ ಮತ್ತು ಪ್ರತ್ಯಾಮ್ಲಗಳು: pH ಮಾಪಕ, ತಟಸ್ಥೀಕರಣ, ಲವಣಗಳ ಉಪಯೋಗಗಳು
+3. ಜೀವ ಕ್ರಿಯೆಗಳು: ಪೋಷಣೆ, ಉಸಿರಾಟ, ರಕ್ತ ಪರಿಚಲನೆ, ವಿಸರ್ಜನೆ
+4. ಬೆಳಕು - ದರ್ಪಣ ಮತ್ತು ಮಸೂರ ಸೂತ್ರಗಳು: 1/f = 1/v - 1/u, ವಕ್ರೀಭವನಾಂಕ
+5. ಮಾನವನ ಕಣ್ಣು: ಸಮೀಪ ದೃಷ್ಟಿ ಮತ್ತು ದೂರ ದೃಷ್ಟಿ ದೋಷ ನಿವಾರಣೆ`
+            },
+
+            // 6. Hindi Third Language Textbook
+            {
+                id: 14,
+                title: "10th Hindi TL Part-1 (2026-27) – तृतीय भाषा हिंदी भाग-१",
+                subject: "Hindi",
+                medium: "तृतीया भाषा (Third Language)",
+                size: "17.7 MB",
+                category: "textbooks",
+                color: "#6366f1",
+                bgGradient: "linear-gradient(135deg, #6366f1, #4338ca)",
+                textColor: "#ffffff",
+                icon: "bi-translate",
+                abbr: "HINDI",
+                pdfUrl: "textbooks/10th-Hindi-Part-1-2026-27.pdf",
+                isTextbook: true,
+                chapters: [
+                    "पाठ 1: मातृभूमि (भगवतीचरण वर्मा)",
+                    "पाठ 2: कश्मीरी सेब (प्रेमचंद)",
+                    "पाठ 3: गिल्लू (महादेवी वर्मा)",
+                    "पाठ 4: अभिनव मनुष्य (रामधारी सिंह 'दिनकर')",
+                    "पाठ 5: मेरा बचपन (सुभद्राकुमारी चौहान)",
+                    "व्याकरण: विलोम शब्द, पर्यायवाची, कारक, संधि, मुहावरे एवं पत्र लेखन"
+                ],
+                content: `ಕರ್ನಾಟಕ ಶಾಲಾ ಪರೀಕ್ಷೆ ಮತ್ತು ಮೌಲ್ಯನಿರ್ಣಯ ಮಂಡಳಿ (KSEAB)
+10वीं कक्षा तृतीय भाषा हिंदी भाग - 1 (2026-27 आधिकारिक पाठ्यपुस्तक)
+
+पाठ सूची एवं व्याकरण:
+• पाठ 1: मातृभूमि - भगवतीचरण वर्मा (कविता)
+• पाठ 2: कश्मीरी सेब - मुंशी प्रेमचंद (कहानी)
+• पाठ 3: गिल्लू - महादेवी वर्मा (रेखाचित्र)
+• पाठ 4: अभिनव मनुष्य - रामधारी सिंह 'दिनकर'
+• व्याकरण भाग:
+  - संज्ञा, सर्वनाम, विशेषण, क्रिया
+  - कारक, काल, विलोम शब्द, पर्यायवाची शब्द
+  - मुहावरे और लोकोक्तियाँ, पत्र लेखन एवं निबंध`
+            },
+
+            // Notes
             {
                 id: 1,
-                title: "Algebra Notes (PDF)",
+                title: "Algebra Notes & Formulas (PDF)",
                 subject: "Mathematics",
                 size: "2.1 MB",
                 category: "notes",
@@ -292,13 +515,7 @@
 
 3. ARITHMETIC PROGRESSION (A.P.):
    - nth term: an = a + (n - 1)d
-   - Sum of first n terms: Sn = (n / 2) [2a + (n - 1)d]
-
-4. LINEAR EQUATIONS IN TWO VARIABLES:
-   a1*x + b1*y + c1 = 0
-   a2*x + b2*y + c2 = 0
-   - Unique solution: (a1/a2) ≠ (b1/b2)
-   - Infinitely many: (a1/a2) = (b1/b2) = (c1/c2)`
+   - Sum of first n terms: Sn = (n / 2) [2a + (n - 1)d]`
             },
             {
                 id: 2,
@@ -313,17 +530,8 @@
 
 1. ACTIVE AND PASSIVE VOICE:
    - Rule: Subject + Verb + Object → Object + Helping Verb + Past Participle (V3) + by + Subject
-   - Present Simple: "He writes a letter" → "A letter is written by him"
-   - Past Simple: "She painted the wall" → "The wall was painted by her"
-
 2. DIRECT AND INDIRECT SPEECH:
-   - "He said, 'I am reading a book'" → "He said that he was reading a book"
-   - Universal truths do not change tense: "The teacher said, 'The sun rises in the east'" → "The teacher said that the sun rises in the east"
-
-3. MODALS:
-   - Can/Could: Ability, permission
-   - Must/Should: Obligation, recommendation
-   - May/Might: Possibility, formal request`
+   - "He said, 'I am reading a book'" → "He said that he was reading a book"`
             },
             {
                 id: 3,
@@ -335,24 +543,12 @@
                 textColor: "#f97316",
                 icon: "bi-file-earmark-pdf",
                 content: `### CLASS 10 SOCIAL SCIENCE - INDIAN HISTORY SUMMARY
-
-1. NATIONALISM IN INDIA:
-   - Rowlatt Act (1919) & Jallianwala Bagh Massacre (13 April 1919)
-   - Non-Cooperation Movement (1920-1922) led by Mahatma Gandhi
-   - Chauri Chaura Incident (1922) leading to suspension
-
-2. CIVIL DISOBEDIENCE MOVEMENT:
-   - The Famous Salt March (Dandi March): 12 March 1930 to 6 April 1930
-   - Gandhi-Irwin Pact (1931)
-   - Round Table Conferences in London
-
-3. SENSE OF COLLECTIVE BELONGING:
-   - Creation of the image of Bharat Mata by Bankim Chandra Chattopadhyay
-   - The Tricolour flag designed during the Swadeshi movement`
+1. Nationalism in India: Rowlatt Act (1919), Jallianwala Bagh Massacre, Non-Cooperation Movement (1920-1922)
+2. Civil Disobedience Movement: Salt March (Dandi March) 1930`
             },
             {
                 id: 4,
-                title: "Science Formulas (PDF)",
+                title: "Science Formulas & Laws (PDF)",
                 subject: "Science",
                 size: "1.2 MB",
                 category: "notes",
@@ -360,26 +556,11 @@
                 textColor: "#10b981",
                 icon: "bi-file-earmark-pdf",
                 content: `### CLASS 10 SCIENCE - ESSENTIAL FORMULAS & LAWS
-
-1. PHYSICS - LIGHT:
-   - Mirror Formula: 1/f = 1/v + 1/u
-   - Lens Formula: 1/f = 1/v - 1/u
-   - Magnification (Mirror): m = -v/u = h'/h
-   - Power of Lens: P = 1 / f (in metres), Unit: Dioptre (D)
-
-2. PHYSICS - ELECTRICITY:
-   - Ohm's Law: V = I * R
-   - Resistance: R = ρ * (L / A)
-   - Resistors in Series: Rs = R1 + R2 + R3
-   - Resistors in Parallel: 1/Rp = 1/R1 + 1/R2 + 1/R3
-   - Joule's Law of Heating: H = I² * R * t
-
-3. CHEMISTRY - CHEMICAL REACTIONS:
-   - Combination: A + B → AB
-   - Decomposition: AB → A + B
-   - Displacement: A + BC → AC + B
-   - Neutralization: Acid + Base → Salt + Water`
+1. Optics: Mirror formula 1/f = 1/v + 1/u, Lens formula 1/f = 1/v - 1/u
+2. Electricity: Ohm's Law V = I*R, Joule's Law H = I²*R*t`
             },
+
+            // Videos
             {
                 id: 5,
                 title: "Trigonometry Video Masterclass",
@@ -389,7 +570,7 @@
                 color: "#e0f2fe",
                 textColor: "#0284c7",
                 icon: "bi-play-circle-fill",
-                content: `Video Tutorial: Complete Trigonometric Ratios, Values of Specific Angles (0°, 30°, 45°, 60°, 90°), and proving Trigonometric Identities with step-by-step problem walkthroughs.`
+                content: `Video Tutorial: Complete Trigonometric Ratios, Values of Specific Angles (0°, 30°, 45°, 60°, 90°), and proving Trigonometric Identities.`
             },
             {
                 id: 6,
@@ -402,6 +583,8 @@
                 icon: "bi-play-circle-fill",
                 content: `Visual Laboratory Demonstration: Observing displacement reactions, exothermic heat evolution in calcium oxide, and electrolysis of water.`
             },
+
+            // Quizzes
             {
                 id: 7,
                 title: "Class 10 Model Practice Quiz",
@@ -413,6 +596,8 @@
                 icon: "bi-check2-square",
                 content: `Curriculum diagnostic practice test covering Algebra, Coordinate Geometry, Triangles, and Circles with detailed solutions.`
             },
+
+            // eBooks
             {
                 id: 8,
                 title: "NCERT Class 10 Science Exemplar",
@@ -428,40 +613,101 @@
 
         let currentCategory = 'textbooks';
         let activeResource = null;
+        let selectedSubjectFilter = 'all';
 
         function renderResources(items) {
             const container = document.getElementById('resourcesListContainer');
             if (!items || items.length === 0) {
                 container.innerHTML = `
-                    <div class="content-card text-center py-4" style="padding: 2rem;">
-                        <i class="bi bi-search text-muted fs-2 mb-2"></i>
-                        <p class="text-muted mb-0">No resources found matching your search criteria.</p>
+                    <div class="content-card text-center py-4" style="padding: 2.5rem; text-align: center;">
+                        <i class="bi bi-search text-muted" style="font-size: 2.5rem; display: block; margin-bottom: 0.75rem;"></i>
+                        <h4 style="font-weight: 700; color: #334155; margin-bottom: 0.25rem;">No resources found</h4>
+                        <p class="text-muted mb-0" style="font-size: 0.85rem;">Try adjusting your search query or subject filter.</p>
                     </div>
                 `;
                 return;
             }
 
-            container.innerHTML = items.map(r => `
-                <div class="study-plan-item" style="cursor: pointer;" onclick="openResourceModal(${r.id})">
-                    <div class="study-plan-left">
-                        <div class="study-plan-icon" style="background-color: ${r.color}; color: ${r.textColor};">
-                            <i class="bi ${r.icon}"></i>
-                        </div>
-                        <div>
-                            <div style="font-weight: 700; font-size: 0.95rem; color: #0f172a;">
-                                ${r.title}
-                                ${r.isTextbook ? '<span style="background: #ecfdf5; color: #059669; font-size: 0.7rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 4px; margin-left: 0.5rem;">Official Textbook</span>' : ''}
+            // If in Textbooks view, render as a clean grid of textbook cards
+            if (currentCategory === 'textbooks') {
+                container.innerHTML = `
+                    <div class="textbook-grid">
+                        ${items.map(r => `
+                            <div class="textbook-card" onclick="openResourceModal(${r.id})" style="cursor: pointer;">
+                                <div>
+                                    <div class="textbook-badge-row">
+                                        <span style="background: #10b981; color: #ffffff; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 4px; text-transform: uppercase;">
+                                            Official KSEAB
+                                        </span>
+                                        <span style="background: #eff6ff; color: #2563eb; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 4px;">
+                                            ${r.size}
+                                        </span>
+                                        <span style="background: #f1f5f9; color: #475569; font-size: 0.65rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 4px;">
+                                            2026-27
+                                        </span>
+                                    </div>
+
+                                    <div style="display: flex; gap: 0.85rem; align-items: flex-start; margin-bottom: 0.85rem;">
+                                        <div class="textbook-cover-icon" style="background: ${r.bgGradient || '#2563eb'};">
+                                            <i class="bi ${r.icon}" style="font-size: 1.35rem; line-height: 1;"></i>
+                                            <span style="margin-top: 0.25rem;">${r.abbr || 'BOOK'}</span>
+                                        </div>
+                                        <div>
+                                            <h4 style="font-weight: 700; font-size: 0.95rem; color: #0f172a; margin: 0 0 0.25rem 0; line-height: 1.35;">
+                                                ${r.title}
+                                            </h4>
+                                            <div style="font-size: 0.76rem; color: #64748b;">
+                                                ${r.medium || r.subject}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="font-size: 0.78rem; color: #475569; background: #f8fafc; padding: 0.5rem 0.65rem; border-radius: 6px; border: 1px solid #f1f5f9; margin-bottom: 1rem; max-height: 60px; overflow: hidden;">
+                                        ${r.chapters ? r.chapters.slice(0, 2).join('<br>') + '<br>&bull; ...' : r.content.substring(0, 80) + '...'}
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn-smart-primary w-100" style="padding: 0.45rem 0.65rem; font-size: 0.8rem; justify-content: center;" onclick="event.stopPropagation(); openResourceModal(${r.id})">
+                                        <i class="bi bi-book-half me-1"></i> Read Online
+                                    </button>
+                                    <a href="${r.pdfUrl}" download class="btn-smart-outline" style="padding: 0.45rem 0.75rem; font-size: 0.8rem; text-decoration: none; display: inline-flex; align-items: center;" title="Download PDF" onclick="event.stopPropagation();">
+                                        <i class="bi bi-download"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div style="font-size: 0.78rem; color: #64748b;">${r.subject} &bull; ${r.size}</div>
+                        `).join('')}
+                    </div>
+                `;
+                return;
+            }
+
+            // Otherwise, render list view for Notes, Videos, Quizzes, eBooks
+            container.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    ${items.map(r => `
+                        <div class="study-plan-item" style="cursor: pointer;" onclick="openResourceModal(${r.id})">
+                            <div class="study-plan-left">
+                                <div class="study-plan-icon" style="background-color: ${r.color || '#eff6ff'}; color: ${r.textColor || '#1e40af'};">
+                                    <i class="bi ${r.icon}"></i>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 700; font-size: 0.95rem; color: #0f172a;">
+                                        ${r.title}
+                                        ${r.isTextbook ? '<span style="background: #ecfdf5; color: #059669; font-size: 0.68rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 4px; margin-left: 0.4rem;">Official Textbook</span>' : ''}
+                                    </div>
+                                    <div style="font-size: 0.78rem; color: #64748b;">${r.subject} &bull; ${r.size}</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                <button class="btn-smart-primary" style="padding: 0.4rem 1.25rem; border-radius: 8px;" onclick="event.stopPropagation(); openResourceModal(${r.id})">
+                                    ${r.isTextbook ? '<i class="bi bi-book me-1"></i> Read / View' : (r.category === 'videos' ? 'Watch' : r.category === 'quizzes' ? 'Take Quiz' : 'Download')}
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem; align-items: center;">
-                        <button class="btn-smart-primary" style="padding: 0.4rem 1.25rem; border-radius: 8px;" onclick="event.stopPropagation(); openResourceModal(${r.id})">
-                            ${r.isTextbook ? '<i class="bi bi-book me-1"></i> Read / View' : (r.category === 'videos' ? 'Watch' : r.category === 'quizzes' ? 'Take Quiz' : 'Download')}
-                        </button>
-                    </div>
+                    `).join('')}
                 </div>
-            `).join('');
+            `;
         }
 
         function switchResourceCategory(category, btnElem) {
@@ -477,11 +723,25 @@
             btnElem.style.borderColor = '#bfdbfe';
             btnElem.classList.add('active-tab');
 
+            // Show or hide textbook subject filters
+            const subFilterContainer = document.getElementById('textbookSubjectFilters');
+            if (subFilterContainer) {
+                subFilterContainer.style.display = (category === 'textbooks' || category === 'ebooks') ? 'flex' : 'none';
+            }
+
+            handleResourceSearch();
+        }
+
+        function filterTextbookBySubject(subject, btnElem) {
+            selectedSubjectFilter = subject;
+            document.querySelectorAll('.textbook-sub-filter-btn').forEach(b => b.classList.remove('active'));
+            if (btnElem) btnElem.classList.add('active');
             handleResourceSearch();
         }
 
         function handleResourceSearch() {
             const query = document.getElementById('resourceSearchInput').value.toLowerCase().trim();
+            
             let filtered = allResources.filter(r => {
                 if (currentCategory === 'ebooks') {
                     return r.category === 'ebooks' || r.category === 'textbooks';
@@ -489,13 +749,20 @@
                 return r.category === currentCategory;
             });
 
+            if (selectedSubjectFilter !== 'all' && (currentCategory === 'textbooks' || currentCategory === 'ebooks')) {
+                filtered = filtered.filter(r => r.subject.toLowerCase() === selectedSubjectFilter.toLowerCase());
+            }
+
             if (query) {
                 filtered = allResources.filter(r => 
                     (r.title.toLowerCase().includes(query) || 
                      r.subject.toLowerCase().includes(query) || 
-                     (r.content && r.content.toLowerCase().includes(query)))
+                     (r.medium && r.medium.toLowerCase().includes(query)) ||
+                     (r.content && r.content.toLowerCase().includes(query)) ||
+                     (r.chapters && r.chapters.some(ch => ch.toLowerCase().includes(query))))
                 );
             }
+
             renderResources(filtered);
         }
 
@@ -509,7 +776,7 @@
                 return;
             }
 
-            document.getElementById('resourceModalTitle').textContent = r.isTextbook ? 'Textbook Viewer' : r.title;
+            document.getElementById('resourceModalTitle').textContent = r.isTextbook ? 'Official Textbook Viewer' : r.title;
             document.getElementById('resourceModalHeading').textContent = r.title;
             document.getElementById('resourceModalMeta').textContent = `${r.subject} • Class 10 • ${r.size}`;
 
@@ -531,7 +798,7 @@
                     chaptersHtml = `
                         <div class="mb-3 p-3 rounded-3" style="background: #f0fdf4; border: 1px solid #bbf7d0;">
                             <div style="font-weight: 700; font-size: 0.88rem; color: #166534; margin-bottom: 0.5rem;">
-                                <i class="bi bi-list-ol me-1"></i> Textbook Chapters (ಅಧ್ಯಾಯಗಳು):
+                                <i class="bi bi-list-ol me-1"></i> Textbook Chapters (ಅಧ್ಯಾಯಗಳ ಪಟ್ಟಿ):
                             </div>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem; font-size: 0.78rem; color: #15803d;">
                                 ${r.chapters.map(ch => `<div>&bull; ${ch}</div>`).join('')}
@@ -543,7 +810,7 @@
                 viewer.innerHTML = `
                     ${chaptersHtml}
                     <div style="position: relative; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; background: #334155;">
-                        <iframe src="${r.pdfUrl}#toolbar=1" width="100%" height="450px" style="border: none; display: block;">
+                        <iframe src="${r.pdfUrl}#toolbar=1" width="100%" height="480px" style="border: none; display: block;">
                             <div style="padding: 2rem; text-align: center; color: #ffffff;">
                                 <p>Your browser doesn't support embedded PDF preview.</p>
                                 <a href="${r.pdfUrl}" target="_blank" class="btn-smart-primary">Open PDF in New Tab</a>
