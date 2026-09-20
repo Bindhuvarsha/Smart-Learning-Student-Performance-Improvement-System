@@ -359,6 +359,9 @@
                             <div style="font-weight: 700; font-size: 0.82rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.6rem;">
                                 Quick Student Queries
                             </div>
+                            <button class="ai-preset-chip" style="background: #f0fdf4; border-color: #bbf7d0; color: #166534;" onclick="askAi('Explain Chapter 1 (ಸಮಾಂತರ ಶ್ರೇಢಿಗಳು - Arithmetic Progressions) from the 10th Kannada Maths Part-1 Textbook')">
+                                📗 10th Kannada Maths: Ch 1 ಸಮಾಂತರ ಶ್ರೇಢಿಗಳು
+                            </button>
                             <button class="ai-preset-chip" onclick="askAi('Explain Quadratic Equations simply with the quadratic formula')">
                                 📐 Explain Quadratic Equations
                             </button>
@@ -380,6 +383,9 @@
                             <div style="font-weight: 700; font-size: 0.82rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.6rem;">
                                 Teacher Co-Pilot Tasks
                             </div>
+                            <button class="ai-preset-chip" style="background: #f0fdf4; border-color: #bbf7d0; color: #166534;" onclick="askAi('Create a lesson plan based on 10th Kannada Maths Part-1 Chapter 1: ಸಮಾಂತರ ಶ್ರೇಢಿಗಳು')">
+                                📗 10th Kannada Maths Lesson Plan (KSEAB)
+                            </button>
                             <button class="ai-preset-chip" onclick="askAi('Generate a 45-minute lesson plan for Class 10 Trigonometry')">
                                 📋 45-Min Trigonometry Lesson Plan
                             </button>
@@ -647,6 +653,33 @@
             }
 
             // Student Mode Responses
+            if (q.includes('kannada maths') || q.includes('ಸಮಾಂತರ') || q.includes('ಗಣಿತ ಭಾಗ') || q.includes('progressions') || q.includes('textbook')) {
+                return `
+                    <strong style="color: #065f46; font-size: 0.95rem;">10ನೇ ತರಗತಿ ಗಣಿತ ಭಾಗ-೧: ಅಧ್ಯಾಯ 1 - ಸಮಾಂತರ ಶ್ರೇಢಿಗಳು (Arithmetic Progressions) 📗</strong>
+                    <p style="margin: 0.4rem 0;">ಕರ್ನಾಟಕ KSEAB ಅಧಿಕೃತ 2026-27 ಪಠ್ಯಪುಸ್ತಕದ ಮೊದಲ ಅಧ್ಯಾಯದ ಪ್ರಮುಖ ಪರಿಕಲ್ಪನೆಗಳು ಮತ್ತು ಸೂತ್ರಗಳು:</p>
+                    <div class="math-box" style="border-left-color: #10b981; background: #f0fdf4;">
+                        1. ಸಮಾಂತರ ಶ್ರೇಢಿಯ ಸಾಮಾನ್ಯ ರೂಪ: a, a+d, a+2d, a+3d, ...<br>
+                        (ಇಲ್ಲಿ a = ಮೊದಲ ಪದ, d = ಸಾಮಾನ್ಯ ವ್ಯತ್ಯಾಸ)<br><br>
+                        2. nth ಪದವನ್ನು ಕಂಡುಹಿಡಿಯುವ ಸೂತ್ರ: an = a + (n - 1)d<br><br>
+                        3. ಮೊದಲ n ಪದಗಳ ಮೊತ್ತ: Sn = n/2 [2a + (n - 1)d] ಅಥವಾ Sn = n/2 [a + l]
+                    </div>
+                    <p><strong>ಉದಾಹರಣೆ ಲೆಕ್ಕ (Example Problem):</strong></p>
+                    <p style="font-size: 0.85rem; margin: 0.25rem 0;">2, 7, 12, ... ಈ ಸಮಾಂತರ ಶ್ರೇಢಿಯ 10ನೇ ಪದವನ್ನು ಕಂಡುಹಿಡಿಯಿರಿ.</p>
+                    <ul style="margin: 0.25rem 0 0.5rem 1.25rem; font-size: 0.85rem;">
+                        <li>ಇಲ್ಲಿ a = 2, d = 7 - 2 = 5, n = 10</li>
+                        <li>ಸೂತ್ರ: a10 = a + (10 - 1)d = 2 + 9(5) = 2 + 45 = <strong>47</strong></li>
+                    </ul>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap;">
+                        <a href="textbooks/10th-Kannada-Maths-Part-1-2026-27.pdf" target="_blank" class="btn-smart-primary" style="padding: 0.35rem 0.85rem; font-size: 0.78rem; text-decoration: none; background: #059669; border-color: #059669;">
+                            <i class="bi bi-book-half me-1"></i> Open Full Textbook PDF (9.9 MB)
+                        </a>
+                        <a href="resources.html" class="btn-smart-outline" style="padding: 0.35rem 0.85rem; font-size: 0.78rem; text-decoration: none;">
+                            <i class="bi bi-folder2-open me-1"></i> View All Resources
+                        </a>
+                    </div>
+                `;
+            }
+
             if (q.includes('quadratic') || q.includes('formula')) {
                 return `
                     <strong style="color: #1e40af; font-size: 0.95rem;">Mastering Quadratic Equations (Step-by-Step) 📐</strong>

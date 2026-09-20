@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Resources – Smart School</title>
+    <title>Learning Resources & Textbooks – Smart School</title>
     <!-- Google Fonts & Bootstrap Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -22,9 +22,15 @@
             </div>
 
             <nav class="sidebar-nav">
+                <div class="sidebar-section-title">Student Portal</div>
                 <a href="student.html" class="sidebar-nav-item">
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
+                </a>
+                <a href="ai-teacher.html" class="sidebar-nav-item">
+                    <i class="bi bi-robot text-primary"></i>
+                    <span>AI Teacher</span>
+                    <span style="margin-left: auto; background: #eff6ff; color: #2563eb; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 4px;">24/7</span>
                 </a>
                 <a href="materials.html" class="sidebar-nav-item">
                     <i class="bi bi-journal-bookmark"></i>
@@ -34,6 +40,10 @@
                     <i class="bi bi-check2-square"></i>
                     <span>Practice Tests</span>
                 </a>
+                <a href="study-plan.html" class="sidebar-nav-item">
+                    <i class="bi bi-compass"></i>
+                    <span>Study Plan</span>
+                </a>
                 <a href="performance.html" class="sidebar-nav-item">
                     <i class="bi bi-graph-up"></i>
                     <span>Performance</span>
@@ -41,10 +51,6 @@
                 <a href="resources.html" class="sidebar-nav-item active">
                     <i class="bi bi-folder2-open"></i>
                     <span>Resources</span>
-                </a>
-                <a href="student.html" class="sidebar-nav-item">
-                    <i class="bi bi-person"></i>
-                    <span>Profile</span>
                 </a>
             </nav>
 
@@ -72,31 +78,81 @@
                         <div class="user-avatar-img"><i class="bi bi-person-fill"></i></div>
                         <div class="user-info-text">
                             <div class="user-info-name">Bindhu Shree</div>
-                            <div class="user-info-role">Student <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i></div>
+                            <div class="user-info-role">Student &bull; Class 10 <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i></div>
                         </div>
                     </div>
                 </div>
             </header>
 
-            <main class="page-body" style="max-width: 900px;">
+            <main class="page-body" style="max-width: 960px;">
                 
                 <!-- Page Header (Screen 8) -->
                 <div class="page-header mb-4">
-                    <h2 class="page-title">Learning Resources</h2>
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+                        <div>
+                            <h2 class="page-title" style="margin-bottom: 0.25rem;">Learning Resources & Textbooks</h2>
+                            <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Access official state syllabus textbooks, revision notes, interactive quizzes, and lab videos.</p>
+                        </div>
+                        <div>
+                            <span class="badge bg-success-subtle text-success" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 700;">
+                                <i class="bi bi-patch-check-fill me-1"></i> 2026-27 Academic Curriculum
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Official Textbook Banner (Screen 8 Enhancement) -->
+                <div class="content-card" style="background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border: 1.5px solid #a7f3d0; padding: 1.5rem; margin-bottom: 1.5rem; position: relative; overflow: hidden;">
+                    <div style="position: absolute; right: -15px; top: -15px; font-size: 7rem; opacity: 0.07; color: #059669; pointer-events: none;">
+                        <i class="bi bi-book-half"></i>
+                    </div>
+                    <div style="display: flex; gap: 1.25rem; align-items: flex-start; flex-wrap: wrap; position: relative; z-index: 1;">
+                        <div style="width: 68px; height: 86px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; box-shadow: 0 8px 16px rgba(16, 185, 129, 0.25); flex-shrink: 0; text-align: center; padding: 0.35rem;">
+                            <i class="bi bi-book-half" style="font-size: 1.75rem; line-height: 1;"></i>
+                            <span style="font-size: 0.62rem; font-weight: 800; margin-top: 0.3rem; letter-spacing: 0.5px;">MATHS</span>
+                        </div>
+                        <div style="flex-grow: 1;">
+                            <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap;">
+                                <span style="background: #10b981; color: #ffffff; font-size: 0.68rem; font-weight: 800; padding: 0.15rem 0.55rem; border-radius: 4px; text-transform: uppercase;">Official Textbook</span>
+                                <span style="background: #e0f2fe; color: #0284c7; font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 4px;">KSEAB 2026-27</span>
+                                <span style="background: #ede9fe; color: #7c3aed; font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 4px;">9.9 MB PDF</span>
+                            </div>
+                            <h3 style="font-size: 1.15rem; font-weight: 800; color: #064e3b; margin: 0 0 0.35rem 0;">
+                                10th Kannada Maths Part-1 (2026-27) &bull; ಗಣಿತ ಭಾಗ-೧
+                            </h3>
+                            <p style="font-size: 0.83rem; color: #047857; margin: 0 0 1rem 0; line-height: 1.45;">
+                                Complete 10th standard Mathematics textbook in Kannada medium. Covers Chapters 1–8: Arithmetic Progressions, Triangles, Linear Equations, Circles, Constructions, Coordinate Geometry, Real Numbers, and Polynomials.
+                            </p>
+                            <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+                                <button class="btn-smart-primary" onclick="openResourceModal(9)" style="padding: 0.45rem 1rem; font-size: 0.82rem; background: #059669; border-color: #059669;">
+                                    <i class="bi bi-eye-fill me-1"></i> Read Online / View PDF
+                                </button>
+                                <a href="textbooks/10th-Kannada-Maths-Part-1-2026-27.pdf" download="10th-Kannada-Maths-Part-1-2026-27.pdf" class="btn-smart-outline" style="padding: 0.45rem 1rem; font-size: 0.82rem; color: #065f46; border-color: #a7f3d0; background: #ffffff; text-decoration: none; display: inline-flex; align-items: center;">
+                                    <i class="bi bi-download me-1"></i> Download PDF (9.9 MB)
+                                </a>
+                                <button class="btn-smart-outline" onclick="window.location.href='ai-teacher.html?subject=Mathematics&textbook=10th-Kannada-Maths-Part-1'" style="padding: 0.45rem 1rem; font-size: 0.82rem; color: #2563eb; border-color: #bfdbfe; background: #ffffff;">
+                                    <i class="bi bi-robot me-1 text-primary"></i> Ask AI Teacher
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Tabs (Screen 8) -->
-                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem;" id="resourceTabsGroup">
-                    <button class="resource-tab-btn active-tab" onclick="switchResourceCategory('notes', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background-color: #ebf3ff; color: #1e6bff; border: 1px solid #bfdbfe; font-weight: 600; cursor: pointer;">
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; overflow-x: auto; padding-bottom: 0.25rem;" id="resourceTabsGroup">
+                    <button class="resource-tab-btn active-tab" onclick="switchResourceCategory('textbooks', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background-color: #ebf3ff; color: #1e6bff; border: 1px solid #bfdbfe; font-weight: 700; cursor: pointer; white-space: nowrap;">
+                        <i class="bi bi-journal-bookmark-fill me-1"></i> Textbooks (ಪಠ್ಯಪುಸ್ತಕಗಳು)
+                    </button>
+                    <button class="resource-tab-btn" onclick="switchResourceCategory('notes', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer; white-space: nowrap;">
                         Notes
                     </button>
-                    <button class="resource-tab-btn" onclick="switchResourceCategory('videos', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer;">
+                    <button class="resource-tab-btn" onclick="switchResourceCategory('videos', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer; white-space: nowrap;">
                         Videos
                     </button>
-                    <button class="resource-tab-btn" onclick="switchResourceCategory('quizzes', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer;">
+                    <button class="resource-tab-btn" onclick="switchResourceCategory('quizzes', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer; white-space: nowrap;">
                         Quizzes
                     </button>
-                    <button class="resource-tab-btn" onclick="switchResourceCategory('ebooks', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer;">
+                    <button class="resource-tab-btn" onclick="switchResourceCategory('ebooks', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer; white-space: nowrap;">
                         eBooks
                     </button>
                 </div>
@@ -104,7 +160,7 @@
                 <!-- Search Input Bar (Screen 8) -->
                 <div style="position: relative; margin-bottom: 1.5rem;">
                     <i class="bi bi-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
-                    <input type="text" id="resourceSearchInput" oninput="handleResourceSearch()" placeholder="Search resources by title, subject or topic..." 
+                    <input type="text" id="resourceSearchInput" oninput="handleResourceSearch()" placeholder="Search textbooks, notes, formulas or video lessons..." 
                            style="width: 100%; padding: 0.65rem 1rem 0.65rem 2.5rem; border-radius: 8px; border: 1px solid var(--border-color); background: #ffffff; font-size: 0.88rem; outline: none;">
                 </div>
 
@@ -117,9 +173,9 @@
         </div>
     </div>
 
-    <!-- Document Preview Modal -->
+    <!-- Document & Textbook Preview Modal -->
     <div class="smart-modal-backdrop" id="resourceDocModal">
-        <div class="smart-modal-dialog" style="max-width: 720px;">
+        <div class="smart-modal-dialog" style="max-width: 820px;">
             <div class="smart-modal-header">
                 <h3 class="smart-modal-title">
                     <i class="bi bi-file-earmark-pdf-fill text-danger"></i>
@@ -128,23 +184,32 @@
                 <button class="smart-modal-close" onclick="closeResourceModal()">&times;</button>
             </div>
             <div class="smart-modal-body">
-                <div class="p-3 mb-3 rounded-3" style="background: #f8fafc; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                <div class="p-3 mb-3 rounded-3" style="background: #f8fafc; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
                     <div>
-                        <div style="font-weight: 700; font-size: 1rem; color: #0f172a;" id="resourceModalHeading">Algebra Formula Sheet</div>
-                        <div style="font-size: 0.8rem; color: #64748b;" id="resourceModalMeta">Mathematics &bull; Class 10 &bull; 2.1 MB</div>
+                        <div style="font-weight: 700; font-size: 1.05rem; color: #0f172a;" id="resourceModalHeading">10th Kannada Maths Part-1 (2026-27)</div>
+                        <div style="font-size: 0.8rem; color: #64748b;" id="resourceModalMeta">Mathematics &bull; Class 10 &bull; 9.9 MB PDF</div>
                     </div>
-                    <span class="badge bg-primary-subtle text-primary" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">Verified Guide</span>
+                    <div id="resourceModalBadges">
+                        <span class="badge bg-success-subtle text-success" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">Verified Syllabus</span>
+                    </div>
                 </div>
 
-                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; font-family: monospace; font-size: 0.85rem; line-height: 1.6; max-height: 350px; overflow-y: auto;" id="resourceModalContent">
-                    <!-- Content injected -->
+                <!-- Dynamic Viewer Container (PDF Viewer or Text Preview) -->
+                <div id="resourceModalViewer">
+                    <!-- Injected dynamically -->
                 </div>
             </div>
-            <div class="smart-modal-footer">
+            <div class="smart-modal-footer" style="flex-wrap: wrap; gap: 0.6rem;">
                 <button class="btn-smart-outline" onclick="closeResourceModal()">Close</button>
-                <button class="btn-smart-primary" onclick="downloadResourceFile()">
-                    <i class="bi bi-download me-1"></i> Download PDF
+                <a id="modalExternalBtn" href="#" target="_blank" class="btn-smart-outline" style="text-decoration: none; display: inline-flex; align-items: center;">
+                    <i class="bi bi-box-arrow-up-right me-1"></i> Open in New Tab
+                </a>
+                <button class="btn-smart-outline" onclick="askAiAboutCurrentResource()" style="color: #2563eb; border-color: #bfdbfe;">
+                    <i class="bi bi-robot text-primary me-1"></i> Ask AI Teacher
                 </button>
+                <a id="modalDownloadBtn" href="#" download class="btn-smart-primary" style="text-decoration: none; display: inline-flex; align-items: center;">
+                    <i class="bi bi-download me-1"></i> Download PDF
+                </a>
             </div>
         </div>
     </div>
@@ -158,6 +223,52 @@
         });
 
         const allResources = [
+            {
+                id: 9,
+                title: "10th Kannada Maths Part-1 (2026-27) – ಗಣಿತ ಭಾಗ-೧",
+                subject: "Mathematics (ಕನ್ನಡ ಮಾಧ್ಯಮ)",
+                size: "9.9 MB",
+                category: "textbooks",
+                color: "#ecfdf5",
+                textColor: "#059669",
+                icon: "bi-book-half",
+                pdfUrl: "textbooks/10th-Kannada-Maths-Part-1-2026-27.pdf",
+                isTextbook: true,
+                chapters: [
+                    "ಅಧ್ಯಾಯ 1: ಸಮಾಂತರ ಶ್ರೇಢಿಗಳು (Arithmetic Progressions)",
+                    "ಅಧ್ಯಾಯ 2: ತ್ರಿಭುಜಗಳು (Triangles)",
+                    "ಅಧ್ಯಾಯ 3: ಎರಡು ಚರಾಕ್ಷರಗಳುಳ್ಳ ರೇಖಾತ್ಮಕ ಸಮೀಕರಣಗಳ ಜೋಡಿಗಳು (Pair of Linear Equations)",
+                    "ಅಧ್ಯಾಯ 4: ವೃತ್ತಗಳು (Circles)",
+                    "ಅಧ್ಯಾಯ 5: ರಚನೆಗಳು (Constructions)",
+                    "ಅಧ್ಯಾಯ 6: ನಿರ್ದೇಶಾಂಕ ರೇಖಾಗಣಿತ (Coordinate Geometry)",
+                    "ಅಧ್ಯಾಯ 7: ವಾಸ್ತವ ಸಂಖ್ಯೆಗಳು (Real Numbers)",
+                    "ಅಧ್ಯಾಯ 8: ಬಹುಪದೋಕ್ತಿಗಳು (Polynomials)"
+                ],
+                content: `ಕರ್ನಾಟಕ ಶಾಲಾ ಪರೀಕ್ಷೆ ಮತ್ತು ಮೌಲ್ಯನಿರ್ಣಯ ಮಂಡಳಿ (KSEAB)
+10ನೇ ತರಗತಿ ಗಣಿತ ಭಾಗ - ೧ (2026-27 ಅಧಿಕೃತ ಪಠ್ಯಪುಸ್ತಕ)
+
+ಅಧ್ಯಾಯಗಳ ಸೂಚಿ:
+• ಅಧ್ಯಾಯ 1: ಸಮಾಂತರ ಶ್ರೇಢಿಗಳು (Arithmetic Progressions)
+  - nth ಪದ: an = a + (n - 1)d
+  - ಮೊದಲ n ಪದಗಳ ಮೊತ್ತ: Sn = n/2 [2a + (n - 1)d]
+
+• ಅಧ್ಯಾಯ 2: ತ್ರಿಭುಜಗಳು (Triangles)
+  - ಥೇಲ್ಸ್ ಪ್ರಮೇಯ (ಮೂಲ ಸಮಾನುಪಾತತೆಯ ಪ್ರಮೇಯ)
+  - ಸಮರೂಪ ತ್ರಿಭುಜಗಳ ವಿಸ್ತೀರ್ಣಗಳು
+  - ಪೈಥಾಗೊರಸ್ ಪ್ರಮೇಯ: AC² = AB² + BC²
+
+• ಅಧ್ಯಾಯ 3: ಎರಡು ಚರಾಕ್ಷರಗಳುಳ್ಳ ರೇಖಾತ್ಮಕ ಸಮೀಕರಣಗಳ ಜೋಡಿಗಳು
+  - ಆದೇಶ ವಿಧಾನ, ವರ್ಜಿಸುವ ವಿಧಾನ ಮತ್ತು ನಕ್ಷಾ ವಿಧಾನ
+
+• ಅಧ್ಯಾಯ 4: ವೃತ್ತಗಳು (Circles)
+  - ಸ್ಪರ್ಶ ಬಿಂದುವಿನಲ್ಲಿ ಎಳೆದ ತ್ರಿಜ್ಯವು ಸ್ಪರ್ಶಕಕ್ಕೆ ಲಂಬವಾಗಿರುತ್ತದೆ.
+
+• ಅಧ್ಯಾಯ 5: ರಚನೆಗಳು (Constructions)
+• ಅಧ್ಯಾಯ 6: ನಿರ್ದೇಶಾಂಕ ರೇಖಾಗಣಿತ (Coordinate Geometry)
+  - ದೂರ ಸೂತ್ರ: d = √[(x2 - x1)² + (y2 - y1)²]
+• ಅಧ್ಯಾಯ 7: ವಾಸ್ತವ ಸಂಖ್ಯೆಗಳು (Real Numbers)
+• ಅಧ್ಯಾಯ 8: ಬಹುಪದೋಕ್ತಿಗಳು (Polynomials)`
+            },
             {
                 id: 1,
                 title: "Algebra Notes (PDF)",
@@ -315,7 +426,7 @@
             }
         ];
 
-        let currentCategory = 'notes';
+        let currentCategory = 'textbooks';
         let activeResource = null;
 
         function renderResources(items) {
@@ -337,13 +448,18 @@
                             <i class="bi ${r.icon}"></i>
                         </div>
                         <div>
-                            <div style="font-weight: 700; font-size: 0.95rem; color: #0f172a;">${r.title}</div>
+                            <div style="font-weight: 700; font-size: 0.95rem; color: #0f172a;">
+                                ${r.title}
+                                ${r.isTextbook ? '<span style="background: #ecfdf5; color: #059669; font-size: 0.7rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 4px; margin-left: 0.5rem;">Official Textbook</span>' : ''}
+                            </div>
                             <div style="font-size: 0.78rem; color: #64748b;">${r.subject} &bull; ${r.size}</div>
                         </div>
                     </div>
-                    <button class="btn-smart-primary" style="padding: 0.4rem 1.25rem; border-radius: 8px;" onclick="event.stopPropagation(); openResourceModal(${r.id})">
-                        ${r.category === 'videos' ? 'Watch' : r.category === 'quizzes' ? 'Take Quiz' : 'Download'}
-                    </button>
+                    <div style="display: flex; gap: 0.5rem; align-items: center;">
+                        <button class="btn-smart-primary" style="padding: 0.4rem 1.25rem; border-radius: 8px;" onclick="event.stopPropagation(); openResourceModal(${r.id})">
+                            ${r.isTextbook ? '<i class="bi bi-book me-1"></i> Read / View' : (r.category === 'videos' ? 'Watch' : r.category === 'quizzes' ? 'Take Quiz' : 'Download')}
+                        </button>
+                    </div>
                 </div>
             `).join('');
         }
@@ -354,21 +470,30 @@
                 b.style.background = '#ffffff';
                 b.style.color = '#64748b';
                 b.style.borderColor = 'var(--border-color)';
+                b.classList.remove('active-tab');
             });
             btnElem.style.background = '#ebf3ff';
             btnElem.style.color = '#1e6bff';
             btnElem.style.borderColor = '#bfdbfe';
+            btnElem.classList.add('active-tab');
 
             handleResourceSearch();
         }
 
         function handleResourceSearch() {
             const query = document.getElementById('resourceSearchInput').value.toLowerCase().trim();
-            let filtered = allResources.filter(r => r.category === currentCategory);
+            let filtered = allResources.filter(r => {
+                if (currentCategory === 'ebooks') {
+                    return r.category === 'ebooks' || r.category === 'textbooks';
+                }
+                return r.category === currentCategory;
+            });
+
             if (query) {
                 filtered = allResources.filter(r => 
-                    (r.category === currentCategory || query.length > 2) &&
-                    (r.title.toLowerCase().includes(query) || r.subject.toLowerCase().includes(query))
+                    (r.title.toLowerCase().includes(query) || 
+                     r.subject.toLowerCase().includes(query) || 
+                     (r.content && r.content.toLowerCase().includes(query)))
                 );
             }
             renderResources(filtered);
@@ -384,10 +509,60 @@
                 return;
             }
 
-            document.getElementById('resourceModalTitle').textContent = r.title;
+            document.getElementById('resourceModalTitle').textContent = r.isTextbook ? 'Textbook Viewer' : r.title;
             document.getElementById('resourceModalHeading').textContent = r.title;
             document.getElementById('resourceModalMeta').textContent = `${r.subject} • Class 10 • ${r.size}`;
-            document.getElementById('resourceModalContent').textContent = r.content;
+
+            const viewer = document.getElementById('resourceModalViewer');
+            const downloadBtn = document.getElementById('modalDownloadBtn');
+            const externalBtn = document.getElementById('modalExternalBtn');
+
+            if (r.pdfUrl) {
+                downloadBtn.href = r.pdfUrl;
+                downloadBtn.download = r.pdfUrl.split('/').pop();
+                downloadBtn.style.display = 'inline-flex';
+                downloadBtn.innerHTML = `<i class="bi bi-download me-1"></i> Download PDF (${r.size})`;
+
+                externalBtn.href = r.pdfUrl;
+                externalBtn.style.display = 'inline-flex';
+
+                let chaptersHtml = '';
+                if (r.chapters && r.chapters.length > 0) {
+                    chaptersHtml = `
+                        <div class="mb-3 p-3 rounded-3" style="background: #f0fdf4; border: 1px solid #bbf7d0;">
+                            <div style="font-weight: 700; font-size: 0.88rem; color: #166534; margin-bottom: 0.5rem;">
+                                <i class="bi bi-list-ol me-1"></i> Textbook Chapters (ಅಧ್ಯಾಯಗಳು):
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem; font-size: 0.78rem; color: #15803d;">
+                                ${r.chapters.map(ch => `<div>&bull; ${ch}</div>`).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                viewer.innerHTML = `
+                    ${chaptersHtml}
+                    <div style="position: relative; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; background: #334155;">
+                        <iframe src="${r.pdfUrl}#toolbar=1" width="100%" height="450px" style="border: none; display: block;">
+                            <div style="padding: 2rem; text-align: center; color: #ffffff;">
+                                <p>Your browser doesn't support embedded PDF preview.</p>
+                                <a href="${r.pdfUrl}" target="_blank" class="btn-smart-primary">Open PDF in New Tab</a>
+                            </div>
+                        </iframe>
+                    </div>
+                `;
+            } else {
+                downloadBtn.href = '#';
+                downloadBtn.onclick = () => { downloadResourceFile(); return false; };
+                downloadBtn.innerHTML = `<i class="bi bi-download me-1"></i> Download Notes`;
+                externalBtn.style.display = 'none';
+
+                viewer.innerHTML = `
+                    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; font-family: monospace; font-size: 0.85rem; line-height: 1.6; max-height: 350px; overflow-y: auto;">
+                        <pre style="margin: 0; white-space: pre-wrap; font-family: inherit;">${r.content}</pre>
+                    </div>
+                `;
+            }
 
             document.getElementById('resourceDocModal').classList.add('show');
         }
@@ -403,8 +578,20 @@
             }
         }
 
-        // Initial render
-        renderResources(allResources.filter(r => r.category === 'notes'));
+        function askAiAboutCurrentResource() {
+            if (activeResource) {
+                closeResourceModal();
+                window.location.href = `ai-teacher.html?subject=${encodeURIComponent(activeResource.subject)}&topic=${encodeURIComponent(activeResource.title)}`;
+            }
+        }
+
+        // Close on backdrop click
+        document.getElementById('resourceDocModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'resourceDocModal') closeResourceModal();
+        });
+
+        // Initial render on load
+        renderResources(allResources.filter(r => r.category === 'textbooks'));
     </script>
 </body>
 </html>
