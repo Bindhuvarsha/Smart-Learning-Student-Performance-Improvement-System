@@ -11,7 +11,7 @@
     <style>
         .textbook-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.25rem;
             margin-bottom: 2rem;
         }
@@ -29,7 +29,7 @@
         }
         .textbook-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.09);
             border-color: #bfdbfe;
         }
         .textbook-badge-row {
@@ -56,6 +56,23 @@
             color: #ffffff;
             border-color: #2563eb;
         }
+        .textbook-medium-btn {
+            padding: 0.3rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            border: 1.5px solid #cbd5e1;
+            background: #ffffff;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+        .textbook-medium-btn.active {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
         .textbook-cover-icon {
             width: 52px;
             height: 64px;
@@ -66,9 +83,9 @@
             justify-content: center;
             color: #ffffff;
             flex-shrink: 0;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
             font-weight: 800;
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             text-align: center;
         }
     </style>
@@ -148,18 +165,18 @@
                 </div>
             </header>
 
-            <main class="page-body" style="max-width: 1080px;">
+            <main class="page-body" style="max-width: 1100px;">
                 
                 <!-- Page Header (Screen 8) -->
                 <div class="page-header mb-4">
                     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
                         <div>
                             <h2 class="page-title" style="margin-bottom: 0.25rem;">Learning Resources & Official Textbooks</h2>
-                            <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Access official Karnataka KSEAB 10th standard textbooks, revision notes, interactive quizzes, and lab videos.</p>
+                            <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Access official Karnataka KSEAB 10th standard textbooks in English and Kannada medium, revision notes, and quizzes.</p>
                         </div>
                         <div>
-                            <span class="badge bg-success-subtle text-success" style="padding: 0.45rem 0.85rem; font-size: 0.82rem; font-weight: 700;">
-                                <i class="bi bi-patch-check-fill me-1"></i> 6 Official Textbooks (2026-27)
+                            <span class="badge bg-primary-subtle text-primary" style="padding: 0.45rem 0.85rem; font-size: 0.82rem; font-weight: 700;">
+                                <i class="bi bi-patch-check-fill me-1"></i> 12 Official Textbooks Available
                             </span>
                         </div>
                     </div>
@@ -168,7 +185,7 @@
                 <!-- Main Tabs (Screen 8) -->
                 <div style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem; overflow-x: auto; padding-bottom: 0.25rem;" id="resourceTabsGroup">
                     <button class="resource-tab-btn active-tab" onclick="switchResourceCategory('textbooks', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background-color: #ebf3ff; color: #1e6bff; border: 1px solid #bfdbfe; font-weight: 700; cursor: pointer; white-space: nowrap;">
-                        <i class="bi bi-journal-bookmark-fill me-1"></i> Textbooks (6 ಪಠ್ಯಪುಸ್ತಕಗಳು)
+                        <i class="bi bi-journal-bookmark-fill me-1"></i> Textbooks (12 ಪಠ್ಯಪುಸ್ತಕಗಳು)
                     </button>
                     <button class="resource-tab-btn" onclick="switchResourceCategory('notes', this)" style="padding: 0.4rem 1.25rem; border-radius: 20px; font-size: 0.82rem; background: #ffffff; color: #64748b; border: 1px solid var(--border-color); font-weight: 600; cursor: pointer; white-space: nowrap;">
                         Notes & Formulas
@@ -187,19 +204,30 @@
                 <!-- Search Input Bar (Screen 8) -->
                 <div style="position: relative; margin-bottom: 1.25rem;">
                     <i class="bi bi-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
-                    <input type="text" id="resourceSearchInput" oninput="handleResourceSearch()" placeholder="Search textbooks (Maths, Science, Kannada, English, Hindi, Social), chapters or notes..." 
+                    <input type="text" id="resourceSearchInput" oninput="handleResourceSearch()" placeholder="Search textbooks (English & Kannada versions, Part 1 & 2), chapters, or study notes..." 
                            style="width: 100%; padding: 0.65rem 1rem 0.65rem 2.5rem; border-radius: 10px; border: 1px solid var(--border-color); background: #ffffff; font-size: 0.88rem; outline: none; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
                 </div>
 
-                <!-- Sub-filters for Textbooks -->
-                <div id="textbookSubjectFilters" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; overflow-x: auto; padding-bottom: 0.25rem;">
-                    <button class="textbook-sub-filter-btn active" onclick="filterTextbookBySubject('all', this)">All Subjects (6)</button>
-                    <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Mathematics', this)">📐 Mathematics</button>
-                    <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Science', this)">🔬 Science</button>
-                    <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Social Science', this)">🏛️ Social Science</button>
-                    <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Kannada', this)">📝 Kannada</button>
-                    <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('English', this)">📖 English</button>
-                    <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Hindi', this)">🇮🇳 Hindi</button>
+                <!-- Medium & Subject Filters Container -->
+                <div id="textbookFiltersSection" style="margin-bottom: 1.5rem;">
+                    <!-- Medium Selector -->
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; align-items: center; flex-wrap: wrap;">
+                        <span style="font-size: 0.8rem; font-weight: 700; color: #475569;"><i class="bi bi-translate me-1 text-primary"></i> Medium:</span>
+                        <button class="textbook-medium-btn active" onclick="filterByMedium('all', this)">All Mediums (12)</button>
+                        <button class="textbook-medium-btn" onclick="filterByMedium('english', this)">🇬🇧 English Medium (7)</button>
+                        <button class="textbook-medium-btn" onclick="filterByMedium('kannada', this)">🟡🔴 Kannada Medium (5)</button>
+                    </div>
+
+                    <!-- Subject Sub-filters -->
+                    <div style="display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.25rem;">
+                        <button class="textbook-sub-filter-btn active" onclick="filterTextbookBySubject('all', this)">All Subjects</button>
+                        <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Mathematics', this)">📐 Mathematics (3)</button>
+                        <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Science', this)">🔬 Science (3)</button>
+                        <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Social Science', this)">🏛️ Social Science (3)</button>
+                        <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('English', this)">📖 English (1)</button>
+                        <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Kannada', this)">📝 Kannada (1)</button>
+                        <button class="textbook-sub-filter-btn" onclick="filterTextbookBySubject('Hindi', this)">🇮🇳 Hindi (1)</button>
+                    </div>
                 </div>
 
                 <!-- Resource Items Container -->
@@ -213,7 +241,7 @@
 
     <!-- Document & Textbook Preview Modal -->
     <div class="smart-modal-backdrop" id="resourceDocModal">
-        <div class="smart-modal-dialog" style="max-width: 860px;">
+        <div class="smart-modal-dialog" style="max-width: 880px;">
             <div class="smart-modal-header">
                 <h3 class="smart-modal-title">
                     <i class="bi bi-book-half text-primary"></i>
@@ -224,8 +252,8 @@
             <div class="smart-modal-body">
                 <div class="p-3 mb-3 rounded-3" style="background: #f8fafc; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
                     <div>
-                        <div style="font-weight: 700; font-size: 1.05rem; color: #0f172a;" id="resourceModalHeading">10th Kannada Maths Part-1 (2026-27)</div>
-                        <div style="font-size: 0.8rem; color: #64748b;" id="resourceModalMeta">Mathematics &bull; Class 10 &bull; 9.9 MB PDF</div>
+                        <div style="font-weight: 700; font-size: 1.05rem; color: #0f172a;" id="resourceModalHeading">Class 10 Mathematics Part-1 (English Medium)</div>
+                        <div style="font-size: 0.8rem; color: #64748b;" id="resourceModalMeta">Mathematics &bull; Class 10 &bull; 7.7 MB PDF</div>
                     </div>
                     <div id="resourceModalBadges">
                         <span class="badge bg-success-subtle text-success" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">Verified Syllabus</span>
@@ -261,104 +289,265 @@
         });
 
         const allResources = [
-            // 1. Mathematics Textbook
+            // ==================== ENGLISH MEDIUM TEXTBOOKS ====================
+            // 1. Mathematics Part-1 (English)
             {
-                id: 9,
-                title: "10th Kannada Maths Part-1 (2026-27) – ಗಣಿತ ಭಾಗ-೧",
+                id: 15,
+                title: "Class 10 Mathematics Part-1 (English Medium)",
                 subject: "Mathematics",
-                medium: "ಕನ್ನಡ ಮಾಧ್ಯಮ (Kannada Medium)",
-                size: "9.9 MB",
+                medium: "English Medium",
+                langGroup: "english",
+                part: "Part 1",
+                size: "7.7 MB",
                 category: "textbooks",
                 color: "#10b981",
-                bgGradient: "linear-gradient(135deg, #10b981, #059669)",
+                bgGradient: "linear-gradient(135deg, #10b981, #047857)",
                 textColor: "#ffffff",
                 icon: "bi-calculator",
-                abbr: "MATHS",
-                pdfUrl: "textbooks/10th-Kannada-Maths-Part-1-2026-27.pdf",
+                abbr: "M-1",
+                pdfUrl: "textbooks/10th-Maths-Part-1-English.pdf",
                 isTextbook: true,
                 chapters: [
-                    "ಅಧ್ಯಾಯ 1: ಸಮಾಂತರ ಶ್ರೇಢಿಗಳು (Arithmetic Progressions)",
-                    "ಅಧ್ಯಾಯ 2: ತ್ರಿಭುಜಗಳು (Triangles)",
-                    "ಅಧ್ಯಾಯ 3: ಎರಡು ಚರಾಕ್ಷರಗಳುಳ್ಳ ರೇಖಾತ್ಮಕ ಸಮೀಕರಣಗಳ ಜೋಡಿಗಳು (Pair of Linear Equations)",
-                    "ಅಧ್ಯಾಯ 4: ವೃತ್ತಗಳು (Circles)",
-                    "ಅಧ್ಯಾಯ 5: ರಚನೆಗಳು (Constructions)",
-                    "ಅಧ್ಯಾಯ 6: ನಿರ್ದೇಶಾಂಕ ರೇಖಾಗಣಿತ (Coordinate Geometry)",
-                    "ಅಧ್ಯಾಯ 7: ವಾಸ್ತವ ಸಂಖ್ಯೆಗಳು (Real Numbers)",
-                    "ಅಧ್ಯಾಯ 8: ಬಹುಪದೋಕ್ತಿಗಳು (Polynomials)"
+                    "Chapter 1: Arithmetic Progressions",
+                    "Chapter 2: Triangles",
+                    "Chapter 3: Pair of Linear Equations in Two Variables",
+                    "Chapter 4: Circles",
+                    "Chapter 5: Areas Related to Circles",
+                    "Chapter 6: Constructions",
+                    "Chapter 7: Coordinate Geometry",
+                    "Chapter 8: Real Numbers"
                 ],
-                content: `ಕರ್ನಾಟಕ ಶಾಲಾ ಪರೀಕ್ಷೆ ಮತ್ತು ಮೌಲ್ಯನಿರ್ಣಯ ಮಂಡಳಿ (KSEAB)
-10ನೇ ತರಗತಿ ಗಣಿತ ಭಾಗ - ೧ (2026-27 ಅಧಿಕೃತ ಪಠ್ಯಪುಸ್ತಕ)
+                content: `Government of Karnataka - Karnataka Textbook Society (KTBS)
+Class 10 Mathematics Part-I (English Medium)
 
-ಅಧ್ಯಾಯಗಳ ಸೂಚಿ:
-• ಅಧ್ಯಾಯ 1: ಸಮಾಂತರ ಶ್ರೇಢಿಗಳು (Arithmetic Progressions)
-  - nth ಪದ: an = a + (n - 1)d
-  - ಮೊದಲ n ಪದಗಳ ಮೊತ್ತ: Sn = n/2 [2a + (n - 1)d]
-
-• ಅಧ್ಯಾಯ 2: ತ್ರಿಭುಜಗಳು (Triangles)
-  - ಥೇಲ್ಸ್ ಪ್ರಮೇಯ (ಮೂಲ ಸಮಾನುಪಾತತೆಯ ಪ್ರಮೇಯ)
-  - ಸಮರೂಪ ತ್ರಿಭುಜಗಳ ವಿಸ್ತೀರ್ಣಗಳು
-  - ಪೈಥಾಗೊರಸ್ ಪ್ರಮೇಯ: AC² = AB² + BC²
-
-• ಅಧ್ಯಾಯ 3: ಎರಡು ಚರಾಕ್ಷರಗಳುಳ್ಳ ರೇಖಾತ್ಮಕ ಸಮೀಕರಣಗಳ ಜೋಡಿಗಳು
-• ಅಧ್ಯಾಯ 4: ವೃತ್ತಗಳು (Circles)
-• ಅಧ್ಯಾಯ 5: ರಚನೆಗಳು (Constructions)
-• ಅಧ್ಯಾಯ 6: ನಿರ್ದೇಶಾಂಕ ರೇಖಾಗಣಿತ (Coordinate Geometry)
-• ಅಧ್ಯಾಯ 7: ವಾಸ್ತವ ಸಂಖ್ಯೆಗಳು (Real Numbers)
-• ಅಧ್ಯಾಯ 8: ಬಹುಪದೋಕ್ತಿಗಳು (Polynomials)`
+Chapter Overview:
+• Chapter 1: Arithmetic Progressions (AP, nth term: an = a + (n-1)d, sum: Sn = n/2[2a + (n-1)d])
+• Chapter 2: Triangles (Thales Theorem, Similarity criteria, Pythagoras theorem)
+• Chapter 3: Pair of Linear Equations in Two Variables (Graphical, Substitution, Elimination)
+• Chapter 4: Circles (Tangents, Theorem: tangent is perpendicular to radius)
+• Chapter 5: Areas Related to Circles
+• Chapter 6: Constructions
+• Chapter 7: Coordinate Geometry (Distance formula, Section formula)
+• Chapter 8: Real Numbers (Euclid's division lemma, Fundamental theorem of arithmetic)`
             },
 
-            // 2. First Language Kannada Textbook
+            // 2. Mathematics Part-2 (English)
             {
-                id: 10,
-                title: "10th Siri Kannada Textbook – ಪ್ರಥಮ ಭಾಷೆ ಸಿರಿ ಕನ್ನಡ",
-                subject: "Kannada",
-                medium: "ಪ್ರಥಮ ಭಾಷೆ (First Language)",
-                size: "3.3 MB",
+                id: 16,
+                title: "Class 10 Mathematics Part-2 (English Medium)",
+                subject: "Mathematics",
+                medium: "English Medium",
+                langGroup: "english",
+                part: "Part 2",
+                size: "7.6 MB",
                 category: "textbooks",
-                color: "#8b5cf6",
-                bgGradient: "linear-gradient(135deg, #8b5cf6, #6d28d9)",
+                color: "#059669",
+                bgGradient: "linear-gradient(135deg, #059669, #065f46)",
                 textColor: "#ffffff",
-                icon: "bi-translate",
-                abbr: "ಕನ್ನಡ",
-                pdfUrl: "textbooks/10th-Kannada-Textbook.pdf",
+                icon: "bi-calculator-fill",
+                abbr: "M-2",
+                pdfUrl: "textbooks/10th-Maths-Part-2-English.pdf",
                 isTextbook: true,
                 chapters: [
-                    "ಗದ್ಯ 1: ಯುದ್ಧ (ಸಾರಾ ಅಬೂಬಕ್ಕರ್)",
-                    "ಗದ್ಯ 2: ಶಬರಿ (ಪು.ತಿ. ನರಸಿಂಹಾಚಾರ್)",
-                    "ಗದ್ಯ 3: ಲಂಡನ್ ನಗರ (ವಿ.ಕೃ. ಗೋಕಾಕ್)",
-                    "ಗದ್ಯ 4: ಭಾಗ್ಯಶಿಲ್ಪಿಗಳು (ಡಿ.ವಿ.ಜಿ & ಇತರರು)",
-                    "ಪದ್ಯ 1: ಸಂಕಲ್ಪ ಗೀತೆ (ಜಿ.ಎಸ್. ಶಿವರುದ್ರಪ್ಪ)",
-                    "ಪದ್ಯ 2: ಹಕ್ಕಿ ಹಾರುತ್ತಿದೆ ನೋಡಿದಿರಾ (ದ.ರಾ. ಬೇಂದ್ರೆ)",
-                    "ಪದ್ಯ 3: ಹಲಗಲಿ ಬೇಡರು (ಜನಪದ ಲಾವಣಿ)",
-                    "ಪಠ್ಯಪೂರಕ ಅಧ್ಯಯನ & ಕನ್ನಡ ವ್ಯಾಕರಣ (ಸಂಧಿ, ಸಮಾಸ, ಛಂದಸ್ಸು, ಅಲಂಕಾರ)"
+                    "Chapter 9: Polynomials",
+                    "Chapter 10: Quadratic Equations",
+                    "Chapter 11: Introduction to Trigonometry",
+                    "Chapter 12: Some Applications of Trigonometry",
+                    "Chapter 13: Statistics",
+                    "Chapter 14: Probability",
+                    "Chapter 15: Surface Areas and Volumes"
                 ],
-                content: `ಕರ್ನಾಟಕ ಶಾಲಾ ಪರೀಕ್ಷೆ ಮತ್ತು ಮೌಲ್ಯನಿರ್ಣಯ ಮಂಡಳಿ (KSEAB)
-ಹತ್ತನೇ ತರಗತಿ ಪ್ರಥಮ ಭಾಷೆ ಸಿರಿ ಕನ್ನಡ ಪಠ್ಯಪುಸ್ತಕ
+                content: `Government of Karnataka - Karnataka Textbook Society (KTBS)
+Class 10 Mathematics Part-II (English Medium)
 
-ಪ್ರಮುಖ ಅಧ್ಯಾಯಗಳು ಮತ್ತು ವ್ಯಾಕರಣಾಂಶಗಳು:
-1. ಗದ್ಯ ವಿಭಾಗ:
-   - ಯುದ್ಧ, ಶಬರಿ, ಲಂಡನ್ ನಗರ, ಭಾಗ್ಯಶಿಲ್ಪಿಗಳು
-2. ಪದ್ಯ ವಿಭಾಗ:
-   - ಸಂಕಲ್ಪ ಗೀತೆ, ಹಕ್ಕಿ ಹಾರುತ್ತಿದೆ ನೋಡಿದಿರಾ, ಹಲಗಲಿ ಬೇಡರು
-3. ವ್ಯಾಕರಣ ಭಾಗ:
-   - ಕನ್ನಡ ಸಂಧಿಗಳು: ಲೋಪ, ಆಗಮ, ಆದೇಶ ಸಂಧಿಗಳು
-   - ಸಮಾಸಗಳು: ತತ್ಪುರುಷ, ಕರ್ಮಧಾರಯ, ದ್ವಿಗು, ದ್ವಂದ್ವ, ಬಹುವ್ರೀಹಿ
-   - ತತ್ಸಮ-ತದ್ಭವ, ನಾಣ್ಣುಡಿಗಳು ಮತ್ತು ಪ್ರಬಂಧ ರಚನೆ`
+Chapter Overview:
+• Chapter 9: Polynomials (Zeroes of polynomial, Relationship between zeroes and coefficients)
+• Chapter 10: Quadratic Equations (Standard form ax²+bx+c=0, Quadratic formula, Discriminant)
+• Chapter 11: Introduction to Trigonometry (Trigonometric ratios, Standard angles, Identities)
+• Chapter 12: Some Applications of Trigonometry (Heights and Distances)
+• Chapter 13: Statistics (Mean, Median, Mode, Ogive curves)
+• Chapter 14: Probability
+• Chapter 15: Surface Areas and Volumes (Cone, Cylinder, Sphere, Frustum)`
             },
 
-            // 3. English Textbook
+            // 3. Science Part-1 (English)
+            {
+                id: 17,
+                title: "Class 10 Science Part-1 (English Medium)",
+                subject: "Science",
+                medium: "English Medium",
+                langGroup: "english",
+                part: "Part 1",
+                size: "46.5 MB",
+                category: "textbooks",
+                color: "#0d9488",
+                bgGradient: "linear-gradient(135deg, #0d9488, #0f766e)",
+                textColor: "#ffffff",
+                icon: "bi-radioactive",
+                abbr: "SCI-1",
+                pdfUrl: "textbooks/10th-Science-Part-1-English.pdf",
+                isTextbook: true,
+                chapters: [
+                    "Chapter 1: Chemical Reactions and Equations",
+                    "Chapter 2: Acids, Bases and Salts",
+                    "Chapter 3: Metals and Non-metals",
+                    "Chapter 6: Life Processes",
+                    "Chapter 7: Control and Coordination",
+                    "Chapter 10: Light – Reflection and Refraction",
+                    "Chapter 11: The Human Eye and the Colourful World"
+                ],
+                content: `Government of Karnataka - Karnataka Textbook Society (KTBS)
+Class 10 Science Part-I (English Medium)
+
+Chapter Overview:
+• Chapter 1: Chemical Reactions & Equations (Combination, Decomposition, Displacement, Redox)
+• Chapter 2: Acids, Bases and Salts (pH scale, Neutralization, Chlor-alkali process, Plaster of Paris)
+• Chapter 3: Metals and Non-metals (Reactivity series, Ionic bonding, Metallurgy)
+• Chapter 6: Life Processes (Nutrition, Respiration, Circulation, Excretion)
+• Chapter 7: Control and Coordination (Nervous system, Reflex arc, Plant hormones)
+• Chapter 10: Light - Reflection and Refraction (Mirror and lens formulas, Magnification)
+• Chapter 11: The Human Eye & Colourful World (Myopia, Hypermetropia, Atmospheric refraction)`
+            },
+
+            // 4. Science Part-2 (English)
+            {
+                id: 18,
+                title: "Class 10 Science Part-2 (English Medium)",
+                subject: "Science",
+                medium: "English Medium",
+                langGroup: "english",
+                part: "Part 2",
+                size: "94.9 MB",
+                category: "textbooks",
+                color: "#0284c7",
+                bgGradient: "linear-gradient(135deg, #0284c7, #0369a1)",
+                textColor: "#ffffff",
+                icon: "bi-lightning-charge-fill",
+                abbr: "SCI-2",
+                pdfUrl: "textbooks/10th-Science-Part-2-English.pdf",
+                isTextbook: true,
+                chapters: [
+                    "Chapter 4: Carbon and its Compounds",
+                    "Chapter 5: Periodic Classification of Elements",
+                    "Chapter 8: How do Organisms Reproduce?",
+                    "Chapter 9: Heredity and Evolution",
+                    "Chapter 12: Electricity",
+                    "Chapter 13: Magnetic Effects of Electric Current",
+                    "Chapter 14: Sources of Energy",
+                    "Chapter 15: Our Environment",
+                    "Chapter 16: Sustainable Management of Natural Resources"
+                ],
+                content: `Government of Karnataka - Karnataka Textbook Society (KTBS)
+Class 10 Science Part-II (English Medium)
+
+Chapter Overview:
+• Chapter 4: Carbon and its Compounds (Covalent bonding, Functional groups, Saponification)
+• Chapter 5: Periodic Classification of Elements (Mendeleev & Modern Periodic Table)
+• Chapter 8: How do Organisms Reproduce? (Asexual & Sexual reproduction, Contraception)
+• Chapter 9: Heredity and Evolution (Mendel's laws, Monohybrid and Dihybrid cross)
+• Chapter 12: Electricity (Ohm's law, Resistors in series & parallel, Joule's heating)
+• Chapter 13: Magnetic Effects of Electric Current (Right hand thumb rule, Fleming's left hand rule)
+• Chapter 14: Sources of Energy
+• Chapter 15: Our Environment (Trophic levels, Biomagnification, Ozone layer)`
+            },
+
+            // 5. Social Science Part-1 (English)
+            {
+                id: 19,
+                title: "Class 10 Social Science Part-1 (English Medium)",
+                subject: "Social Science",
+                medium: "English Medium",
+                langGroup: "english",
+                part: "Part 1",
+                size: "2.5 MB",
+                category: "textbooks",
+                color: "#f97316",
+                bgGradient: "linear-gradient(135deg, #f97316, #c2410c)",
+                textColor: "#ffffff",
+                icon: "bi-globe2",
+                abbr: "SOC-1",
+                pdfUrl: "textbooks/10th-Social-Science-Part-1-English.pdf",
+                isTextbook: true,
+                chapters: [
+                    "History: Advent of Europeans to India",
+                    "History: The Extension of the British Rule",
+                    "History: The Impact of British Rule in India",
+                    "History: Opposition to British Rule in Karnataka",
+                    "Political Science: Problems of India and Solutions",
+                    "Political Science: Indian Foreign Policy",
+                    "Sociology: Social Stratification & Work",
+                    "Geography: India's Position, Physiography & Climate",
+                    "Economics: Development & Rural Development",
+                    "Business Studies: Banking Transactions"
+                ],
+                content: `Government of Karnataka - Karnataka Textbook Society (KTBS)
+Class 10 Social Science Part-I (English Medium - Revised)
+
+Sectional Highlights:
+• History: Battle of Plassey (1757), Battle of Buxar (1764), Subsidiary Alliance, Doctrine of Lapse
+• Political Science: Challenges of communalism, corruption, status of women, and foreign policy
+• Sociology: Social inequality, Untouchability prevention acts, Division of labour
+• Geography: Northern mountains, Great Plains, Deccan plateau, Alluvial & Black soils
+• Economics: National Income, Per Capita Income, Human Development Index (HDI)
+• Business Studies: Types of Bank Accounts, Banking services, Entrepreneurship traits`
+            },
+
+            // 6. Social Science Part-2 (English)
+            {
+                id: 20,
+                title: "Class 10 Social Science Part-2 (English Medium)",
+                subject: "Social Science",
+                medium: "English Medium",
+                langGroup: "english",
+                part: "Part 2",
+                size: "2.3 MB",
+                category: "textbooks",
+                color: "#ea580c",
+                bgGradient: "linear-gradient(135deg, #ea580c, #9a3412)",
+                textColor: "#ffffff",
+                icon: "bi-compass-fill",
+                abbr: "SOC-2",
+                pdfUrl: "textbooks/10th-Social-Science-Part-2-English.pdf",
+                isTextbook: true,
+                chapters: [
+                    "History: The First War of Indian Independence (1857)",
+                    "History: Social and Religious Reform Movements",
+                    "History: Era of Gandhi and National Movement",
+                    "History: India After Independence",
+                    "Political Science: World Problems and India's Role",
+                    "Sociology: Social Movements & Social Problems",
+                    "Geography: Indian Forest, Water & Mineral Resources",
+                    "Economics: Money and Credit, Public Finance",
+                    "Business Studies: Consumer Education and Protection"
+                ],
+                content: `Government of Karnataka - Karnataka Textbook Society (KTBS)
+Class 10 Social Science Part-II (English Medium - Revised)
+
+Sectional Highlights:
+• History: Revolt of 1857 causes and consequences, Raja Ram Mohan Roy, Swami Vivekananda
+• National Movement: Non-Cooperation Movement (1920), Civil Disobedience (1930), Quit India (1942)
+• Political Science: United Nations (UN) organs, Disarmament, Human rights promotion
+• Sociology: Labour movement, Farmer movements, Child labour, Dowry prohibition
+• Geography: Irrigation types, Multi-purpose river valley projects, Forest conservation
+• Economics: Reserve Bank of India (RBI), Commercial banks, Fiscal policy, Deficit financing
+• Business Studies: Consumer rights under COPRA, Consumer courts (District, State, National)`
+            },
+
+            // 7. English Reader & Supplementary (English)
             {
                 id: 11,
                 title: "10th English Textbook – Reader & Supplementary",
                 subject: "English",
-                medium: "First / Second Language",
+                medium: "English Medium",
+                langGroup: "english",
+                part: "Complete",
                 size: "8.7 MB",
                 category: "textbooks",
                 color: "#ec4899",
                 bgGradient: "linear-gradient(135deg, #ec4899, #be185d)",
                 textColor: "#ffffff",
                 icon: "bi-journal-text",
-                abbr: "ENGLISH",
+                abbr: "ENG",
                 pdfUrl: "textbooks/10th-English-Textbook.pdf",
                 isTextbook: true,
                 chapters: [
@@ -383,55 +572,53 @@ Key Units & Modules:
 • Grammar: Voice change, Direct/Indirect speech, Prepositions, and Essay writing`
             },
 
-            // 4. Social Science Part-1 Textbook
+            // ==================== KANNADA MEDIUM & LANGUAGE TEXTBOOKS ====================
+            // 8. Mathematics Part-1 (Kannada)
             {
-                id: 12,
-                title: "10th Social Science Part-1 (Kannada) – ಸಮಾಜ ವಿಜ್ಞಾನ ಭಾಗ-೧",
-                subject: "Social Science",
+                id: 9,
+                title: "10th Kannada Maths Part-1 (2026-27) – ಗಣಿತ ಭಾಗ-೧",
+                subject: "Mathematics",
                 medium: "ಕನ್ನಡ ಮಾಧ್ಯಮ (Kannada Medium)",
-                size: "6.4 MB",
+                langGroup: "kannada",
+                part: "ಭಾಗ 1",
+                size: "9.9 MB",
                 category: "textbooks",
-                color: "#f97316",
-                bgGradient: "linear-gradient(135deg, #f97316, #c2410c)",
+                color: "#10b981",
+                bgGradient: "linear-gradient(135deg, #10b981, #059669)",
                 textColor: "#ffffff",
-                icon: "bi-globe2",
-                abbr: "SOCIAL",
-                pdfUrl: "textbooks/10th-Social-Science-Part-1.pdf",
+                icon: "bi-calculator",
+                abbr: "ಗ-೧",
+                pdfUrl: "textbooks/10th-Kannada-Maths-Part-1-2026-27.pdf",
                 isTextbook: true,
                 chapters: [
-                    "ಇತಿಹಾಸ 1: ಭಾರತಕ್ಕೆ ಯುರೋಪಿಯನ್ನರ ಆಗಮನ",
-                    "ಇತಿಹಾಸ 2: ಬ್ರಿಟಿಷ್ ಆಳ್ವಿಕೆಯ ವಿಸ್ತರಣೆ & ಪರಿಣಾಮಗಳು",
-                    "ಇತಿಹಾಸ 3: 1857ರ ಪ್ರಥಮ ಸ್ವಾತಂತ್ರ್ಯ ಸಂಗ್ರಾಮ",
-                    "ರಾಜ್ಯಶಾಸ್ತ್ರ: ಭಾರತದ ಸಮಸ್ಯೆಗಳು ಹಾಗೂ ಅವುಗಳ ಪರಿಹಾರೋಪಾಯಗಳು",
-                    "ಸಮಾಜಶಾಸ್ತ್ರ: ಸಾಮಾಜಿಕ ಸ್ತರವಿನ್ಯಾಸ & ದುಡಿಮೆ",
-                    "ಭೂಗೋಳ: ಭಾರತದ ಸ್ಥಾನ, ವಿಸ್ತೀರ್ಣ, ಪ್ರಾಕೃತಿಕ ಲಕ್ಷಣಗಳು & ಮಣ್ಣುಗಳು",
-                    "ಅರ್ಥಶಾಸ್ತ್ರ: ಆರ್ಥಿಕಾಭಿವೃದ್ಧಿ ಮತ್ತು ಗ್ರಾಮೀಣಾಭಿವೃದ್ಧಿ",
-                    "ವ್ಯವಹಾರ ಅಧ್ಯಯನ: ಬ್ಯಾಂಕಿಂಗ್ ವ್ಯವಹಾರಗಳು & ಗ್ರಾಹಕರ ಶಿಕ್ಷಣ"
+                    "ಅಧ್ಯಾಯ 1: ಸಮಾಂತರ ಶ್ರೇಢಿಗಳು (Arithmetic Progressions)",
+                    "ಅಧ್ಯಾಯ 2: ತ್ರಿಭುಜಗಳು (Triangles)",
+                    "ಅಧ್ಯಾಯ 3: ಎರಡು ಚರಾಕ್ಷರಗಳುಳ್ಳ ರೇಖಾತ್ಮಕ ಸಮೀಕರಣಗಳ ಜೋಡಿಗಳು",
+                    "ಅಧ್ಯಾಯ 4: ವೃತ್ತಗಳು (Circles)",
+                    "ಅಧ್ಯಾಯ 5: ರಚನೆಗಳು (Constructions)",
+                    "ಅಧ್ಯಾಯ 6: ನಿರ್ದೇಶಾಂಕ ರೇಖಾಗಣಿತ (Coordinate Geometry)",
+                    "ಅಧ್ಯಾಯ 7: ವಾಸ್ತವ ಸಂಖ್ಯೆಗಳು (Real Numbers)",
+                    "ಅಧ್ಯಾಯ 8: ಬಹುಪದೋಕ್ತಿಗಳು (Polynomials)"
                 ],
                 content: `ಕರ್ನಾಟಕ ಶಾಲಾ ಪರೀಕ್ಷೆ ಮತ್ತು ಮೌಲ್ಯನಿರ್ಣಯ ಮಂಡಳಿ (KSEAB)
-10ನೇ ತರಗತಿ ಸಮಾಜ ವಿಜ್ಞಾನ ಭಾಗ - ೧ (ಕನ್ನಡ ಮಾಧ್ಯಮ)
-
-ವಿಷಯ ವಿಭಾಗಗಳು:
-1. ಇತಿಹಾಸ: ಯುರೋಪಿಯನ್ನರ ಆಗಮನ, ಪ್ಲಾಸಿ ಕದನ, ಬಕ್ಸಾರ್ ಕದನ, 1857ರ ಸಂಗ್ರಾಮ
-2. ರಾಜ್ಯಶಾಸ್ತ್ರ: ಭ್ರಷ್ಟಾಚಾರ, ನಿರುದ್ಯೋಗ, ಕೋಮುವಾದ ಮತ್ತು ಲಿಂಗ ಅಸಮಾನತೆ
-3. ಸಮಾಜಶಾಸ್ತ್ರ: ಅಸ್ಪೃಶ್ಯತೆ ನಿವಾರಣಾ ಕ್ರಮಗಳು, ಶ್ರಮ ವಿಭಜನೆ
-4. ಭೂಗೋಳ: ಹಿಮಾಲಯ, ಗಂಗಾ ಬಯಲು, ದಖನ್ ಪ್ರಸ್ಥಭೂಮಿ, ಭಾರತದ ಮಣ್ಣುಗಳು
-5. ಅರ್ಥಶಾಸ್ತ್ರ & ಬ್ಯಾಂಕಿಂಗ್: ರಾಷ್ಟ್ರೀಯ ವರಮಾನ, ಬ್ಯಾಂಕ್ ಖಾತೆಗಳ ವಿಧಗಳು`
+10ನೇ ತರಗತಿ ಗಣಿತ ಭಾಗ - ೧ (2026-27 ಅಧಿಕೃತ ಪಠ್ಯಪುಸ್ತಕ)`
             },
 
-            // 5. Science Part-1 Textbook
+            // 9. Science Part-1 (Kannada)
             {
                 id: 13,
                 title: "10th Science Part-1 (Kannada 2025-26) – ವಿಜ್ಞಾನ ಭಾಗ-೧",
                 subject: "Science",
                 medium: "ಕನ್ನಡ ಮಾಧ್ಯಮ (Kannada Medium)",
+                langGroup: "kannada",
+                part: "ಭಾಗ 1",
                 size: "50.2 MB",
                 category: "textbooks",
                 color: "#0d9488",
                 bgGradient: "linear-gradient(135deg, #0d9488, #115e59)",
                 textColor: "#ffffff",
                 icon: "bi-radioactive",
-                abbr: "SCIENCE",
+                abbr: "ವಿ-೧",
                 pdfUrl: "textbooks/10th-Science-Part-1-2025-26.pdf",
                 isTextbook: true,
                 chapters: [
@@ -444,22 +631,77 @@ Key Units & Modules:
                     "ಅಧ್ಯಾಯ 11: ಮಾನವನ ಕಣ್ಣು ಮತ್ತು ವರ್ಣಮಯ ಜಗತ್ತು"
                 ],
                 content: `ಕರ್ನಾಟಕ ಶಾಲಾ ಪರೀಕ್ಷೆ ಮತ್ತು ಮೌಲ್ಯನಿರ್ಣಯ ಮಂಡಳಿ (KSEAB)
-10ನೇ ತರಗತಿ ವಿಜ್ಞಾನ ಭಾಗ - ೧ (2025-26 ಅಧಿಕೃತ ಪಠ್ಯಪುಸ್ತಕ)
-
-ಅಧ್ಯಾಯಗಳ ಮುಖ್ಯಾಂಶಗಳು:
-1. ರಾಸಾಯನಿಕ ಕ್ರಿಯೆಗಳು: ಸಂಯೋಗ, ವಿಭಜನೆ, ಸ್ಥಾನಪಲ್ಲಟ, ದ್ವಿಸ್ಥಾನಪಲ್ಲಟ, ರೆಡಾಕ್ಸ್
-2. ಆಮ್ಲ ಮತ್ತು ಪ್ರತ್ಯಾಮ್ಲಗಳು: pH ಮಾಪಕ, ತಟಸ್ಥೀಕರಣ, ಲವಣಗಳ ಉಪಯೋಗಗಳು
-3. ಜೀವ ಕ್ರಿಯೆಗಳು: ಪೋಷಣೆ, ಉಸಿರಾಟ, ರಕ್ತ ಪರಿಚಲನೆ, ವಿಸರ್ಜನೆ
-4. ಬೆಳಕು - ದರ್ಪಣ ಮತ್ತು ಮಸೂರ ಸೂತ್ರಗಳು: 1/f = 1/v - 1/u, ವಕ್ರೀಭವನಾಂಕ
-5. ಮಾನವನ ಕಣ್ಣು: ಸಮೀಪ ದೃಷ್ಟಿ ಮತ್ತು ದೂರ ದೃಷ್ಟಿ ದೋಷ ನಿವಾರಣೆ`
+10ನೇ ತರಗತಿ ವಿಜ್ಞಾನ ಭಾಗ - ೧ (2025-26 ಅಧಿಕೃತ ಪಠ್ಯಪುಸ್ತಕ)`
             },
 
-            // 6. Hindi Third Language Textbook
+            // 10. Social Science Part-1 (Kannada)
+            {
+                id: 12,
+                title: "10th Social Science Part-1 (Kannada) – ಸಮಾಜ ವಿಜ್ಞಾನ ಭಾಗ-೧",
+                subject: "Social Science",
+                medium: "ಕನ್ನಡ ಮಾಧ್ಯಮ (Kannada Medium)",
+                langGroup: "kannada",
+                part: "ಭಾಗ 1",
+                size: "6.4 MB",
+                category: "textbooks",
+                color: "#f97316",
+                bgGradient: "linear-gradient(135deg, #f97316, #c2410c)",
+                textColor: "#ffffff",
+                icon: "bi-globe2",
+                abbr: "ಸ-೧",
+                pdfUrl: "textbooks/10th-Social-Science-Part-1.pdf",
+                isTextbook: true,
+                chapters: [
+                    "ಇತಿಹಾಸ: ಭಾರತಕ್ಕೆ ಯುರೋಪಿಯನ್ನರ ಆಗಮನ & ಬ್ರಿಟಿಷ್ ಆಳ್ವಿಕೆಯ ವಿಸ್ತರಣೆ",
+                    "ಇತಿಹಾಸ: ಬ್ರಿಟಿಷ್ ಆಳ್ವಿಕೆಯ ಪರಿಣಾಮಗಳು & 1857ರ ಸಂಗ್ರಾಮ",
+                    "ರಾಜ್ಯಶಾಸ್ತ್ರ: ಭಾರತದ ಸಮಸ್ಯೆಗಳು ಹಾಗೂ ಪರಿಹಾರಗಳು",
+                    "ಸಮಾಜಶಾಸ್ತ್ರ: ಸಾಮಾಜಿಕ ಸ್ತರವಿನ್ಯಾಸ & ದುಡಿಮೆ",
+                    "ಭೂಗೋಳ: ಭಾರತದ ಸ್ಥಾನ, ವಿಸ್ತೀರ್ಣ, ಪ್ರಾಕೃತಿಕ ಲಕ್ಷಣಗಳು & ಮಣ್ಣುಗಳು",
+                    "ಅರ್ಥಶಾಸ್ತ್ರ: ಆರ್ಥಿಕಾಭಿವೃದ್ಧಿ ಮತ್ತು ಗ್ರಾಮೀಣಾಭಿವೃದ್ಧಿ"
+                ],
+                content: `ಕರ್ನಾಟಕ ಶಾಲಾ ಪರೀಕ್ಷೆ ಮತ್ತು ಮೌಲ್ಯನಿರ್ಣಯ ಮಂಡಳಿ (KSEAB)
+10ನೇ ತರಗತಿ ಸಮಾಜ ವಿಜ್ಞಾನ ಭಾಗ - ೧ (ಕನ್ನಡ ಮಾಧ್ಯಮ)`
+            },
+
+            // 11. First Language Kannada (Siri Kannada)
+            {
+                id: 10,
+                title: "10th Siri Kannada Textbook – ಪ್ರಥಮ ಭಾಷೆ ಸಿರಿ ಕನ್ನಡ",
+                subject: "Kannada",
+                medium: "ಪ್ರಥಮ ಭಾಷೆ (First Language)",
+                langGroup: "kannada",
+                part: "ಪೂರ್ಣ",
+                size: "3.3 MB",
+                category: "textbooks",
+                color: "#8b5cf6",
+                bgGradient: "linear-gradient(135deg, #8b5cf6, #6d28d9)",
+                textColor: "#ffffff",
+                icon: "bi-translate",
+                abbr: "ಕನ್ನಡ",
+                pdfUrl: "textbooks/10th-Kannada-Textbook.pdf",
+                isTextbook: true,
+                chapters: [
+                    "ಗದ್ಯ 1: ಯುದ್ಧ (ಸಾರಾ ಅಬೂಬಕ್ಕರ್)",
+                    "ಗದ್ಯ 2: ಶಬರಿ (ಪು.ತಿ. ನರಸಿಂಹಾಚಾರ್)",
+                    "ಗದ್ಯ 3: ಲಂಡನ್ ನಗರ (ವಿ.ಕೃ. ಗೋಕಾಕ್)",
+                    "ಗದ್ಯ 4: ಭಾಗ್ಯಶಿಲ್ಪಿಗಳು (ಡಿ.ವಿ.ಜಿ & ಇತರರು)",
+                    "ಪದ್ಯ 1: ಸಂಕಲ್ಪ ಗೀತೆ (ಜಿ.ಎಸ್. ಶಿವರುದ್ರಪ್ಪ)",
+                    "ಪದ್ಯ 2: ಹಕ್ಕಿ ಹಾರುತ್ತಿದೆ ನೋಡಿದಿರಾ (ದ.ರಾ. ಬೇಂದ್ರೆ)",
+                    "ಪದ್ಯ 3: ಹಲಗಲಿ ಬೇಡರು (ಜನಪದ ಲಾವಣಿ)",
+                    "ಕನ್ನಡ ವ್ಯಾಕರಣ: ಸಂಧಿ, ಸಮಾಸ, ಛಂದಸ್ಸು, ಅಲಂಕಾರ"
+                ],
+                content: `ಕರ್ನಾಟಕ ಶಾಲಾ ಪರೀಕ್ಷೆ ಮತ್ತು ಮೌಲ್ಯನಿರ್ಣಯ ಮಂಡಳಿ (KSEAB)
+ಹತ್ತನೇ ತರಗತಿ ಪ್ರಥಮ ಭಾಷೆ ಸಿರಿ ಕನ್ನಡ ಪಠ್ಯಪುಸ್ತಕ`
+            },
+
+            // 12. Hindi Third Language (2026-27)
             {
                 id: 14,
                 title: "10th Hindi TL Part-1 (2026-27) – तृतीय भाषा हिंदी भाग-१",
                 subject: "Hindi",
                 medium: "तृतीया भाषा (Third Language)",
+                langGroup: "kannada",
+                part: "भाग 1",
                 size: "17.7 MB",
                 category: "textbooks",
                 color: "#6366f1",
@@ -474,24 +716,13 @@ Key Units & Modules:
                     "पाठ 2: कश्मीरी सेब (प्रेमचंद)",
                     "पाठ 3: गिल्लू (महादेवी वर्मा)",
                     "पाठ 4: अभिनव मनुष्य (रामधारी सिंह 'दिनकर')",
-                    "पाठ 5: मेरा बचपन (सुभद्राकुमारी चौहान)",
-                    "व्याकरण: विलोम शब्द, पर्यायवाची, कारक, संधि, मुहावरे एवं पत्र लेखन"
+                    "व्याकरण: विलोम शब्द, पर्यायवाची, कारक, संधि, मुहावरे"
                 ],
                 content: `ಕರ್ನಾಟಕ ಶಾಲಾ ಪರೀಕ್ಷೆ ಮತ್ತು ಮೌಲ್ಯನಿರ್ಣಯ ಮಂಡಳಿ (KSEAB)
-10वीं कक्षा तृतीय भाषा हिंदी भाग - 1 (2026-27 आधिकारिक पाठ्यपुस्तक)
-
-पाठ सूची एवं व्याकरण:
-• पाठ 1: मातृभूमि - भगवतीचरण वर्मा (कविता)
-• पाठ 2: कश्मीरी सेब - मुंशी प्रेमचंद (कहानी)
-• पाठ 3: गिल्लू - महादेवी वर्मा (रेखाचित्र)
-• पाठ 4: अभिनव मनुष्य - रामधारी सिंह 'दिनकर'
-• व्याकरण भाग:
-  - संज्ञा, सर्वनाम, विशेषण, क्रिया
-  - कारक, काल, विलोम शब्द, पर्यायवाची शब्द
-  - मुहावरे और लोकोक्तियाँ, पत्र लेखन एवं निबंध`
+10वीं कक्षा तृतीय भाषा हिंदी भाग - 1 (2026-27)`
             },
 
-            // Notes
+            // ==================== NOTES, VIDEOS, QUIZZES, EBOOKS ====================
             {
                 id: 1,
                 title: "Algebra Notes & Formulas (PDF)",
@@ -502,20 +733,9 @@ Key Units & Modules:
                 textColor: "#ef4444",
                 icon: "bi-file-earmark-pdf",
                 content: `### CLASS 10 MATHEMATICS - ALGEBRA QUICK REVISION
-
-1. QUADRATIC EQUATIONS:
-   Standard Form: ax² + bx + c = 0 (where a ≠ 0)
-   Discriminant (D) = b² - 4ac
-   - If D > 0: Two distinct real roots
-   - If D = 0: Two equal real roots (x = -b / 2a)
-   - If D < 0: No real roots
-
-2. QUADRATIC FORMULA:
-   x = [-b ± √(b² - 4ac)] / (2a)
-
-3. ARITHMETIC PROGRESSION (A.P.):
-   - nth term: an = a + (n - 1)d
-   - Sum of first n terms: Sn = (n / 2) [2a + (n - 1)d]`
+1. Quadratic Equations: ax² + bx + c = 0, D = b² - 4ac
+2. Quadratic Formula: x = [-b ± √(b² - 4ac)] / 2a
+3. Arithmetic Progression: an = a + (n-1)d, Sn = n/2[2a + (n-1)d]`
             },
             {
                 id: 2,
@@ -527,11 +747,8 @@ Key Units & Modules:
                 textColor: "#ec4899",
                 icon: "bi-file-earmark-pdf",
                 content: `### CLASS 10 ENGLISH GRAMMAR CHEAT SHEET
-
-1. ACTIVE AND PASSIVE VOICE:
-   - Rule: Subject + Verb + Object → Object + Helping Verb + Past Participle (V3) + by + Subject
-2. DIRECT AND INDIRECT SPEECH:
-   - "He said, 'I am reading a book'" → "He said that he was reading a book"`
+1. Active and Passive Voice rules and examples
+2. Direct and Indirect Speech conversion rules`
             },
             {
                 id: 3,
@@ -543,8 +760,8 @@ Key Units & Modules:
                 textColor: "#f97316",
                 icon: "bi-file-earmark-pdf",
                 content: `### CLASS 10 SOCIAL SCIENCE - INDIAN HISTORY SUMMARY
-1. Nationalism in India: Rowlatt Act (1919), Jallianwala Bagh Massacre, Non-Cooperation Movement (1920-1922)
-2. Civil Disobedience Movement: Salt March (Dandi March) 1930`
+1. Nationalism in India, Non-Cooperation Movement (1920-1922)
+2. Civil Disobedience Movement, Dandi March (1930)`
             },
             {
                 id: 4,
@@ -559,8 +776,6 @@ Key Units & Modules:
 1. Optics: Mirror formula 1/f = 1/v + 1/u, Lens formula 1/f = 1/v - 1/u
 2. Electricity: Ohm's Law V = I*R, Joule's Law H = I²*R*t`
             },
-
-            // Videos
             {
                 id: 5,
                 title: "Trigonometry Video Masterclass",
@@ -570,7 +785,7 @@ Key Units & Modules:
                 color: "#e0f2fe",
                 textColor: "#0284c7",
                 icon: "bi-play-circle-fill",
-                content: `Video Tutorial: Complete Trigonometric Ratios, Values of Specific Angles (0°, 30°, 45°, 60°, 90°), and proving Trigonometric Identities.`
+                content: `Video Tutorial: Complete Trigonometric Ratios, Values of Specific Angles, and proving Trigonometric Identities.`
             },
             {
                 id: 6,
@@ -583,8 +798,6 @@ Key Units & Modules:
                 icon: "bi-play-circle-fill",
                 content: `Visual Laboratory Demonstration: Observing displacement reactions, exothermic heat evolution in calcium oxide, and electrolysis of water.`
             },
-
-            // Quizzes
             {
                 id: 7,
                 title: "Class 10 Model Practice Quiz",
@@ -596,8 +809,6 @@ Key Units & Modules:
                 icon: "bi-check2-square",
                 content: `Curriculum diagnostic practice test covering Algebra, Coordinate Geometry, Triangles, and Circles with detailed solutions.`
             },
-
-            // eBooks
             {
                 id: 8,
                 title: "NCERT Class 10 Science Exemplar",
@@ -614,6 +825,7 @@ Key Units & Modules:
         let currentCategory = 'textbooks';
         let activeResource = null;
         let selectedSubjectFilter = 'all';
+        let selectedMediumFilter = 'all';
 
         function renderResources(items) {
             const container = document.getElementById('resourcesListContainer');
@@ -622,7 +834,7 @@ Key Units & Modules:
                     <div class="content-card text-center py-4" style="padding: 2.5rem; text-align: center;">
                         <i class="bi bi-search text-muted" style="font-size: 2.5rem; display: block; margin-bottom: 0.75rem;"></i>
                         <h4 style="font-weight: 700; color: #334155; margin-bottom: 0.25rem;">No resources found</h4>
-                        <p class="text-muted mb-0" style="font-size: 0.85rem;">Try adjusting your search query or subject filter.</p>
+                        <p class="text-muted mb-0" style="font-size: 0.85rem;">Try clearing your search query or selecting 'All Mediums' / 'All Subjects'.</p>
                     </div>
                 `;
                 return;
@@ -636,14 +848,12 @@ Key Units & Modules:
                             <div class="textbook-card" onclick="openResourceModal(${r.id})" style="cursor: pointer;">
                                 <div>
                                     <div class="textbook-badge-row">
-                                        <span style="background: #10b981; color: #ffffff; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 4px; text-transform: uppercase;">
-                                            Official KSEAB
+                                        <span style="background: ${r.langGroup === 'english' ? '#eff6ff' : '#f0fdf4'}; color: ${r.langGroup === 'english' ? '#1d4ed8' : '#15803d'}; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 4px; text-transform: uppercase;">
+                                            ${r.langGroup === 'english' ? 'English Medium' : 'Kannada Medium'}
                                         </span>
-                                        <span style="background: #eff6ff; color: #2563eb; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 4px;">
+                                        ${r.part ? `<span style="background: #f1f5f9; color: #475569; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 4px;">${r.part}</span>` : ''}
+                                        <span style="background: #f8fafc; color: #64748b; font-size: 0.65rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 4px; margin-left: auto;">
                                             ${r.size}
-                                        </span>
-                                        <span style="background: #f1f5f9; color: #475569; font-size: 0.65rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 4px;">
-                                            2026-27
                                         </span>
                                     </div>
 
@@ -662,7 +872,7 @@ Key Units & Modules:
                                         </div>
                                     </div>
 
-                                    <div style="font-size: 0.78rem; color: #475569; background: #f8fafc; padding: 0.5rem 0.65rem; border-radius: 6px; border: 1px solid #f1f5f9; margin-bottom: 1rem; max-height: 60px; overflow: hidden;">
+                                    <div style="font-size: 0.78rem; color: #475569; background: #f8fafc; padding: 0.5rem 0.65rem; border-radius: 6px; border: 1px solid #f1f5f9; margin-bottom: 1rem; max-height: 60px; overflow: hidden; line-height: 1.45;">
                                         ${r.chapters ? r.chapters.slice(0, 2).join('<br>') + '<br>&bull; ...' : r.content.substring(0, 80) + '...'}
                                     </div>
                                 </div>
@@ -723,12 +933,19 @@ Key Units & Modules:
             btnElem.style.borderColor = '#bfdbfe';
             btnElem.classList.add('active-tab');
 
-            // Show or hide textbook subject filters
-            const subFilterContainer = document.getElementById('textbookSubjectFilters');
-            if (subFilterContainer) {
-                subFilterContainer.style.display = (category === 'textbooks' || category === 'ebooks') ? 'flex' : 'none';
+            // Show or hide textbook filters section
+            const filtersSection = document.getElementById('textbookFiltersSection');
+            if (filtersSection) {
+                filtersSection.style.display = (category === 'textbooks' || category === 'ebooks') ? 'block' : 'none';
             }
 
+            handleResourceSearch();
+        }
+
+        function filterByMedium(medium, btnElem) {
+            selectedMediumFilter = medium;
+            document.querySelectorAll('.textbook-medium-btn').forEach(b => b.classList.remove('active'));
+            if (btnElem) btnElem.classList.add('active');
             handleResourceSearch();
         }
 
@@ -749,6 +966,12 @@ Key Units & Modules:
                 return r.category === currentCategory;
             });
 
+            // Medium filter
+            if (selectedMediumFilter !== 'all' && (currentCategory === 'textbooks' || currentCategory === 'ebooks')) {
+                filtered = filtered.filter(r => r.langGroup === selectedMediumFilter);
+            }
+
+            // Subject filter
             if (selectedSubjectFilter !== 'all' && (currentCategory === 'textbooks' || currentCategory === 'ebooks')) {
                 filtered = filtered.filter(r => r.subject.toLowerCase() === selectedSubjectFilter.toLowerCase());
             }
@@ -798,7 +1021,7 @@ Key Units & Modules:
                     chaptersHtml = `
                         <div class="mb-3 p-3 rounded-3" style="background: #f0fdf4; border: 1px solid #bbf7d0;">
                             <div style="font-weight: 700; font-size: 0.88rem; color: #166534; margin-bottom: 0.5rem;">
-                                <i class="bi bi-list-ol me-1"></i> Textbook Chapters (ಅಧ್ಯಾಯಗಳ ಪಟ್ಟಿ):
+                                <i class="bi bi-list-ol me-1"></i> Chapters Index:
                             </div>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem; font-size: 0.78rem; color: #15803d;">
                                 ${r.chapters.map(ch => `<div>&bull; ${ch}</div>`).join('')}
