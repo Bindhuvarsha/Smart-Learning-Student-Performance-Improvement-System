@@ -111,6 +111,8 @@ def api_logout():
     session.clear()
     return jsonify({'success': True, 'message': 'Logged out successfully'})
 
+from ai_teacher import generate_ai_response
+
 # ----------------- AI Teacher Virtual Classroom API -----------------
 @app.route('/api/ai-teacher/chat', methods=['POST'])
 def api_ai_teacher_chat():
@@ -122,23 +124,15 @@ def api_ai_teacher_chat():
     if not question:
         return jsonify({'success': False, 'error': 'Question is required'}), 400
 
-    q_lower = question.lower()
-    if mode == 'teacher':
-        if 'lesson' in q_lower or 'plan' in q_lower:
-            reply = f"📋 **45-Minute Lesson Plan: Class 10 {subject}**\n\n1. **Learning Objectives (5m):** Introduce core concepts and target competencies.\n2. **Direct Instruction (15m):** Board work, formula derivation, and worked textbook examples.\n3. **Guided Student Practice (15m):** Pair exercises with targeted assistance for at-risk learners.\n4. **Exit Ticket & Assessment (10m):** Quick 2-question formative check."
-        elif 'worksheet' in q_lower or 'remedial' in q_lower:
-            reply = f"📝 **Targeted Remedial Worksheet ({subject})**\n\n1. Explain the fundamental definition in your own words.\n2. Solve 3 step-by-step practice problems with formulas clearly stated.\n3. Identify and correct errors in 2 sample incorrect proofs.\n4. Answer key and rubrics attached automatically."
-        else:
-            reply = f"📊 **Class Diagnostic & Pedagogical Summary ({subject})**\n\nClass average stands at 76%. Identified weak concepts: Application of formulas and time management. Recommended action: 15-minute remedial worksheet dispatch."
-    else:
-        if 'quadratic' in q_lower or 'formula' in q_lower:
-            reply = "📐 **Quadratic Equations:** Standard Form is ax² + bx + c = 0. Quadratic Formula: x = (-b ± √(b² - 4ac)) / 2a. Discriminant D = b² - 4ac determines root nature (D > 0: two real roots, D = 0: one real root, D < 0: complex roots)."
-        elif 'newton' in q_lower or 'motion' in q_lower:
-            reply = "🔬 **Newton's Laws of Motion:** 1. Law of Inertia (objects maintain velocity unless acted upon). 2. F = ma (Force equals mass times acceleration). 3. Action-Reaction (for every action, equal and opposite reaction)."
-        elif 'predict' in q_lower or 'ml' in q_lower:
-            reply = "🤖 **AI Performance Prediction Model:** Our Scikit-Learn pipeline analyzes quiz accuracy (40%), study time (25%), remedial topic completion (20%), and attendance (15%) to project exam scores and risk levels."
-        else:
-            reply = f"💡 **Dr. Priya AI ({subject}):** Great question! In {subject}, begin by identifying given variables and target quantities. Review your Study Plan for tailored practice problems."
+    user = get_current_user()
+    reply = generate_ai_response(
+        question=question,
+        subject=subject,
+        mode=mode,
+        user=user,
+        db_session=db_session,
+        ml_engine=ml_engine
+    )
 
     return jsonify({
         'success': True,
