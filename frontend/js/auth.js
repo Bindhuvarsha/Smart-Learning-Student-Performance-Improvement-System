@@ -161,11 +161,11 @@ const Auth = {
                         <span>AI Teacher Co-Pilot</span>
                         <span style="margin-left: auto; background: #ecfdf5; color: #10b981; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 4px;">AI</span>
                     </a>
-                    <a href="teacher.html#performance-table" class="sidebar-nav-item">
+                    <a href="teacher.html#performance-table" class="sidebar-nav-item" onclick="if(window.navigateToPerformance){navigateToPerformance(); return false;}">
                         <i class="bi bi-people-fill"></i>
                         <span>Student Performance</span>
                     </a>
-                    <a href="teacher.html#weak-topics" class="sidebar-nav-item">
+                    <a href="teacher.html#weak-topics" class="sidebar-nav-item" onclick="if(window.navigateToWeakTopics){navigateToWeakTopics(); return false;}">
                         <i class="bi bi-exclamation-triangle-fill"></i>
                         <span>Weak Topics</span>
                     </a>

@@ -32,11 +32,11 @@
                     <span>AI Teacher Co-Pilot</span>
                     <span style="margin-left: auto; background: #ecfdf5; color: #10b981; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 4px;">AI</span>
                 </a>
-                <a href="teacher.html#performance-table" class="sidebar-nav-item">
+                <a href="teacher.html#performance-table" class="sidebar-nav-item" onclick="navigateToPerformance(); return false;">
                     <i class="bi bi-people-fill"></i>
                     <span>Student Performance</span>
                 </a>
-                <a href="teacher.html#weak-topics" class="sidebar-nav-item">
+                <a href="teacher.html#weak-topics" class="sidebar-nav-item" onclick="navigateToWeakTopics(); return false;">
                     <i class="bi bi-exclamation-triangle-fill"></i>
                     <span>Weak Topics</span>
                 </a>
@@ -144,10 +144,15 @@
                 <div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.5rem;">
                     
                     <!-- Left: Student Performance Table (Screen 7) -->
-                    <div class="content-card" id="performance-table" style="padding: 1.25rem 1.5rem; scroll-margin-top: 80px;">
+                    <div class="content-card" id="performance-table" style="padding: 1.25rem 1.5rem; scroll-margin-top: 80px; transition: all 0.3s ease;">
                         <div class="content-card-header d-flex justify-content-between align-items-center">
-                            <h3 class="content-card-title">Student Performance</h3>
-                            <span style="font-size: 0.75rem; color: #64748b;">Click any student to view report</span>
+                            <div>
+                                <h3 class="content-card-title mb-0">Student Performance</h3>
+                                <span style="font-size: 0.75rem; color: #64748b;">Click any student row to view diagnostic report</span>
+                            </div>
+                            <button class="btn-smart-primary" onclick="openStudentModal(6)" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
+                                <i class="bi bi-person-lines-fill me-1"></i> View Sample Report
+                            </button>
                         </div>
 
                         <table class="smart-table">
@@ -167,42 +172,48 @@
                     </div>
 
                     <!-- Right: Weak Topics (Top 5) (Screen 7) -->
-                    <div class="content-card" id="weak-topics" style="scroll-margin-top: 80px;">
-                        <div class="content-card-header">
-                            <h3 class="content-card-title">Weak Topics (Top 5)</h3>
+                    <div class="content-card" id="weak-topics" style="scroll-margin-top: 80px; transition: all 0.3s ease;">
+                        <div class="content-card-header d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="content-card-title mb-0">Weak Topics (Top 5)</h3>
+                                <span style="font-size: 0.75rem; color: #64748b;">Click any topic for remedial console</span>
+                            </div>
+                            <button class="btn-smart-outline" onclick="openWeakTopicModal('Mathematics')" style="padding: 0.25rem 0.7rem; font-size: 0.75rem;">
+                                <i class="bi bi-sliders me-1"></i> Console
+                            </button>
                         </div>
 
                         <div class="weak-topics-list">
                             <!-- Mathematics -->
-                            <div class="weak-topic-item" style="cursor: pointer;" onclick="assignTopicRemedial('Mathematics')">
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="openWeakTopicModal('Mathematics')">
                                 <span class="weak-topic-dot red"></span>
                                 <span class="weak-topic-name">Mathematics &bull; Algebra</span>
                                 <span class="weak-topic-count">5 students</span>
                             </div>
 
                             <!-- English -->
-                            <div class="weak-topic-item" style="cursor: pointer;" onclick="assignTopicRemedial('English')">
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="openWeakTopicModal('English')">
                                 <span class="weak-topic-dot red"></span>
                                 <span class="weak-topic-name">English &bull; Grammar</span>
                                 <span class="weak-topic-count">4 students</span>
                             </div>
 
                             <!-- Science -->
-                            <div class="weak-topic-item" style="cursor: pointer;" onclick="assignTopicRemedial('Science')">
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="openWeakTopicModal('Science')">
                                 <span class="weak-topic-dot orange"></span>
                                 <span class="weak-topic-name">Science &bull; Physics</span>
                                 <span class="weak-topic-count">3 students</span>
                             </div>
 
                             <!-- Social Science -->
-                            <div class="weak-topic-item" style="cursor: pointer;" onclick="assignTopicRemedial('Social Science')">
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="openWeakTopicModal('Social Science')">
                                 <span class="weak-topic-dot orange"></span>
                                 <span class="weak-topic-name">Social Science &bull; History</span>
                                 <span class="weak-topic-count">2 students</span>
                             </div>
 
                             <!-- Kannada -->
-                            <div class="weak-topic-item" style="cursor: pointer;" onclick="assignTopicRemedial('Kannada')">
+                            <div class="weak-topic-item" style="cursor: pointer;" onclick="openWeakTopicModal('Kannada')">
                                 <span class="weak-topic-dot blue"></span>
                                 <span class="weak-topic-name">Kannada &bull; Sandhi</span>
                                 <span class="weak-topic-count">1 student</span>
@@ -252,11 +263,81 @@
                 <h5 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Identified Weak Topics</h5>
                 <div id="modalWeakTopics" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem;"></div>
             </div>
-            <div class="smart-modal-footer">
+            <div class="smart-modal-footer" style="flex-wrap: wrap; gap: 0.6rem;">
+                <button class="btn-smart-outline" onclick="openAiTeacherFromStudentModal()">
+                    <i class="bi bi-robot text-primary me-1"></i> Launch AI Teacher Lesson
+                </button>
                 <button class="btn-smart-primary" onclick="sendRemedialFromModal()">
                     <i class="bi bi-send-fill me-1"></i> Send Remedial Worksheet
                 </button>
                 <button class="btn-smart-outline" onclick="closeStudentModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weak Topic Remedial Modal -->
+    <div class="smart-modal-backdrop" id="weakTopicModal">
+        <div class="smart-modal-dialog" style="max-width: 720px;">
+            <div class="smart-modal-header">
+                <h3 class="smart-modal-title">
+                    <i class="bi bi-exclamation-triangle-fill text-danger"></i>
+                    <span id="weakModalTitle">Weak Topic Remedial Console</span>
+                </h3>
+                <button class="smart-modal-close" onclick="closeWeakTopicModal()">&times;</button>
+            </div>
+            <div class="smart-modal-body">
+                <!-- Diagnostic Summary Header -->
+                <div class="d-flex flex-wrap align-items-center justify-content-between p-3 mb-3 rounded-3" style="background: #fff7ed; border: 1px solid #fed7aa;">
+                    <div>
+                        <div style="font-weight: 700; font-size: 1rem; color: #9a3412;" id="weakModalSubjectLabel">Mathematics &bull; Algebra</div>
+                        <div style="font-size: 0.8rem; color: #c2410c;" id="weakModalStatsLabel">5 Students Struggling &bull; Diagnostic Accuracy: 48%</div>
+                    </div>
+                    <div>
+                        <span id="weakModalSeverityBadge" class="badge-status-needs-support">Critical Remedial</span>
+                    </div>
+                </div>
+
+                <!-- AI Diagnostic Insight -->
+                <div class="p-3 mb-3 rounded-3" style="background: #eff6ff; border: 1px solid #bfdbfe;">
+                    <div style="font-weight: 700; font-size: 0.88rem; color: #1e40af; margin-bottom: 0.35rem;">
+                        <i class="bi bi-cpu-fill me-1 text-primary"></i> AI Diagnostic Root Cause Analysis
+                    </div>
+                    <div style="font-size: 0.82rem; color: #1e3a8a; line-height: 1.5;" id="weakModalDiagnosisText">
+                        Students struggle with quadratic equation roots when b is negative and factoring polynomials.
+                    </div>
+                </div>
+
+                <!-- Affected Students List with Checkboxes -->
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span style="font-size: 0.88rem; font-weight: 700; color: #0f172a;">Affected Students Requiring Remediation</span>
+                        <label style="font-size: 0.78rem; color: #2563eb; cursor: pointer; font-weight: 600;">
+                            <input type="checkbox" id="checkSelectAllWeak" checked onchange="toggleSelectAllWeak(this)"> Select All
+                        </label>
+                    </div>
+                    <div id="weakModalStudentList" style="max-height: 180px; overflow-y: auto;">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Challenging Sample Questions -->
+                <div class="mb-2">
+                    <div style="font-size: 0.88rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">
+                        <i class="bi bi-question-circle-fill text-warning me-1"></i> High-Error Questions in Recent Assessment
+                    </div>
+                    <div id="weakModalQuestionsList">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+            <div class="smart-modal-footer" style="flex-wrap: wrap; gap: 0.6rem;">
+                <button class="btn-smart-outline" onclick="launchAiTeacherForTopic()">
+                    <i class="bi bi-robot text-primary me-1"></i> AI Teacher Lesson Plan
+                </button>
+                <button class="btn-smart-primary" onclick="dispatchWeakTopicRemedial()">
+                    <i class="bi bi-send-fill me-1"></i> Dispatch Remedial Worksheet
+                </button>
+                <button class="btn-smart-outline" onclick="closeWeakTopicModal()">Close</button>
             </div>
         </div>
     </div>
@@ -338,7 +419,99 @@
             }
         ];
 
+        const weakTopicsData = {
+            'Mathematics': {
+                title: 'Mathematics • Algebra & Quadratic Equations',
+                subject: 'Mathematics',
+                accuracy: '48%',
+                severity: 'Critical Attention',
+                severityClass: 'badge-status-needs-support',
+                studentsCount: 5,
+                students: [
+                    { id: 2, name: 'Rahul K', class: '10A', score: 48, roll: '10102' },
+                    { id: 4, name: 'Vijay S', class: '10B', score: 52, roll: '10104' },
+                    { id: 3, name: 'Sneha M', class: '10A', score: 58, roll: '10103' },
+                    { id: 1, name: 'Asha B', class: '10A', score: 61, roll: '10101' },
+                    { id: 6, name: 'Bindhu Shree', class: '10A', score: 64, roll: '10106' }
+                ],
+                diagnosis: 'Students struggle with finding roots using the quadratic formula x = (-b ± √(b² - 4ac)) / 2a when b is negative, and factoring trinomials.',
+                sampleQuestions: [
+                    { q: 'Solve 2x² - 5x + 2 = 0 for x.', errRate: '80% incorrect' },
+                    { q: 'Determine the nature of roots for 3x² - 2x + 1 = 0.', errRate: '65% incorrect' }
+                ]
+            },
+            'English': {
+                title: 'English • Tenses & Subject-Verb Agreement',
+                subject: 'English',
+                accuracy: '54%',
+                severity: 'Moderate Concern',
+                severityClass: 'badge-status-needs-support',
+                studentsCount: 4,
+                students: [
+                    { id: 2, name: 'Rahul K', class: '10A', score: 50, roll: '10102' },
+                    { id: 4, name: 'Vijay S', class: '10B', score: 52, roll: '10104' },
+                    { id: 3, name: 'Sneha M', class: '10A', score: 60, roll: '10103' },
+                    { id: 6, name: 'Bindhu Shree', class: '10A', score: 62, roll: '10106' }
+                ],
+                diagnosis: 'Confusion between past continuous and past perfect tenses in conditional clauses (e.g., "If I had known...").',
+                sampleQuestions: [
+                    { q: 'Fill in the blank: "Neither the teacher nor the students ___ present."', errRate: '75% incorrect' },
+                    { q: 'Identify the incorrect tense: "She has gone yesterday."', errRate: '60% incorrect' }
+                ]
+            },
+            'Science': {
+                title: 'Science • Ray Optics & Newton\'s Laws of Motion',
+                subject: 'Science',
+                accuracy: '58%',
+                severity: 'Moderate Concern',
+                severityClass: 'badge-status-needs-support',
+                studentsCount: 3,
+                students: [
+                    { id: 2, name: 'Rahul K', class: '10A', score: 52, roll: '10102' },
+                    { id: 4, name: 'Vijay S', class: '10B', score: 56, roll: '10104' },
+                    { id: 6, name: 'Bindhu Shree', class: '10A', score: 65, roll: '10106' }
+                ],
+                diagnosis: 'Sign convention errors in lens and mirror formula (1/f = 1/v - 1/u), and free-body diagram vector resolution.',
+                sampleQuestions: [
+                    { q: 'Calculate focal length of concave mirror with u = -20cm and v = -30cm.', errRate: '70% incorrect' },
+                    { q: 'A 5kg block accelerates at 2m/s². What is net force?', errRate: '50% incorrect' }
+                ]
+            },
+            'Social Science': {
+                title: 'Social Science • Indian Freedom Struggle Chronology',
+                subject: 'Social Science',
+                accuracy: '62%',
+                severity: 'Low Risk',
+                severityClass: 'badge-status-good',
+                studentsCount: 2,
+                students: [
+                    { id: 2, name: 'Rahul K', class: '10A', score: 58, roll: '10102' },
+                    { id: 4, name: 'Vijay S', class: '10B', score: 60, roll: '10104' }
+                ],
+                diagnosis: 'Mixing up chronological order between Non-Cooperation Movement (1920) and Civil Disobedience Movement (1930).',
+                sampleQuestions: [
+                    { q: 'Arrange in chronological order: Dandi March, Simon Commission, Chauri Chaura.', errRate: '65% incorrect' }
+                ]
+            },
+            'Kannada': {
+                title: 'Kannada • Sandhi & Samasa Rules',
+                subject: 'Kannada',
+                accuracy: '72%',
+                severity: 'Good Standing',
+                severityClass: 'badge-status-good',
+                studentsCount: 1,
+                students: [
+                    { id: 4, name: 'Vijay S', class: '10B', score: 68, roll: '10104' }
+                ],
+                diagnosis: 'Distinguishing between Lopasandhi and Aadeshasandhi in compound words.',
+                sampleQuestions: [
+                    { q: 'Identify the sandhi in "ಬೆಟ್ಟದಾವರೆ" (Bettadavare).', errRate: '45% incorrect' }
+                ]
+            }
+        };
+
         let selectedStudent = null;
+        let activeWeakTopicKey = 'Mathematics';
 
         function renderStudentTable(students) {
             const tbody = document.getElementById('teacherStudentTableBody');
@@ -405,7 +578,7 @@
 
             const weakDiv = document.getElementById('modalWeakTopics');
             weakDiv.innerHTML = s.weakTopics.map(t => `
-                <span style="background: #fee2e2; color: #ef4444; font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 9999px;">
+                <span style="background: #fee2e2; color: #ef4444; font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 9999px; cursor: pointer;" onclick="openWeakTopicModal('Mathematics')">
                     ${t}
                 </span>
             `).join('');
@@ -424,12 +597,111 @@
             }
         }
 
-        function assignTopicRemedial(subject) {
-            SmartToast.show(`Assigned targeted ${subject} remedial module to affected students!`, 'success');
+        function openAiTeacherFromStudentModal() {
+            if (selectedStudent) {
+                closeStudentModal();
+                window.location.href = `ai-teacher.html?student=${encodeURIComponent(selectedStudent.name)}&subject=Mathematics`;
+            }
         }
+
+        // Weak Topic Modal Logic
+        function openWeakTopicModal(subjectKey) {
+            const data = weakTopicsData[subjectKey] || weakTopicsData['Mathematics'];
+            activeWeakTopicKey = subjectKey;
+
+            document.getElementById('weakModalTitle').textContent = data.title;
+            document.getElementById('weakModalSubjectLabel').innerHTML = `${data.subject} &bull; Diagnostic Assessment`;
+            document.getElementById('weakModalStatsLabel').textContent = `${data.studentsCount} Students Struggling • Diagnostic Accuracy: ${data.accuracy}`;
+
+            const badge = document.getElementById('weakModalSeverityBadge');
+            badge.className = data.severityClass;
+            badge.textContent = data.severity;
+
+            document.getElementById('weakModalDiagnosisText').textContent = data.diagnosis;
+
+            // Render affected students list
+            const studentList = document.getElementById('weakModalStudentList');
+            studentList.innerHTML = data.students.map(st => `
+                <div class="weak-topic-student-item">
+                    <label style="display: flex; align-items: center; gap: 0.65rem; cursor: pointer; margin: 0; font-weight: 600; color: #0f172a; font-size: 0.85rem;">
+                        <input type="checkbox" class="weak-student-checkbox" value="${st.id}" checked>
+                        <span>${st.name} <small style="color: #64748b; font-weight: 400;">(Class ${st.class} • Roll: ${st.roll})</small></span>
+                    </label>
+                    <span style="font-size: 0.8rem; font-weight: 700; color: ${st.score < 60 ? '#ef4444' : '#f59e0b'};">
+                        Score: ${st.score}%
+                    </span>
+                </div>
+            `).join('');
+
+            // Render questions list
+            const qList = document.getElementById('weakModalQuestionsList');
+            qList.innerHTML = data.sampleQuestions.map(q => `
+                <div class="weak-question-card">
+                    <div style="font-size: 0.83rem; font-weight: 600; color: #1e293b; margin-bottom: 0.25rem;">
+                        ${q.q}
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #b45309;">
+                        <span><i class="bi bi-x-circle-fill me-1"></i> ${q.errRate}</span>
+                        <span>Topic: ${data.subject}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('checkSelectAllWeak').checked = true;
+            document.getElementById('weakTopicModal').classList.add('show');
+        }
+
+        function closeWeakTopicModal() {
+            document.getElementById('weakTopicModal').classList.remove('show');
+        }
+
+        function toggleSelectAllWeak(masterCheck) {
+            const boxes = document.querySelectorAll('.weak-student-checkbox');
+            boxes.forEach(b => b.checked = masterCheck.checked);
+        }
+
+        function dispatchWeakTopicRemedial() {
+            const checkedBoxes = document.querySelectorAll('.weak-student-checkbox:checked');
+            const count = checkedBoxes.length;
+            closeWeakTopicModal();
+            SmartToast.show(`Dispatched targeted ${activeWeakTopicKey} remedial worksheet to ${count} student(s)!`, 'success');
+        }
+
+        function launchAiTeacherForTopic() {
+            closeWeakTopicModal();
+            window.location.href = `ai-teacher.html?topic=${encodeURIComponent(activeWeakTopicKey)}`;
+        }
+
+        function navigateToPerformance() {
+            const el = document.getElementById('performance-table');
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                el.classList.add('section-highlight-pulse');
+                setTimeout(() => el.classList.remove('section-highlight-pulse'), 2500);
+            }
+        }
+
+        function navigateToWeakTopics() {
+            const el = document.getElementById('weak-topics');
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                el.classList.add('section-highlight-pulse');
+                setTimeout(() => el.classList.remove('section-highlight-pulse'), 2500);
+            }
+        }
+
+        // Close on backdrop click
+        document.getElementById('studentDetailModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'studentDetailModal') closeStudentModal();
+        });
+
+        document.getElementById('weakTopicModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'weakTopicModal') closeWeakTopicModal();
+        });
 
         // Initialize table
         filterStudents();
     </script>
 </body>
 </html>
+
